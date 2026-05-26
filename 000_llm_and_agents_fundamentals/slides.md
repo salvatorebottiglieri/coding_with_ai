@@ -133,6 +133,303 @@ Input → Tokenize → Embed → Transform → Decode → Output
 layout: two-cols
 ---
 
+# LLMs Are Stateless — Every Call Starts From Zero
+
+### The amnesiac professor
+
+Imagine the world's smartest professor… with **total anterograde amnesia**.
+
+<div v-click class="mt-4 text-sm">
+
+Every time you walk in, they remember **nothing**:
+- Who you are
+- What you discussed yesterday
+- What decisions you made
+
+</div>
+
+<div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm">
+
+**This is exactly how LLMs work.** Every API call is a blank slate — the model only knows what you put in front of it *right now*.
+
+</div>
+
+::right::
+
+### What this means
+
+<div v-click class="mt-4 space-y-3 text-sm">
+
+<div class="p-3 bg-red-500/10 rounded-lg border-l-4 border-red-500">
+
+**Chat apps hide this** — they silently repackage the full history on every message.
+
+</div>
+
+<div class="p-3 bg-red-500/10 rounded-lg border-l-4 border-red-500">
+
+**Agents must manage state** — memory, buffers, context pruning are mandatory.
+
+</div>
+
+<div class="p-3 bg-red-500/10 rounded-lg border-l-4 border-red-500">
+
+**No learning during chat** — the model doesn't "get smarter". Fine-tuning is offline.
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Two Kinds of "Memory" — And Why It Matters
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div>
+
+### 🧠 Weights = Long-term memory
+
+<div class="p-3 bg-gray-500/10 rounded-lg text-sm mt-4">
+
+- **Baked in during training** — frozen afterwards
+- Facts, grammar, code patterns, world knowledge
+- Cutoff date: knows nothing that happened after
+- Cannot learn new facts unless fine-tuned
+
+</div>
+
+<div class="mt-4 p-3 bg-gray-500/10 rounded-lg text-sm">
+
+<b>Analogy:</b> Like a textbook printed in 2024. It can't update itself.
+
+</div>
+
+</div>
+
+<div>
+
+### 📝 Context window = Working memory
+
+<div class="p-3 bg-yellow-500/10 rounded-lg text-sm mt-4">
+
+- **Ephemeral and volatile** — lives only during inference
+- System prompt, conversation history, code, tool results
+- Scroll off → gone. Forever.
+- This is your only channel to "teach" the model in real time
+
+</div>
+
+<div class="mt-4 p-3 bg-yellow-500/10 rounded-lg text-sm">
+
+<b>Analogy:</b> Like a whiteboard erased after each class.
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-6 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-center text-sm">
+
+<b>Key insight:</b> Anything not in the weights <b>and</b> not in the current context window <b>does not exist</b> for the model. No hidden memory. No subconscious. No "I think we talked about this before."
+
+</div>
+
+---
+layout: default
+---
+
+# The Context Window: A Shared White Sheet
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+<div v-click>
+
+### The metaphor
+
+Imagine you and the model pass **a single sheet of paper** back and forth.
+
+<div class="mt-3 text-sm">
+
+1. You write your prompt at the top, slide it across →
+2. The model reads everything, writes its answer below
+3. Slides it back → you add more, slide it again…
+
+</div>
+
+</div>
+
+<div v-click class="mt-6">
+
+```mermaid {scale: 0.5}
+graph TD
+    S1["📝 20%: Everything fits"]
+    S2["📝 60%: Still comfortable"]
+    S3["📝 95%: Tight, degrading"]
+    S4["📝 >100% 💥: Oldest content ERASED"]
+    S1 --> S2 --> S3 --> S4
+```
+
+</div>
+
+</div>
+
+<div>
+
+<div v-click>
+
+### What the sheet means
+
+| Metaphor | Reality |
+|----------|---------|
+| Sheet size | Context window (128K–1M tokens) |
+| Writing on it | Adding tokens (prompt + history) |
+| It fills up | Context overflow |
+| Erasing old bits | Silent truncation |
+| Passing it back/forth | Stateless API calls |
+
+</div>
+
+<div>
+
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Every Token Is a Dice Roll 🎲
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### How an LLM generates output
+
+<div class="text-sm mt-4 space-y-3">
+
+<div v-click>
+
+1. The model is given a prompt: `function sort`
+
+</div>
+
+<div v-click>
+
+2. For the next position, it scores **every token in its vocabulary** (~100K+) with a probability
+
+</div>
+
+<div v-click>
+
+3. It **does not pick** "the right answer" — it **samples** from that distribution, like rolling weighted dice
+
+</div>
+
+<div v-click>
+
+4. The sampled token is added to the output… then repeat from step 1
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm">
+
+<b>Key difference from traditional software:</b> the model never executes, compiles, or verifies. It just predicts the most statistically likely sequence.
+
+</div>
+
+</div>
+
+<div class="flex items-center justify-center">
+
+```mermaid {scale: 0.65}
+graph TD
+    P["Input:<br/>'function sort'"] --> D["Score all<br/>100K+ tokens"]
+    D --> Q["Which one?"]
+    Q -->|roll dice| O["Output: '(' "]
+```
+
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
+# Temperature: The Creativity Knob
+
+### How it works
+
+<div class="text-sm mt-4">
+
+| 🎚️ Temp | Behavior | Use case |
+|----------|----------|----------|
+| **0.0** | Always picks most probable token | Code, math |
+| **0.3–0.7** | Slight randomness | General tasks |
+| **0.8–1.2** | Explores less likely paths | Brainstorming |
+| **>1.5** | Near-random output | Just for fun |
+
+<div class="mt-6">
+
+```mermaid {scale: 0.45}
+graph TD
+    T0["Temp = 0.0"] -->|"Always"| B0[" ( "]
+    T1["Temp = 0.7"] -->|"Usually"| B1[" ( "]
+    T1 -->|"Sometimes"| B2["Array"]
+    T1 -->|"Rarely"| B3["ed"]
+```
+
+</div>
+
+</div>
+
+::right::
+
+<div class="ml-6">
+
+### Why it matters
+
+<div v-click class="text-sm mt-4 space-y-4">
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Same prompt ≠ same output</b><br/><code class="text-xs">function sort(arr)</code> → 3 different results across runs
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Hallucinations are not a bug</b><br/>They're a byproduct of probabilistic sampling. The model always produces <em>something</em>.
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
+
+<b>Verify everything</b><br/>Test, compile, lint, review. The model suggests — <b>you</b> decide.
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
 # Tokenization
 
 The process of breaking text into processable units.
@@ -221,12 +518,9 @@ The maximum number of tokens the model can "see" at once during inference.
 | Model | Context Window |
 |---------|---------------|
 | GPT-4o | 128K tokens |
-| GPT-4.1 | 1M tokens |
-| Claude 4 Sonnet | 200K tokens |
+| Claude Haiku 4.5 | 200K tokens |
 | Claude Opus 4.5 | 1M tokens |
-| Gemini 2.5 Pro | 1M+ tokens |
-| DeepSeek V3 | 128K tokens |
-| Llama 4 Maverick | 128K tokens |
+| DeepSeek-V4-Pro | 1M tokens |
 
 </div>
 
@@ -254,6 +548,153 @@ graph LR
 <div v-click class="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30 text-sm">
 
 **Solution:** Context pruning, RAG, strategic chunking — Module 3 topic
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Context Rot — The Silent Degradation
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### The "lost in the middle" problem
+
+<div class="text-sm mt-4">
+
+Even **before** the context window overflows, model quality degrades. Research shows LLMs pay **disproportionate attention** to:
+
+</div>
+
+<div v-click class="mt-3 text-sm space-y-2">
+
+<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
+
+<b>📍 Beginning of context</b> — system prompts, early instructions are well-attended
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>📍 End of context</b> — the most recent messages also get strong attention
+
+</div>
+
+<div class="p-2 bg-yellow-500/10 rounded border border-yellow-500/30">
+
+<b>📍 Middle of context → 💀</b> — instructions, facts, and tool definitions placed here are often <b>ignored</b>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+### Why it matters in practice
+
+<div v-click class="text-sm mt-4 space-y-3">
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Instructions buried in history vanish</b> — safety rules, coding standards, constraints given 20 messages ago? The model may have already "forgotten" them.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Tools stop working</b> — function definitions placed mid-context become invisible. The model stops calling them, or calls them wrong.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Silent failure, no warning</b> — the model doesn't say "I forgot". It confidently continues with degraded reasoning. <b>You</b> must detect it.
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
+# Context Poisoning — Garbage In, Garbage Out
+
+### What goes in shapes what comes out
+
+<div class="text-sm mt-4">
+
+The model treats **everything** in the context window as relevant input. It has no built-in filter for signal vs noise.
+
+<div v-click class="mt-2 space-y-1">
+
+<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
+
+<b>Too many irrelevant files</b> — including the entire codebase when you only need 3 files dilutes the signal
+
+</div>
+
+<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
+
+<b>Verbose tool output</b> — 500 lines of logs when 5 would do. The model wastes tokens parsing noise
+
+</div>
+
+<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
+
+<b>Contradictory sources</b> — two documents saying different things? The model can't arbitrate — it may blend both into nonsense
+
+</div>
+
+</div>
+
+</div>
+
+::right::
+
+<div class="ml-4">
+
+### The detective metaphor
+
+<div v-click class="text-sm mt-4">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+<b>Imagine:</b> You give a detective a case file where 90% of the documents are irrelevant — old receipts, lunch menus, spam. Mixed in are the 10% that crack the case.
+
+<br/><br/>
+
+<b>Result:</b> The detective wastes time chasing false leads. The model does the same.
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 grid grid-cols-2 gap-2 text-xs">
+
+<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
+
+<b>✅ Curate aggressively</b><br/>Only include what the task actually needs. Prune, don't dump.
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
+
+<b>✅ Tool output hygiene</b><br/>Trim verbose results. Return summaries, not raw dumps.
 
 </div>
 
@@ -323,10 +764,132 @@ graph LR
 </div>
 
 ---
+layout: default
+---
+
+# Autoregressive — One Token at a Time
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### Each token builds on the last
+
+<div class="text-sm mt-4">
+
+LLMs are **autoregressive**: every token is generated based on **all previous tokens** — including the ones the model just produced itself.
+
+<div v-click class="mt-3">
+
+```mermaid {scale: 0.35}
+graph TD
+    A["Prompt"]
+    A --> B["Token 1 ✅"]
+    B --> C["Token 2 ✅"]
+    C --> D["Token 3 🤏"]
+    D --> E["Token 4 😬"]
+    E --> F["Token 5 💥"]
+```
+
+</div>
+
+<div v-click class="mt-2 p-2 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
+
+<b>The problem:</b> if token 3 is slightly "off", the model conditions on that wrong token to generate token 4. The error **compounds**, not corrects.
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+### The model never goes back
+
+<div v-click class="text-sm mt-4 space-y-3">
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+Unlike a human who re-reads and edits, the LLM commits to every token as it's produced. Once token 42 is written, it becomes **indisputable ground truth** for token 43.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+There is no backward pass, no revision loop, no "wait, let me fix that earlier part". The avalanche only flows **forward**.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# The Snowball Effect 🏔️ — Why It Matters
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### The metaphor
+
+<div class="text-sm mt-4">
+
+<div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+<b>Imagine:</b> A tiny snowball rolls down a mountain. Each rotation picks up more snow. By the bottom, it's an avalanche.
+
+<br/><br/>
+
+A small token drift at position 50 becomes a catastrophic hallucination by position 500.
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+### In practice
+
+<div v-click class="text-sm mt-4 space-y-3">
+
+<div class="p-3 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Code generation:</b> slightly wrong variable name → wrong logic → broken function → cascading bugs across the codebase
+
+</div>
+
+<div class="p-3 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Hallucinated facts:</b> a minor inaccuracy in paragraph 1 becomes the foundation for paragraph 2 → the entire response is fabricated
+
+</div>
+
+<div class="p-3 bg-green-500/10 rounded border border-green-500/30">
+
+<b>Why Chain-of-Thought works:</b> writing reasoning <em>before</em> the answer anchors early tokens to correct intermediate steps, preventing drift
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
 layout: statement
 ---
 
-# LLMs don't "think"
+# LLMs don't "think" (Maybe)
 
 ## They predict the statistically<br />most probable token sequence
 
