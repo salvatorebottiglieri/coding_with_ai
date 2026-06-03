@@ -1,23 +1,19 @@
 ---
 theme: seriph
-title: LLM Fundamentals and Agent Anatomy
+title: LLM Fundamentals and the Agent Harness
 info: |
-  ## Lesson 0 - Agentic Engineering Module
-  LLM Fundamentals and Anatomy of AI Agents
+  ## Lesson 0 — Agentic Engineering Module
+  LLM Fundamentals and Harness Engineering for AI Agents
 class: text-center
 drawings:
   persist: false
 transition: slide-left
-duration: 2h
 ---
 
-# LLM Fundamentals<br />and Agent Anatomy
+# LLM Fundamentals<br />and the Agent Harness
 
 ## Lesson 0 — Agentic Engineering Module
 
-<div class="pt-12">
-  <span class="text-xl opacity-75">Duration: 2 hours</span>
-</div>
 
 <div class="abs-br m-6 flex gap-2">
   <span class="text-sm opacity-50">Agentic Engineering Course</span>
@@ -34,7 +30,6 @@ layout: default
 <div>
 
 ### Part 1 — LLM Fundamentals
-30 min
 
 - Tokenization & context windows
 - Statistical nature of generated code
@@ -44,34 +39,32 @@ layout: default
 
 <div v-click>
 
-### Part 2 — What is an AI Agent?
-30 min
+### Part 2 — AI Agents
 
-- LLM vs Agent
-- Chatbot vs Agent
-- Agentic Engineering principles
+- What is an AI Agent?
+- LLM vs Agent, Chatbot vs Agent
+- What is a Harness? The Harness Problem
 
 </div>
 
 <div v-click>
 
-### Part 3 — The Agent Harness
-30 min
+### Part 3 — Harness Architecture & Layers
 
-- Anatomy of an agentic system
-- Memory, Planner, Tools, Safety
-- Harness vs Generic Frameworks
+- Execution & Sandboxing
+- Tool Interfaces & Protocols
+- Context & Working-State Engineering
+- Safety, Observability & Governance
 
 </div>
 
 <div v-click>
 
 ### Part 4 — Design Patterns & Loops
-30 min
 
 - Reasoning Loops & OODA
 - ReAct, CoT, Plan-and-Solve
-- Reflection, Tool Use, Multi-Agent
+- Reflection, Multi-Agent
 
 </div>
 
@@ -87,7 +80,6 @@ layout: section
 
 # Part 1
 ## LLM Fundamentals
-### 30 minutes
 
 ---
 layout: default
@@ -129,19 +121,41 @@ Input → Tokenize → Embed → Transform → Decode → Output
 
 </div>
 
+<!--
+ML -> class/regr
+-->
+
+---
+layout: center
+class: text-center
+---
+
+# Have You Seen *50 First Dates*?
+
+<div class="mt-8">
+  <img src="https://m.media-amazon.com/images/S/pv-target-images/c01c81114e3b901df9ce7fe782fb3c4964bc45b45e31582ec5fbbeaefc0baf34.jpg" class="h-80 mx-auto rounded-lg shadow-lg" />
+</div>
+
+<div v-click class="mt-6 text-lg opacity-80">
+  Lucy (Drew Barrymore) wakes up every morning thinking it's October 13th.<br/>
+  <span class="opacity-60">Every day, her memory resets completely — a clean slate.</span>
+</div>
+
+<div v-click class="mt-4 text-sm opacity-50">
+  Sound familiar? LLMs work exactly the same way.
+</div>
+
 ---
 layout: two-cols
 ---
 
 # LLMs Are Stateless — Every Call Starts From Zero
 
-### The amnesiac professor
-
-Imagine the world's smartest professor… with **total anterograde amnesia**.
+### Like *50 First Dates*
 
 <div v-click class="mt-4 text-sm">
 
-Every time you walk in, they remember **nothing**:
+Every new conversation, they remember **nothing**:
 - Who you are
 - What you discussed yesterday
 - What decisions you made
@@ -242,63 +256,128 @@ layout: default
 layout: default
 ---
 
-# The Context Window: A Shared White Sheet
+# Context Windows
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div>
+
+### What is a context window?
+
+The maximum number of tokens the model can "see" at once during inference.
+
+<div v-click class="mt-4">
+
+### Evolution
+
+| Model | Context Window |
+|---------|---------------|
+| GPT-4o | 128K tokens |
+| Claude Haiku 4.5 | 200K tokens |
+| Claude Opus 4.5 | 1M tokens |
+| DeepSeek-V4-Pro | 1M tokens |
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Practical implications
+
+```mermaid
+graph LR
+    A[Input Prompt] --> B{Context Window?}
+    B -->|Yes| C[Full Processing]
+    B -->|No| D[Truncation / Error]
+    D --> E[Context Loss]
+    E --> F[Degraded Output]
+```
+
+<div class="mt-6 p-4 bg-red-500/10 rounded-lg border border-red-500/30 text-sm">
+
+**Real-world problem:** A 50K-line codebase is approx 100K+ tokens. Exceeds the context window of most models.
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30 text-sm">
+
+**Solution:** Context pruning, RAG, strategic chunking — Module 3 topic
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Context Rot — The Silent Degradation
 
 <div class="grid grid-cols-2 gap-6 mt-4">
 
 <div>
 
-<div v-click>
+### The "lost in the middle" problem
 
-### The metaphor
+<div class="text-sm mt-4">
 
-Imagine you and the model pass **a single sheet of paper** back and forth.
+Even **before** the context window overflows, model quality degrades. Research shows LLMs pay **disproportionate attention** to:
 
-<div class="mt-3 text-sm">
+</div>
 
-1. You write your prompt at the top, slide it across →
-2. The model reads everything, writes its answer below
-3. Slides it back → you add more, slide it again…
+<div v-click class="mt-3 text-sm space-y-2">
+
+<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
+
+<b>📍 Beginning of context</b> — system prompts, early instructions are well-attended
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>📍 End of context</b> — the most recent messages also get strong attention
+
+</div>
+
+<div class="p-2 bg-yellow-500/10 rounded border border-yellow-500/30">
+
+<b>📍 Middle of context → 💀</b> — instructions, facts, and tool definitions placed here are often <b>ignored</b>
 
 </div>
 
 </div>
-
-<div v-click class="mt-6">
-
-```mermaid {scale: 0.5}
-graph TD
-    S1["📝 20%: Everything fits"]
-    S2["📝 60%: Still comfortable"]
-    S3["📝 95%: Tight, degrading"]
-    S4["📝 >100% 💥: Oldest content ERASED"]
-    S1 --> S2 --> S3 --> S4
-```
-
-</div>
-
-</div>
-
-<div>
-
-<div v-click>
-
-### What the sheet means
-
-| Metaphor | Reality |
-|----------|---------|
-| Sheet size | Context window (128K–1M tokens) |
-| Writing on it | Adding tokens (prompt + history) |
-| It fills up | Context overflow |
-| Erasing old bits | Silent truncation |
-| Passing it back/forth | Stateless API calls |
 
 </div>
 
 <div>
 
+### Why it matters in practice
+
+<div v-click class="text-sm mt-4 space-y-3">
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Instructions buried in history vanish</b> — safety rules, coding standards, constraints given 20 messages ago? The model may have already "forgotten" them.
 
 </div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Tools stop working</b> — function definitions placed mid-context become invisible. The model stops calling them, or calls them wrong.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
+
+<b>Silent failure, no warning</b> — the model doesn't say "I forgot". It confidently continues with degraded reasoning. <b>You</b> must detect it.
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -492,272 +571,6 @@ console.log(`Token IDs: [${tokens}]`)
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/30 text-sm">
 
 A typical non-English word consumes **2-3x more tokens** than English. Language choice impacts cost.
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# Context Windows
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-
-<div>
-
-### What is a context window?
-
-The maximum number of tokens the model can "see" at once during inference.
-
-<div v-click class="mt-4">
-
-### Evolution
-
-| Model | Context Window |
-|---------|---------------|
-| GPT-4o | 128K tokens |
-| Claude Haiku 4.5 | 200K tokens |
-| Claude Opus 4.5 | 1M tokens |
-| DeepSeek-V4-Pro | 1M tokens |
-
-</div>
-
-</div>
-
-<div v-click>
-
-### Practical implications
-
-```mermaid
-graph LR
-    A[Input Prompt] --> B{Context Window?}
-    B -->|Yes| C[Full Processing]
-    B -->|No| D[Truncation / Error]
-    D --> E[Context Loss]
-    E --> F[Degraded Output]
-```
-
-<div class="mt-6 p-4 bg-red-500/10 rounded-lg border border-red-500/30 text-sm">
-
-**Real-world problem:** A 50K-line codebase is approx 100K+ tokens. Exceeds the context window of most models.
-
-</div>
-
-<div v-click class="mt-4 p-3 bg-green-500/10 rounded border border-green-500/30 text-sm">
-
-**Solution:** Context pruning, RAG, strategic chunking — Module 3 topic
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# Context Rot — The Silent Degradation
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div>
-
-### The "lost in the middle" problem
-
-<div class="text-sm mt-4">
-
-Even **before** the context window overflows, model quality degrades. Research shows LLMs pay **disproportionate attention** to:
-
-</div>
-
-<div v-click class="mt-3 text-sm space-y-2">
-
-<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
-
-<b>📍 Beginning of context</b> — system prompts, early instructions are well-attended
-
-</div>
-
-<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
-
-<b>📍 End of context</b> — the most recent messages also get strong attention
-
-</div>
-
-<div class="p-2 bg-yellow-500/10 rounded border border-yellow-500/30">
-
-<b>📍 Middle of context → 💀</b> — instructions, facts, and tool definitions placed here are often <b>ignored</b>
-
-</div>
-
-</div>
-
-</div>
-
-<div>
-
-### Why it matters in practice
-
-<div v-click class="text-sm mt-4 space-y-3">
-
-<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
-
-<b>Instructions buried in history vanish</b> — safety rules, coding standards, constraints given 20 messages ago? The model may have already "forgotten" them.
-
-</div>
-
-<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
-
-<b>Tools stop working</b> — function definitions placed mid-context become invisible. The model stops calling them, or calls them wrong.
-
-</div>
-
-<div class="p-2 bg-red-500/10 rounded border border-red-500/30">
-
-<b>Silent failure, no warning</b> — the model doesn't say "I forgot". It confidently continues with degraded reasoning. <b>You</b> must detect it.
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
----
-layout: two-cols
----
-
-# Context Poisoning — Garbage In, Garbage Out
-
-### What goes in shapes what comes out
-
-<div class="text-sm mt-4">
-
-The model treats **everything** in the context window as relevant input. It has no built-in filter for signal vs noise.
-
-<div v-click class="mt-2 space-y-1">
-
-<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
-
-<b>Too many irrelevant files</b> — including the entire codebase when you only need 3 files dilutes the signal
-
-</div>
-
-<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
-
-<b>Verbose tool output</b> — 500 lines of logs when 5 would do. The model wastes tokens parsing noise
-
-</div>
-
-<div class="py-1.5 px-2 bg-red-500/10 rounded border-l-4 border-red-500 text-xs">
-
-<b>Contradictory sources</b> — two documents saying different things? The model can't arbitrate — it may blend both into nonsense
-
-</div>
-
-</div>
-
-</div>
-
-::right::
-
-<div class="ml-4">
-
-### The detective metaphor
-
-<div v-click class="text-sm mt-4">
-
-<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-<b>Imagine:</b> You give a detective a case file where 90% of the documents are irrelevant — old receipts, lunch menus, spam. Mixed in are the 10% that crack the case.
-
-<br/><br/>
-
-<b>Result:</b> The detective wastes time chasing false leads. The model does the same.
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 grid grid-cols-2 gap-2 text-xs">
-
-<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
-
-<b>✅ Curate aggressively</b><br/>Only include what the task actually needs. Prune, don't dump.
-
-</div>
-
-<div class="p-2 bg-green-500/10 rounded border border-green-500/30">
-
-<b>✅ Tool output hygiene</b><br/>Trim verbose results. Return summaries, not raw dumps.
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# The Statistical Nature of Generated Code
-
-<div class="mt-6">
-
-### The LLM is a "probabilistic completer"
-
-<div class="grid grid-cols-2 gap-8 mt-6">
-
-<div>
-
-```ts
-// Input prompt
-function sortArray(arr: number[]): number[] {
-```
-
-<div v-click>
-
-```ts
-// Generated output (most probable sequence)
-function sortArray(arr: number[]): number[] {
-  return arr.sort((a, b) => a - b)
-}
-```
-
-</div>
-
-</div>
-
-<div v-click>
-
-### What actually happens:
-
-1. The model computes P(token | context) for every possible token
-2. Selects or samples the most probable token
-3. Repeats for each subsequent position
-4. **It does not execute, compile, or verify**
-
-</div>
-
-</div>
-
-<div v-click class="mt-8">
-
-```mermaid {scale: 0.65}
-graph LR
-    A[Input context] --> B[Score all tokens]
-    B --> C[Pick best token]
-    C --> D[Append to output]
-    D --> E{Done?}
-    E -->|No| A
-    E -->|Yes| F[Output, unverified]
-```
 
 </div>
 
@@ -982,8 +795,65 @@ layout: section
 ---
 
 # Part 2
-## What is an AI Agent?
-### 30 minutes
+## AI Agents
+
+---
+layout: default
+---
+
+# What is an AI Agent?
+
+<div class="grid grid-cols-2 gap-8 mt-6">
+
+<div>
+
+### Definition
+
+<div class="text-sm mt-4">
+
+An AI agent is an **LLM-powered system** that can:
+
+<div v-click class="mt-3 space-y-2">
+
+- **Perceive** its environment (files, APIs, user input)
+- **Reason** about goals and plan actions
+- **Act** through tools (shell, code, network)
+- **Iterate** — observe results, correct, retry
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-sm">
+
+<b>LLM + Tools + Autonomy = Agent</b>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### The agentic loop
+
+```mermaid {scale: 0.55}
+graph TD
+    O[Observe] --> R[Reason]
+    R --> A[Act]
+    A --> E[Evaluate]
+    E -->|Not OK| O
+    E -->|OK| D[Done]
+```
+
+<div class="mt-2 p-1 bg-purple-500/10 rounded border border-purple-500/30 text-xs text-center">
+
+Like a senior developer who writes code, runs tests, finds bugs, fixes them — in a loop
+
+</div>
+
+</div>
+
+</div>
 
 ---
 layout: default
@@ -991,7 +861,7 @@ layout: default
 
 # LLM vs Agent: The Fundamental Difference
 
-<div class="grid grid-cols-2 gap-8 mt-8 items-start">
+<div class="grid grid-cols-2 gap-8 mt-6 items-start">
 
 <div>
 
@@ -1003,11 +873,9 @@ graph LR
     L -->|Response| U
 ```
 
-<div class="h-4"></div>
+<div class="mt-4 p-4 bg-gray-500/10 rounded-lg text-sm">
 
-<div class="mt-4 p-4 bg-gray-500/10 rounded-lg">
-
-- Input to Direct output
+- Input → Direct output
 - No persistent memory
 - No action capability
 - Reacts, doesn't act
@@ -1030,7 +898,7 @@ graph LR
     A -->|Reports| U
 ```
 
-<div class="mt-4 p-4 bg-blue-500/10 rounded-lg">
+<div class="mt-4 p-4 bg-blue-500/10 rounded-lg text-sm">
 
 - Perceives the environment
 - Plans autonomously
@@ -1047,24 +915,22 @@ graph LR
 layout: default
 ---
 
-# Chatbot vs Agent: A Comparison
+# Chatbot vs Agent
 
-<div class="grid grid-cols-2 gap-8 mt-6 items-start">
+<div class="grid grid-cols-2 gap-8 mt-4 items-start">
 
 <div>
 
-### Chatbot (ChatGPT, Claude chat)
+### Chatbot (ChatGPT, Claude)
 
 - One-shot conversation
 - No autonomous initiative
 - No external tool access
 - Context limited to chat
-- Fast, immediate responses
 
-<div v-click class="mt-6">
+<div v-click class="mt-4">
 
 ```ts
-// Chatbot pattern
 const response = await llm.chat(
   "Write a sorting function"
 )
@@ -1083,139 +949,14 @@ const response = await llm.chat(
 - Reads/writes filesystem
 - Runs commands, tests, builds
 - Iterates until correct
-- Session memory
 
-<div v-click class="mt-6">
+<div v-click class="mt-4">
 
 ```ts
-// Agent pattern
 await agent.run(
   "Implement optimized sorting"
 )
-// Agent: reads → writes → tests
-// → fixes → commits (autonomously)
-```
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# Agentic Engineering: Working WITH AI
-
-<div class="mt-4">
-
-### Not "using" AI, but "collaborating" with AI
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div class="p-4 bg-gray-500/10 rounded-lg border border-gray-500/30">
-
-### Traditional Paradigm
-
-**User → Prompt → AI → Output**
-
-- AI is a passive tool
-- Developer does all the work
-- AI completes atomic tasks
-
-</div>
-
-<div v-click class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-### Agentic Engineering
-
-**User → Agent → Environment + Tools**
-
-- AI is an active collaborator
-- Delegate entire workflows
-- Continuous feedback loop
-
-</div>
-
-</div>
-
-<div v-click class="grid grid-cols-4 gap-3 mt-4">
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
-  <b>Active delegation</b><br/>Ask "solve Y", not "write X"
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
-  <b>Rich context</b><br/>Constraints, not just requests
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
-  <b>Continuous validation</b><br/>Verify every step
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
-  <b>Iteration</b><br/>Agent learns and self-corrects
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# Eugene Yan: Human-AI Collaboration Principles
-
-<div class="mt-4">
-
-### The mental framework for Agentic Engineering
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div>
-
-<div class="grid grid-cols-2 gap-3">
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border-l-4 border-purple-500">
-
-**1. Define the Goal**<br/>Ask *what*, not *how*
-
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border-l-4 border-purple-500">
-
-**2. Set Guardrails**<br/>Constraints over instructions
-
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border-l-4 border-purple-500">
-
-**3. Trust but Verify**<br/>Validate continuously
-
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border-l-4 border-purple-500">
-
-**4. Iterate to Quality**<br/>First output ≠ final output
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="flex items-center justify-center">
-
-```mermaid {scale: 0.5}
-graph TD
-    G[Goal] --> A[Agent Plans]
-    A --> E[Agent Executes]
-    E --> V{Human Validates}
-    V -->|OK| D[Done]
-    V -->|Feedback| A
-    D --> M[Merge/Deploy]
+// reads → writes → tests → fixes → commits
 ```
 
 </div>
@@ -1228,115 +969,120 @@ graph TD
 layout: statement
 ---
 
-# From "AI as responder"<br />to "AI as operating engineer"
+# An LLM is a brain.<br />An agent is a brain<br />with hands.
 
 <div class="mt-8 text-lg opacity-70">
-  <em>The fundamental mindset shift of this course</em>
+  <em>The harness is what gives it hands</em>
 </div>
-
----
-layout: section
----
-
-# Part 3
-## The Agent Harness
-### 30 minutes
 
 ---
 layout: default
 ---
 
-# Anatomy of an Agentic System
+# What is a Harness?
 
-<div class="mt-4">
+<div class="grid grid-cols-2 gap-8 mt-6">
 
-### The "shell" that turns an LLM into an agent
+<div>
 
-```mermaid
+### The missing infrastructure
+
+<div class="text-sm mt-4">
+
+An LLM is just a text predictor. The **harness** is the engineering infrastructure that surrounds the model — all the code that:
+
+<div v-click class="mt-3 space-y-2">
+
+- Manages execution environments and sandboxing
+- Provides tools and enforces safety
+- Handles context, memory, and working state
+- Orchestrates the agent lifecycle
+- Instruments observability and governance
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+```mermaid {scale: 0.5}
 graph TD
-    subgraph "Agent Harness"
-        LLM[LLM Core]
-        MEM[Memory]
-        PLAN[Planner]
-        EXEC[Executor]
-        TOOLS[Tool Registry]
-        SAFE[Safety Layer]
+    subgraph "Harness"
+        E[Execution Substrate]
+        T[Tool Interface]
+        C[Context & State]
+        L[Lifecycle Orchestrator]
+        O[Observability]
+        G[Guardrails]
     end
-
-    LLM <--> MEM
-    LLM <--> PLAN
-    PLAN --> EXEC
-    EXEC --> TOOLS
-    TOOLS --> SAFE
-    SAFE --> FS[File System]
-    SAFE --> SH[Shell]
-    SAFE --> NET[Network]
-    SAFE --> API[External APIs]
-
-    U[User] -->|Task| LLM
-    LLM -->|Output| U
+    LLM[LLM Core] --- Harness
+    Harness --- ENV[Environment]
 ```
 
 </div>
 
+</div>
+
 ---
-layout: two-cols
+layout: default
 ---
 
-# Harness Components
+# The Harness Problem
 
-<div class="mt-4">
+<div class="grid grid-cols-2 gap-6 mt-6">
 
-### 1. LLM Core
+<div>
 
-- The "brain" of the agent
-- Can be swapped (GPT, Claude, local model)
-- Handles reasoning and generation
+### The model isn't everything
 
-<div v-click class="mt-4">
+<div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30 mt-4">
 
-### 2. Memory System
+<b>"I improved 15 LLMs at coding in one afternoon. Only the harness changed."</b>
+<br/>
+<span class="text-sm opacity-70">— Can Bölük, 2026</span>
 
-- Short-term memory (current conversation)
-- Long-term memory (previous sessions)
-- Context management (what to remember / discard)
+</div>
+
+<div v-click class="mt-4 text-sm space-y-2">
+
+The harness determines:
+
+- <b>Efficacy</b>: how well tools integrate and context is managed
+- <b>Reliability</b>: recovery from failures, state durability
+- <b>Safety</b>: execution boundaries, permission models
+- <b>Observability</b>: traceability of agent decisions
 
 </div>
 
 </div>
-
-::right::
-
-<div class="ml-4 mt-4">
 
 <div v-click>
 
-### 3. Planner
+### The survey landscape
 
-- Breaks down complex tasks into sub-tasks
-- Decides execution order
-- Manages dependencies and priorities
+<div class="text-sm mt-4 space-y-3">
 
-</div>
+<div class="p-3 bg-gray-500/10 rounded-lg">
 
-<div v-click class="mt-4">
-
-### 4. Tool Registry
-
-- Catalog of available tools
-- File system read/write
-- Shell command execution
-- API calls, web search, etc.
+<b>171 public artifacts</b> catalogued across 6 architectural layers
 
 </div>
 
-<div v-click class="mt-4">
+<div class="p-3 bg-gray-500/10 rounded-lg">
 
-### 5. Safety Layer
+<b>Key finding:</b> Most projects focus on lifecycle orchestration (47 entries), while context engineering (9) and governance (14) remain underserved
 
-- Operation sandboxing
-- Pre/post execution validation
-- Rate limiting and permission control
+</div>
+
+<div class="p-3 bg-gray-500/10 rounded-lg">
+
+<b>Production references:</b> Claude Code, Codex CLI, OpenHands, OpenCode
+
+</div>
+
+</div>
 
 </div>
 
@@ -1380,15 +1126,15 @@ import { Calculator } from 'langchain/tools/calculator'
 
 <div v-click>
 
-### Minimal Agent Harness
+### The Harness Philosophy
 
 <div class="p-4 bg-green-500/10 rounded-lg mt-4">
 
-- Mario Zechner's approach
+- The LLM is a component, not the product
 - **Minimal**: only what's needed
 - **Transparent**: understand every part
 - **Flexible**: adapt to your use case
-- **Lightweight**: zero unnecessary deps
+- **Layered**: separate concerns cleanly
 
 </div>
 
@@ -1414,54 +1160,113 @@ const result = await agent.run(
 </div>
 
 ---
-layout: default
+layout: statement
 ---
 
-# Lifecycle of an Agent Task
+# The harness is<br />what makes an LLM<br />an agent
 
-```mermaid {scale: 0.55}
-sequenceDiagram
-    participant U as User
-    participant H as Harness
-    participant L as LLM
-    participant T as Tools
+<div class="mt-8 text-lg opacity-70">
+  <em>Improve the harness, not just the model</em>
+</div>
 
-    U->>H: Task
-    H->>L: Plan + context
-    loop Iterate until done
-        L->>H: Generate / fix
-        H->>T: Write + test
-        T-->>H: Results
-        H->>L: Feedback
-    end
-    H->>U: Done + report
-```
+---
+layout: section
+---
+
+# Part 3
+## Harness Architecture & Layers
 
 ---
 layout: default
 ---
 
-# Safety Layer: Why It's Critical
+# The Six Layers of a Harness
+
+<div class="mt-4">
+
+### Every production agent system needs these layers
+
+<div class="grid grid-cols-3 gap-3 mt-6">
+
+<div v-click class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### E — Execution
+
+Sandboxing, containers, micro-VMs, filesystem isolation
+
+</div>
+
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+### T — Tool Interface
+
+Protocols (MCP, A2A), function calling, API contracts
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### C — Context & State
+
+Memory, session persistence, working files, context pruning
+
+</div>
+
+<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+
+### L — Lifecycle
+
+Planning, orchestration, task decomposition, sub-agents
+
+</div>
+
+<div v-click class="p-3 bg-pink-500/10 rounded-lg border border-pink-500/30">
+
+### O — Observability
+
+Tracing, logging, metrics, evaluation, cost tracking
+
+</div>
+
+<div v-click class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
+
+### G — Guardrails
+
+Permission control, rate limiting, security policies, governance
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Layer 1: Execution & Sandboxing
 
 <div class="grid grid-cols-2 gap-6 mt-6">
 
 <div>
 
-### Risks of an uncontrolled agent
+### Why execution isolation matters
 
-<div v-click class="mt-4">
+<div class="text-sm mt-4 space-y-2">
 
-- Accidental deletion of files
-- Destructive commands (`rm -rf`, `DROP TABLE`)
-- Credentials leaked in logs
-- Uncontrolled API calls
-- Infinite loops of self-correction
+<div class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
+
+Agents execute **untrusted code**. Without sandboxing, every `rm -rf` or `DROP TABLE` is real.
 
 </div>
 
-<div v-click class="mt-6 p-4 bg-yellow-500/10 rounded border border-yellow-500/30">
+<div v-click class="p-3 bg-gray-500/10 rounded-lg">
 
-**Real example:** An agent in a loop made 10,000 API calls in 5 minutes — $500 in costs!
+### Isolation spectrum
+
+**Containers** — Docker, gVisor · **Micro-VMs** — Firecracker · **WASM** — Pyodide, Capsule · **Cloud** — E2B, Daytona
+
+</div>
 
 </div>
 
@@ -1469,19 +1274,297 @@ layout: default
 
 <div v-click>
 
-### Protection strategies
+### Production examples
 
-<div class="text-sm space-y-2">
+<div class="text-sm mt-4 space-y-2">
 
-**1. Sandboxing** — Docker container, virtual FS
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**2. Command validation** — Allowlist + regex patterns
+<b>Codex CLI:</b> local execution with sandbox confinement
 
-**3. Rate Limiting** — Max ops/min, circuit breaker
+</div>
 
-**4. Human-in-the-loop** — Confirm critical ops, manual override
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**5. Logging & audit** — Full traceability, auto rollback
+<b>OpenHands:</b> sandboxed execution + shell/browser in one system
+
+</div>
+
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+<b>SWE-agent:</b> Agent-Computer Interface with remote backends
+
+</div>
+
+<div class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
+
+<b>Key principle:</b> The execution boundary is a harness responsibility, not an afterthought
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Layer 2: Tool Interfaces & Protocols
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### Model Context Protocol (MCP)
+
+<div class="text-sm mt-4">
+
+Standard for LLM ↔ tool communication. Servers expose tools, clients discover and invoke. **85K+ stars** on GitHub.
+
+</div>
+
+<div v-click class="mt-3">
+
+```mermaid {scale: 0.4}
+graph LR
+    A[Agent] -->|MCP| FS[File System]
+    A -->|MCP| DB[Database]
+    A -->|MCP| API[External APIs]
+    A -->|MCP| SH[Shell]
+```
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Beyond MCP
+
+<div class="text-sm mt-4 space-y-2">
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>A2A:</b> Google's protocol for inter-agent communication
+
+</div>
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>OpenAPI / Function Calling:</b> Structured tool definitions with typed params
+
+</div>
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>AGENTS.md (20K+ stars):</b> Repo-level agent instructions
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg text-xs">
+
+<b>Best practice:</b> Precise tool descriptions with explicit error handling. The model chooses tools based on descriptions.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Layer 3: Context & Working-State Engineering
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### Beyond the context window
+
+<div class="text-sm mt-4 space-y-3">
+
+<div class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+
+<b>The problem:</b> Context windows are finite. Long-running agents must manage what stays and what goes.
+
+</div>
+
+<div v-click class="space-y-2">
+
+### Key techniques
+
+- **Context pruning** — remove irrelevant history
+- **Compaction** — summarize old interactions
+- **File-based memory** — persist state to disk (planning-with-files)
+- **Structured skills** — inject modular capability descriptions
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Working state patterns
+
+<div class="text-sm mt-4 space-y-3">
+
+<div class="p-3 bg-gray-500/10 rounded-lg">
+
+<b>claude-mem (72K stars):</b> Plugin-style memory layer for coding agents — session persistence across restarts
+
+</div>
+
+<div class="p-3 bg-gray-500/10 rounded-lg">
+
+<b>planning-with-files (20K stars):</b> Persistent file-based task planning — agent writes its plan to disk, reads it on resume
+
+</div>
+
+<div class="p-3 bg-green-500/10 rounded-lg">
+
+<b>Golden rule:</b> The harness must make context management explicit. The LLM cannot self-manage its own memory — it has amnesia by design.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Layer 4: Lifecycle & Orchestration
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### The orchestration layer
+
+<div class="text-sm mt-4">
+
+The lifecycle orchestrator handles:
+
+<div v-click class="mt-2 space-y-1">
+
+- **Task decomposition** — breaking goals into sub-tasks
+- **Sub-agent delegation** — spawn specialized agents
+- **Checkpoint/restore** — durable progress across failures
+- **Git workflows** — branch, commit, PR automation
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Production patterns
+
+<div class="text-sm mt-4 space-y-2">
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>Single-agent loop:</b> Claude Code, Codex CLI — observe → plan → act → evaluate
+
+</div>
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>Role separation:</b> OpenCode — plan/build roles + LSP + sub-agents
+
+</div>
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>Durable orchestration:</b> Symphony (OpenAI) — issue tracker as control plane
+
+</div>
+
+<div class="p-2 bg-yellow-500/10 rounded-lg text-xs">
+
+<b>Caution:</b> Start with a single agent. Add multi-agent only when necessary.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Layers 5 & 6: Observability, Safety & Governance
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### Observability
+
+<div class="text-sm space-y-1">
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>Langfuse (26K★), OpenLLMetry (7K★):</b> Tracing, metrics, cost monitoring
+
+</div>
+
+<div class="p-2 bg-gray-500/10 rounded-lg">
+
+<b>AgentOps, Arize Phoenix:</b> Agent-specific observability platforms
+
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg text-xs">
+
+<b>Must-have:</b> Trace every tool call, every LLM interaction, every state change
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Guardrails & Security
+
+<div class="text-sm space-y-1">
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+<b>LiteLLM (45K★), IronClaw (12K★):</b> Gateway proxy, WASM security routines
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+<b>Prompt injection defense:</b> Instruction hierarchy, privilege separation
+
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg text-xs">
+
+<b>Must-have:</b> Sandbox execution, human-in-the-loop, full audit trail
+
+</div>
 
 </div>
 
@@ -1495,7 +1578,6 @@ layout: section
 
 # Part 4
 ## Design Patterns & Reasoning Loops
-### 30 minutes
 
 ---
 layout: default
@@ -1825,106 +1907,10 @@ The reflection loop caught 4 issues the human might have missed
 </div>
 
 ---
-layout: default
----
-
-# Pattern 5: Tool Use and Function Calling
-
-<div class="mt-6">
-
-### Giving the agent the ability to interact with the world
-
-<div class="grid grid-cols-2 gap-6 mt-6">
-
-<div>
-
-### Tool Definition
-
-```ts
-const tools = [
-  {
-    name: "read_file",
-    description: "Reads a file from the filesystem",
-    parameters: {
-      path: "string (file path)",
-    }
-  },
-  {
-    name: "write_file",
-    description: "Writes content to a file",
-    parameters: {
-      path: "string",
-      content: "string",
-    }
-  },
-  {
-    name: "execute_command",
-    description: "Runs a shell command",
-    parameters: {
-      command: "string",
-      timeout: "number?",
-    }
-  },
-  {
-    name: "search_codebase",
-    description: "Searches the codebase",
-    parameters: {
-      query: "string",
-      fileTypes: "string[]?",
-    }
-  }
-]
-```
-
-</div>
-
-<div v-click>
-
-### Best Practices for Tools
-
-<div class="mt-4 space-y-3">
-
-<div class="p-3 bg-green-500/10 rounded-lg">
-
-**1. Precise descriptions**
-The model chooses which tool to use based on the description. Be exhaustive.
-
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg">
-
-**2. Typed parameters**
-Use precise types (string, number, boolean, enum). Avoid "any".
-
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg">
-
-**3. Explicit error handling**
-Every tool must return clear, actionable errors.
-
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg">
-
-**4. Idempotency**
-Tools should be safe to call multiple times.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
----
 layout: two-cols
 ---
 
-# Pattern 6: Multi-Agent Delegation
+# Pattern 5: Multi-Agent Delegation
 
 <div class="mt-4">
 
@@ -1997,14 +1983,13 @@ layout: default
 | **Chain-of-Thought** | Transparent reasoning | Logic & debugging | Low |
 | **Plan-and-Solve** | Decomposition | Complex multi-step | High |
 | **Reflection** | Self-improvement | Quality-critical output | Medium |
-| **Tool Use** | World interaction | Any production task | Medium |
 | **Multi-Agent** | Specialization | Large-scale systems | Very High |
 
 </div>
 
 <div v-click class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-**Start here:** **ReAct + Tool Use + Reflection** — the winning triplet for agentic coding.
+**Start here:** **ReAct + Reflection** — the winning pair for agentic coding.
 
 </div>
 
@@ -2065,9 +2050,9 @@ class: text-center
 
 # Lesson Summary
 
-<div class="mt-8 grid grid-cols-2 gap-6 text-left">
+<div class="grid grid-cols-2 gap-4 text-left text-sm">
 
-<div class="p-4 bg-blue-500/10 rounded-lg">
+<div class="p-3 bg-blue-500/10 rounded-lg">
 
 ### LLM Fundamentals
 - Tokenization and context windows
@@ -2076,30 +2061,30 @@ class: text-center
 
 </div>
 
-<div class="p-4 bg-blue-500/10 rounded-lg">
+<div class="p-3 bg-blue-500/10 rounded-lg">
 
-### What is an Agent
-- Difference between LLM and Agent
-- Chatbot vs AI Agent
-- Agentic Engineering as collaboration
-
-</div>
-
-<div class="p-4 bg-blue-500/10 rounded-lg">
-
-### Agent Harness
-- Anatomy of the agentic system
-- Memory, Planner, Tools, Safety
-- Minimalism vs heavy frameworks
+### What is a Harness
+- The infrastructure surrounding the model
+- The Harness Problem: improving the harness > improving the model
+- Minimal, transparent, layered philosophy
 
 </div>
 
-<div class="p-4 bg-blue-500/10 rounded-lg">
+<div class="p-3 bg-blue-500/10 rounded-lg">
+
+### Harness Architecture
+- Six layers: Execution, Tools, Context, Lifecycle, Observability, Guardrails
+- Production refs: Claude Code, Codex CLI, OpenHands
+- Context engineering and working-state management
+
+</div>
+
+<div class="p-3 bg-blue-500/10 rounded-lg">
 
 ### Design Patterns
 - ReAct, CoT, Plan-and-Solve
 - Reflection and Self-Correction
-- Tool Use and Multi-Agent Delegation
+- Multi-Agent Delegation
 
 </div>
 
@@ -2127,18 +2112,59 @@ Execution permission configuration<br />
 </div>
 
 ---
-layout: end
+layout: center
+class: text-center
 ---
 
-# Questions?
+<div class="mb-8">
+  <div class="text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+    Questions?
+  </div>
+</div>
 
-<div class="mt-12 text-center opacity-50">
+<div class="flex justify-center items-stretch gap-6 mt-12">
 
-### References
+  <!-- Repo Card -->
+  <a href="https://github.com/salvatorebottiglieri/coding_with_ai" target="_blank"
+     class="w-64 p-6 rounded-xl border border-gray-700 bg-gray-800/60 hover:bg-gray-700/60 hover:border-blue-500/50 transition-all duration-300 no-underline flex flex-col items-center justify-center">
+    <div class="text-3xl mb-3">
+      <carbon-logo-github />
+    </div>
+    <div class="text-sm font-semibold text-gray-300 mb-1">Course Repository</div>
+    <div class="text-xs text-blue-400 break-all text-center">
+      salvatorebottiglieri/<br/>coding_with_ai
+    </div>
+  </a>
 
-- Brendan O'Leary — Agentic Engineering
-- Eugene Yan — Human-AI Collaboration Patterns
-- Agentic Design Patterns (Handbook)
-- Agent Harness vs Everything
+  <!-- References Card -->
+  <div class="w-96 p-6 rounded-xl border border-gray-700 bg-gray-800/60 text-left flex flex-col">
+    <div class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">📚 References</div>
+    <div class="space-y-3 text-sm">
+      <a href="https://youtu.be/BEKc4P87XKo" target="_blank"
+         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-blue-400">
+        <div class="text-gray-200 font-medium">Agentic Engineering</div>
+        <div class="text-xs text-gray-500">Brendan O'Leary</div>
+      </a>
+      <a href="https://eugeneyan.com/" target="_blank"
+         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-purple-400">
+        <div class="text-gray-200 font-medium">Human-AI Collaboration</div>
+        <div class="text-xs text-gray-500">Eugene Yan</div>
+      </a>
+      <a href="https://www.amazon.it/Agentic-Design-Patterns-Hands-Intelligent/dp/3032014018" target="_blank"
+         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-pink-400">
+        <div class="text-gray-200 font-medium">Agentic Design Patterns</div>
+        <div class="text-xs text-gray-500">Handbook</div>
+      </a>
+      <a href="https://picrew.github.io/LLM-Harness" target="_blank"
+         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-yellow-400">
+        <div class="text-gray-200 font-medium">Agent Harness Engineering</div>
+        <div class="text-xs text-gray-500">Survey Paper (2026)</div>
+      </a>
+    </div>
+  </div>
 
+</div>
+
+<div class="mt-10 text-sm text-gray-500">
+  Lesson 0 — Agentic Engineering Module
 </div>
