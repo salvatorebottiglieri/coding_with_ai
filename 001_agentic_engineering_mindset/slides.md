@@ -1106,33 +1106,27 @@ layout: default
 
 # Anti-Patterns to Avoid
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="mt-6 max-w-3xl mx-auto text-sm space-y-4">
 
-<div>
+<div class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
 
-### ❌ Don't do this
-
-<div class="text-sm mt-4 space-y-3">
-
-<div class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
-
-**Answer "yes/no" in monosyllables**
+**❌ Answer "yes/no" in monosyllables**
 
 The agent asks a complex question and you answer "ok". You're delegating the decision.
 
 </div>
 
-<div v-click class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
+<div v-click class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
 
-**Ask for code prematurely**
+**❌ Ask for code prematurely**
 
 "Wait, show me how you'd write function X." You're skipping the planning.
 
 </div>
 
-<div v-click class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
+<div v-click class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
 
-**Ignore the agent's questions**
+**❌ Ignore the agent's questions**
 
 The agent asks "Which auth protocol?" and you change the subject. The agent can't proceed without that answer.
 
@@ -1140,39 +1134,35 @@ The agent asks "Which auth protocol?" and you change the subject. The agent can'
 
 </div>
 
-</div>
+---
+layout: default
+---
 
-<div v-click>
+# Best Practices
 
-### ✅ Do this instead
+<div class="mt-6 max-w-3xl mx-auto text-sm space-y-4">
 
-<div class="text-sm mt-4 space-y-3">
+<div class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
 
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-
-**Answer in an articulated way**
+**✅ Answer in an articulated way**
 
 "For auth I'd use JWT with refresh tokens, because the app will be a React SPA."
 
 </div>
 
-<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**Ask the agent to go deeper**
+**✅ Ask the agent to go deeper**
 
 "Explain the trade-offs between unanimous and majority consensus in this context."
 
 </div>
 
-<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**Take notes on gray areas**
+**✅ Take notes on gray areas**
 
 "I don't know which email provider to use yet. Let's put it in risks and decide later."
-
-</div>
-
-</div>
 
 </div>
 
@@ -1382,18 +1372,32 @@ class: text-center
 
 # Next Lesson
 
-## Lesson 2: Harness vs Minimalism
+## Lesson 2: Fundamentals and the "Slop" Problem
 
 <div class="mt-8">
 
-Agent Harness Architecture<br />
-OpenAI vs Mario Zechner<br />
-Building a minimal "pi" agent
+Why software fundamentals matter more than ever<br />
+when AI is writing the code.
 
 </div>
 
-<div class="mt-12 text-lg opacity-50">
-  <em>"Simplicity beats complexity.<br />But only if you know what you're simplifying."</em>
+<div class="mt-10 grid grid-cols-3 gap-4 text-sm max-w-2xl mx-auto">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+  <b>🧠 Theory (20 min)</b>
+  <div class="text-xs mt-1 opacity-70">AI Slop: what it is and how to avoid it</div>
+</div>
+
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+  <b>🔍 Code Review (50 min)</b>
+  <div class="text-xs mt-1 opacity-70">Spotting fragile AI-generated patterns</div>
+</div>
+
+<div class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+  <b>🛠️ Refactoring (50 min)</b>
+  <div class="text-xs mt-1 opacity-70">Cleaning up slop with solid engineering principles</div>
+</div>
+
 </div>
 
 ---
