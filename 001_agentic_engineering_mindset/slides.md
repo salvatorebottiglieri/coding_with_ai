@@ -22,9 +22,9 @@ transition: slide-left
 layout: default
 ---
 
-# Lesson Agenda — 120 minutes
+# Lesson Agenda — 65 minutes
 
-<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="grid grid-cols-2 gap-4 mt-8">
 
 <div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
@@ -39,30 +39,20 @@ The **Delegation Workflow**:
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-
-### ⚙️ Setup — 30 min
-
-- VS Code + GitHub Copilot
-- Custom instructions
-- Loading the `co-decompose` skill
-
-</div>
-
 <div v-click class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30">
 
-### 🏗️ Active Delegation — 70 min
+### 🏗️ Active Delegation — 45 min
 
-- Co-decomposition exercise
-- Pair planning with the agent
-- Output: live PRD in 6 sections
-- **Final debrief (last 10 min)**
+- 5 min: Instructor demo of the `co-decompose` skill
+- 20 min: Co-decomposition exercise
+- 20 min: Group discussion & debrief
 
 </div>
 
 </div>
 
 <div class="mt-8 text-center text-sm opacity-50">
+  <b>Prerequisite:</b> Complete the pre-lesson <code>setup.md</code> before attending.<br/>
   <b>Objective:</b> Stop using AI like a chatbot and start treating it as an operating engineer.
 </div>
 
@@ -555,230 +545,13 @@ Examples: end-to-end architecture, autonomous deployment
 
 </div>
 
----
-layout: section
----
-
-# Part 2 — Setup
-## Environment Setup (30 min)
-
----
-layout: default
----
-
-# 1. VS Code + GitHub Copilot
-
-<div class="grid grid-cols-2 gap-6 mt-8">
-
-<div>
-
-### Installation
-
-<div class="text-sm mt-4 space-y-4">
-
-<div class="p-3 bg-gray-500/10 rounded-lg">
-
-**1. VS Code** — https://code.visualstudio.com/
-Download and install the latest stable version
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg">
-
-**2. GitHub Copilot extension**
-Open VS Code → Extensions (Ctrl+Shift+X) → search "GitHub Copilot" → Install
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg">
-
-**3. Authentication**
-Click the Copilot icon in the bottom right → Sign in with GitHub
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click>
-
-### Verification
-
-<div class="text-sm mt-4 space-y-3">
-
-<div class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-
-Open the Chat panel (Ctrl+Shift+I) and type:
-
-```
-Hello, who are you and what can you do?
-```
-
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-
-If Copilot responds, installation is complete. ✅
-
-</div>
-
-<div class="p-3 bg-red-500/10 rounded-lg border border-red-500/30 text-xs">
-
-If it doesn't respond: verify GitHub authentication and internet connection.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# 2. Custom Instructions
-
-<div class="grid grid-cols-2 gap-6 mt-6">
-
-<div>
-
-### What they are
-
-<div class="text-sm mt-4">
-
-**Custom instructions** are the personal system prompt Copilot will use in every conversation. They define:
-
-<div v-click class="mt-3 space-y-2">
-
-- Your role and context
-- The tech stack you use
-- Code conventions and style
-- Expected agent behavior
-
-</div>
-
-</div>
-
-<div v-click class="mt-4">
-
-### Where to configure them
-
-<div class="text-sm mt-2 space-y-2">
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**VS Code:** Settings → Copilot → Custom Instructions
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**GitHub:** Settings → Copilot → Custom instructions
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click>
-
-### Recommended template
-
-<div class="text-sm mt-4 p-3 bg-gray-500/10 rounded-lg">
-
-```
-I am a software engineer working on [project].
-My tech stack includes [technologies].
-
-When helping me:
-- Ask one question at a time when you need clarification
-- Never assume missing context — ask instead
-- Propose a plan before writing code
-- Write clean, tested, maintainable code
-- Use [conventions] for naming and structure
-- Write all output in English
-```
-
-</div>
-
-<div class="mt-3 p-2 bg-blue-500/10 rounded text-xs text-center">
-
-<b>Tip:</b> Start with this base template. You'll refine it in future lessons.
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# 3. Loading the `co-decompose` Skill
-
-<div class="mt-6 grid grid-cols-2 gap-4 text-sm">
-
-<div>
-
-### What is a skill
-
-<div class="mt-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-A specialized instruction module the agent loads when it detects a certain task. Extends capabilities without rewriting everything.
-
-</div>
-
-</div>
-
-<div v-click>
-
-### Load the skill
-
-<div class="mt-3 space-y-2">
-
-<div class="p-2 bg-gray-500/10 rounded">
-
-**1.** Download `co-decompose.zip` from the course repo
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded">
-
-**2.** Extract to `.github/copilot/skills/co-decompose/`
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded">
-
-**3.** Ask Copilot: *"Do you see the co-decompose skill?"*
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 p-2 bg-green-500/10 rounded-lg border border-green-500/30 text-xs text-center">
-
-<b>✨ Copilot loads the skill automatically</b> when you start a planning conversation.
-
-</div>
 
 ---
 layout: section
 ---
 
 # Part 3 — Active Delegation
-## Co-Decomposition Exercise (70 min)
+## Co-Decomposition Exercise (45 min)
 
 ---
 layout: default
@@ -925,7 +698,7 @@ A `plan.md` file with **6 sections** filled in live during the session:
 layout: default
 ---
 
-# Timer Checkpoints — 70 minutes
+# Timer Checkpoints — 45 minutes
 
 <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
 
@@ -933,7 +706,7 @@ layout: default
 
 ### ⏱️ 0–5 min
 
-Kickoff — paste the prompt, agent responds with first question.
+**Demo** — instructor shows how to use the `co-decompose` skill live.
 
 </div>
 
@@ -941,7 +714,7 @@ Kickoff — paste the prompt, agent responds with first question.
 
 ### ⏱️ 5–25 min
 
-Goal + Scope + Constraints — define the what, the boundary, the limits.
+**Exercise** — co-decomposition with the agent. Goal, Scope, Constraints, User Stories, Acceptance Criteria, Risks.
 
 </div>
 
@@ -949,23 +722,7 @@ Goal + Scope + Constraints — define the what, the boundary, the limits.
 
 ### ⏱️ 25–45 min
 
-User Stories + Acceptance Criteria — who uses it and how to verify.
-
-</div>
-
-<div v-click class="p-2 bg-yellow-500/10 rounded border border-yellow-500/30">
-
-### ⏱️ 45–60 min
-
-Risks + Final Review — identify risks, review the complete plan.
-
-</div>
-
-<div v-click class="p-2 bg-red-500/10 rounded border border-red-500/30">
-
-### ⏱️ 60–70 min
-
-DEBRIEF — everyone presents their plan in 2 minutes.
+**Discussion & Debrief** — everyone presents their plan and shares insights.
 
 </div>
 
@@ -1178,19 +935,8 @@ layout: default
 
 <div class="max-w-2xl mx-auto space-y-3 text-sm">
 
-<div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">✅</span>
-  <div><b>VS Code + Copilot</b> installed and authenticated</div>
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">✅</span>
-  <div><b>Custom instructions</b> configured (at least the base template)</div>
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">✅</span>
-  <div><b>co-decompose skill</b> downloaded and loaded in your workspace</div>
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-xs text-center mb-4">
+  <b>📋 Prerequisite:</b> Complete the pre-lesson <code>setup.md</code> before this session. VS Code + Copilot, custom instructions, and the <code>co-decompose</code> skill must be ready.
 </div>
 
 <div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
@@ -1204,7 +950,7 @@ layout: default
 
 <div v-click class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-center">
 
-<b>🚀 When you're ready, paste the prompt and start the conversation.</b>
+<b>🚀 After the demo, paste the prompt and start the conversation.</b>
 
 </div>
 
@@ -1219,8 +965,8 @@ layout: section
 # Go!<br />⏱️ Start Planning
 
 <div class="mt-8 text-lg opacity-70">
-  60 minutes of co-decomposition<br/>
-  Then group debrief
+  20 minutes of co-decomposition<br/>
+  Then group discussion & debrief
 </div>
 
 ---
@@ -1228,19 +974,19 @@ layout: section
 ---
 
 # Debrief
-## Sharing and Discussion (10 min)
+## Sharing and Discussion (20 min)
 
 ---
 layout: default
 ---
 
-# Debrief — 10 minutes
+# Debrief — 20 minutes
 
 <div class="grid grid-cols-2 gap-6 mt-6">
 
 <div>
 
-### Each person (2 min):
+### Each person (3 min):
 
 <div class="text-sm mt-4 space-y-3">
 
@@ -1347,11 +1093,10 @@ layout: default
 
 <div class="text-sm mt-4 space-y-2">
 
-- ✅ `co-decompose` skill loaded
-- ✅ Starting prompt pasted
+- ✅ Instructor demo of the `co-decompose` skill
 - ✅ Structured conversation with the agent
 - ✅ `plan.md` with 6 sections filled in
-- ✅ Group debrief
+- ✅ Group discussion & debrief
 
 </div>
 
