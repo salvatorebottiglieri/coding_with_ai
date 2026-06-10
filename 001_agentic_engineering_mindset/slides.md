@@ -43,8 +43,9 @@ The **Delegation Workflow**:
 
 ### 🏗️ Active Delegation — 45 min
 
+- 2 min: **Form groups** of 3–4 students
 - 5 min: Instructor demo of the `co-decompose` skill
-- 20 min: Co-decomposition exercise
+- 20 min: Co-decomposition exercise **(in groups)**
 - 20 min: Group discussion & debrief
 
 </div>
@@ -557,6 +558,48 @@ layout: section
 layout: default
 ---
 
+# 👥 Form Your Group
+
+<div class="mt-4 max-w-2xl mx-auto text-sm space-y-3">
+
+<div class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30 text-center">
+
+<b>~2 minutes</b> — find 2 or 3 classmates near you.
+
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">1️⃣</span>
+  <div><b>Group size</b> — 3 to 4 students. No solo work, no groups of 5+.</div>
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">2️⃣</span>
+  <div><b>Pick a group name</b> — something memorable (e.g. <i>The Planners</i>, <i>Consensus Club</i>).</div>
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">3️⃣</span>
+  <div><b>Designate a driver</b> — the one at the keyboard for the first 5 minutes. You'll rotate later.</div>
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">4️⃣</span>
+  <div><b>One workstation per group</b> — one VS Code, one Copilot chat, one <code>plan.md</code>.</div>
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+
+<b>💡 Tip:</b> Different perspectives make the plan better. Mix skill levels and backgrounds if you can.
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
 # Co-Decomposition: What It Is
 
 <div class="grid grid-cols-2 gap-6 mt-6">
@@ -655,9 +698,9 @@ layout: default
 
 <div v-click class="mt-4 text-sm space-y-2">
 
-- Paste this exact prompt into Copilot Chat
+- The instructor pastes this exact prompt into Copilot Chat
 - The agent will load the `co-decompose` skill
-- It will start asking you questions, **one at a time**
+- It will start asking your group questions, **one at a time**
 
 </div>
 
@@ -675,7 +718,7 @@ layout: default
 
 <div class="text-sm mt-4">
 
-A `plan.md` file with **6 sections** filled in live during the session:
+**One `plan.md` per group**, filled in live during the session, with **6 sections**:
 
 <div class="mt-3 space-y-1">
 
@@ -694,6 +737,12 @@ A `plan.md` file with **6 sections** filled in live during the session:
 
 </div>
 
+<div v-click class="mt-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/30 text-sm">
+
+<b>👥 Working in groups:</b> One designated <b>driver</b> types and pastes; the others <b>think out loud</b>, propose answers, and challenge decisions. Rotate the driver if you want — the goal is shared understanding, not who controls the keyboard.
+
+</div>
+
 ---
 layout: default
 ---
@@ -704,27 +753,41 @@ layout: default
 
 <div class="p-2 bg-blue-500/10 rounded border border-blue-500/30">
 
-### ⏱️ 0–5 min
+### ⏱️ 0–2 min — Form Groups
 
-**Demo** — instructor shows how to use the `co-decompose` skill live.
+Groups of 3–4 students. Pick a **driver** (the one at the keyboard) and a **name** for your group.
+
+</div>
+
+<div v-click class="p-2 bg-blue-500/10 rounded border border-blue-500/30">
+
+### ⏱️ 2–3 min — Demo
+
+Instructor shows how to use the `co-decompose` skill live. **Watch, don't start yet.**
 
 </div>
 
 <div v-click class="p-2 bg-green-500/10 rounded border border-green-500/30">
 
-### ⏱️ 5–25 min
+### ⏱️ 20 min — Exercise (in groups)
 
-**Exercise** — co-decomposition with the agent. Goal, Scope, Constraints, User Stories, Acceptance Criteria, Risks.
+Co-decomposition with the agent. Fill in Goal, Scope, Constraints, User Stories, Acceptance Criteria, Risks. **One plan.md per group.**
 
 </div>
 
 <div v-click class="p-2 bg-purple-500/10 rounded border border-purple-500/30">
 
-### ⏱️ 25–45 min
+### ⏱️ 20 min — Group Debrief
 
-**Discussion & Debrief** — everyone presents their plan and shares insights.
+Open discussion: what surprised you, what principle did you see in action, what would you redo.
 
 </div>
+
+</div>
+
+<div v-click class="mt-4 p-2 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+
+<b>⏰ The instructor will announce each checkpoint.</b> At 25 min, save your <code>plan.md</code> even if it's not perfect.
 
 </div>
 
@@ -825,7 +888,7 @@ An application that **automates calendar event creation** only when **full conse
 
 <div class="text-sm mt-4 space-y-3">
 
-The agent will guide you, but **you own the decisions**:
+The agent will guide you, but **your group owns the decisions**:
 
 <div class="p-2 bg-green-500/10 rounded-lg">
 
@@ -847,13 +910,44 @@ If you can't answer a question, **take note**. It's an area to explore.
 
 <div class="p-2 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
 
-<b>Goal:</b> Not the perfect plan, but the quality conversation.
+<b>Goal:</b> Not the perfect plan, but the quality conversation — and the quality conversation in your group.
 
 </div>
 
 </div>
 
 </div>
+
+</div>
+
+<div v-click class="mt-6 grid grid-cols-3 gap-3 text-xs">
+
+<div class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+<b>🧑‍✈️ Driver</b><br/>
+Types the answers, manages the chat, reads the agent's questions aloud.
+
+</div>
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+<b>🧠 Strategist</b><br/>
+Thinks about the bigger picture: scope, risks, what we're forgetting.
+
+</div>
+
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+<b>🧐 Challenger</b><br/>
+Pushes back on easy answers: "Are we sure? What if X?"
+
+</div>
+
+</div>
+
+<div v-click class="mt-2 text-xs opacity-60 text-center">
+
+These are roles, not fixed people. Rotate them as the conversation evolves. Small groups can merge two roles.
 
 </div>
 
@@ -863,9 +957,9 @@ layout: default
 
 # Anti-Patterns to Avoid
 
-<div class="mt-6 max-w-3xl mx-auto text-sm space-y-4">
+<div class="mt-6 max-w-3xl mx-auto text-sm space-y-3">
 
-<div class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+<div class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
 
 **❌ Answer "yes/no" in monosyllables**
 
@@ -873,7 +967,7 @@ The agent asks a complex question and you answer "ok". You're delegating the dec
 
 </div>
 
-<div v-click class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+<div v-click class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
 
 **❌ Ask for code prematurely**
 
@@ -881,13 +975,14 @@ The agent asks a complex question and you answer "ok". You're delegating the dec
 
 </div>
 
-<div v-click class="p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+<div v-click class="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
 
 **❌ Ignore the agent's questions**
 
 The agent asks "Which auth protocol?" and you change the subject. The agent can't proceed without that answer.
 
 </div>
+
 
 </div>
 
@@ -897,9 +992,9 @@ layout: default
 
 # Best Practices
 
-<div class="mt-6 max-w-3xl mx-auto text-sm space-y-4">
+<div class="mt-6 max-w-3xl mx-auto text-sm space-y-3">
 
-<div class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
 **✅ Answer in an articulated way**
 
@@ -907,7 +1002,7 @@ layout: default
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
 **✅ Ask the agent to go deeper**
 
@@ -915,7 +1010,7 @@ layout: default
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
 **✅ Take notes on gray areas**
 
@@ -941,6 +1036,16 @@ layout: default
 
 <div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">✅</span>
+  <div><b>Form your group</b> of 3–4 students. Pick a group name and a <b>driver</b> (the one at the keyboard).</div>
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">✅</span>
+  <div>Open a single shared chat session in Copilot. One <code>plan.md</code> per group.</div>
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">✅</span>
   <div><b>Starting prompt</b> ready to paste:</div>
 </div>
 
@@ -950,7 +1055,7 @@ layout: default
 
 <div v-click class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-center">
 
-<b>🚀 After the demo, paste the prompt and start the conversation.</b>
+<b>🚀 After the demo, the driver pastes the prompt and the group starts the conversation.</b>
 
 </div>
 
@@ -962,11 +1067,24 @@ layout: default
 layout: section
 ---
 
-# Go!<br />⏱️ Start Planning
+# 🚀 Planning in Progress
 
-<div class="mt-8 text-lg opacity-70">
-  20 minutes of co-decomposition<br/>
-  Then group discussion & debrief
+<div class="mt-2">
+
+<PlanningTimer :minutes="20" :auto-start="false" />
+
+</div>
+
+<div class="mt-4 text-base opacity-70 max-w-2xl mx-auto">
+
+Co-decompose with your group. Work through Goal → Scope → Constraints → User Stories → Acceptance Criteria → Risks.
+
+</div>
+
+<div class="mt-3 text-sm opacity-60 max-w-2xl mx-auto">
+
+When the timer ends: <b>save your plan.md</b> and return to your seat for the debrief.
+
 </div>
 
 ---
@@ -986,35 +1104,33 @@ layout: default
 
 <div>
 
-### Each person (3 min):
+### Each group (~3 min):
 
 <div class="text-sm mt-4 space-y-3">
 
-<div class="p-3 bg-blue-500/10 rounded-lg">
 
-**1.** Show your generated `plan.md`
+<div v-click class="p-3 bg-blue-500/10 rounded-lg">
+
+**1.** Share the **most surprising** decision that emerged during the conversation with the agent
 
 </div>
 
 <div v-click class="p-3 bg-blue-500/10 rounded-lg">
 
-**2.** Share the **most surprising** decision that emerged during the conversation with the agent
+**2.** One thing the agent asked that **your group hadn't thought about**
 
 </div>
 
 <div v-click class="p-3 bg-blue-500/10 rounded-lg">
 
-**3.** One thing the agent asked that you **hadn't thought about**
-
+**3.** One moment of **disagreement inside the group** and how you resolved it
 </div>
-
 </div>
-
 </div>
 
 <div v-click>
 
-### Group discussion:
+### Open discussion (~5 min):
 
 <div class="text-sm mt-4 space-y-3">
 
@@ -1032,7 +1148,7 @@ layout: default
 
 <div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
 
-**What would you do differently** if you had to redo the exercise?
+**What would you do differently** if you had to redo the exercise as a group?
 
 </div>
 
@@ -1047,16 +1163,23 @@ layout: center
 class: text-center
 ---
 
-# 📤 Submit
+# 📤 Submit (one per group)
 
 <div class="mt-8 text-xl">
 
-Save your `plan.md`<br/>
+Save your group's `plan.md`<br/>
 <span class="opacity-70">We'll review it in the next lesson.</span>
 
 </div>
 
-<div v-click class="mt-12 text-lg opacity-50">
+<div class="mt-6 text-sm opacity-60">
+
+Group name: <b>&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;</b><br/>
+Members: <b>&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;&lowbar;</b>
+
+</div>
+
+<div v-click class="mt-10 text-lg opacity-50">
 
 The plan you built today is the foundation<br/>of the project you'll implement in this course.
 
@@ -1089,20 +1212,21 @@ layout: default
 
 <div v-click>
 
-### Practice — Co-Decomposition
+### Practice — Co-Decomposition (in groups)
 
 <div class="text-sm mt-4 space-y-2">
 
+- ✅ Formed groups of 3–4 and assigned roles (driver, strategist, challenger)
 - ✅ Instructor demo of the `co-decompose` skill
-- ✅ Structured conversation with the agent
-- ✅ `plan.md` with 6 sections filled in
+- ✅ Structured conversation with the agent, **in group**
+- ✅ One `plan.md` per group with 6 sections filled in
 - ✅ Group discussion & debrief
 
 </div>
 
 <div class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
 
-<b>Key result:</b> You experienced the "plan then act" pattern firsthand. The agent is no longer a chatbot — it's a collaborator.
+<b>Key result:</b> You experienced the "plan then act" pattern firsthand — and the "delegate to a colleague" pattern, both with the agent and inside your group.
 
 </div>
 
@@ -1170,27 +1294,6 @@ class: text-center
     </div>
   </a>
 
-  <!-- References Card -->
-  <div class="w-96 p-6 rounded-xl border border-gray-700 bg-gray-800/60 text-left flex flex-col">
-    <div class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">📚 References</div>
-    <div class="space-y-3 text-sm">
-      <a href="https://youtu.be/BEKc4P87XKo" target="_blank"
-         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-blue-400">
-        <div class="text-gray-200 font-medium">Agentic Engineering</div>
-        <div class="text-xs text-gray-500">Brendan O'Leary</div>
-      </a>
-      <a href="https://eugeneyan.com/" target="_blank"
-         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-purple-400">
-        <div class="text-gray-200 font-medium">Human-AI Collaboration</div>
-        <div class="text-xs text-gray-500">Eugene Yan</div>
-      </a>
-      <a href="https://www.amazon.it/Agentic-Design-Patterns-Hands-Intelligent/dp/3032014018" target="_blank"
-         class="block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-colors no-underline border-l-2 border-transparent hover:border-pink-400">
-        <div class="text-gray-200 font-medium">Agentic Design Patterns</div>
-        <div class="text-xs text-gray-500">Handbook</div>
-      </a>
-    </div>
-  </div>
 
 </div>
 

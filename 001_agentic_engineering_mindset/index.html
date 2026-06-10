@@ -1,0 +1,29 @@
+<!--
+  Custom head injected by Slidev. The contents of <head> and <body> are
+  extracted and merged into the generated index.html.
+
+  We load Noto Color Emoji with `display=block` (not `swap`) so the
+  browser blocks rendering of any text using that font until it has
+  finished loading. This is critical for `slidev export`, where
+  Puppeteer would otherwise screenshot before the font swap occurs.
+-->
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=block"
+    rel="stylesheet"
+    type="text/css"
+  >
+  <style>
+    :root {
+      --slidev-font-family-emoji:
+        "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji",
+        "Twemoji Mozilla", "EmojiOne Color", "Android Emoji", sans-serif;
+    }
+    .slidev-layout,
+    .slidev-layout * {
+      font-family: var(--slidev-font-family-default), var(--slidev-font-family-emoji);
+    }
+  </style>
+</head>
