@@ -737,12 +737,6 @@ layout: default
 
 </div>
 
-<div v-click class="mt-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/30 text-sm">
-
-<b>👥 Working in groups:</b> One designated <b>driver</b> types and pastes; the others <b>think out loud</b>, propose answers, and challenge decisions. Rotate the driver if you want — the goal is shared understanding, not who controls the keyboard.
-
-</div>
-
 ---
 layout: default
 ---
