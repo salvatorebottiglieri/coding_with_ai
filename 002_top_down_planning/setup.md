@@ -19,7 +19,7 @@ transition: slide-left
 </div>
 
 <div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm max-w-lg mx-auto">
-  <span class="opacity-70">Your plan.md from Lesson 1 + the <code>decision-stack</code> skill.</span>
+  <span class="opacity-70">Your plan.md from Lesson 1 + Matt Pocock's skills installed.</span>
 </div>
 
 ---
@@ -50,7 +50,7 @@ layout: default
 
 <div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-This document is the **starting material** for your PRD.
+This document is the **starting material** for the grilling session that produces your PRD.
 
 </div>
 
@@ -84,21 +84,22 @@ Read the Lesson 1 slides to understand the Delegation Workflow principles, espec
 
 ---
 
-# 2. Install the `decision-stack` Skill
+# 2. Install Matt Pocock's Skills
 
 <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
 
 <div>
 
-### The skill
+### What these skills do
 
 <div class="mt-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-The `decision-stack` skill teaches the agent how to help you write ADRs, PRDs, and BDD scenarios. The agent uses it to:
-- Ask targeted questions (one at a time)
-- Structure documents correctly
-- Connect documents with cross-references
-- Check for completeness
+Matt Pocock's skills are **process guides** — they teach the agent *how* to work with you, not just what documents to load. The key ones you'll use:
+
+- **`/grill-with-docs`** — interviews you relentlessly, one question at a time, building a shared language and ADRs as you go
+- **`/to-prd`** — synthesizes everything from the conversation into a structured PRD
+- **`/domain-modeling`** — actively sharpens domain terms and writes CONTEXT.md + ADRs
+- **`/tdd`** — guides the red-green-refactor test loop (Lesson 3)
 
 </div>
 
@@ -106,31 +107,38 @@ The `decision-stack` skill teaches the agent how to help you write ADRs, PRDs, a
 
 <div v-click>
 
-### Installation
+### Installation (30 seconds)
 
 <div class="mt-3 space-y-2">
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**1.** Download `decision-stack.zip` from the course repo
+**1.** Run the installer in your terminal:
+
+```bash
+npx skills@latest add mattpocock/skills
+```
 
 </div>
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**2.** Extract to `~/.agents/skills/decision-stack/`
+**2.** Pick the skills you want and which coding agents to install them on. **Make sure you select `/setup-matt-pocock-skills`.**
 
 </div>
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**3.** Verify in Copilot: *"Do you see the decision-stack skill?"*
+**3.** In Copilot Chat, run `/setup-matt-pocock-skills`. It will ask:
+- Which issue tracker to use (GitHub, Linear, or local files)
+- What labels you apply to tickets
+- Where to save docs
 
 </div>
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**4.** Test it: *"Help me draft an ADR for a simple decision, ask me one question at a time"*
+**4.** Verify: in Copilot, type `/grill-with-docs` and confirm the skill is recognized.
 
 </div>
 
@@ -142,7 +150,7 @@ The `decision-stack` skill teaches the agent how to help you write ADRs, PRDs, a
 
 <div v-click class="mt-4 p-2 bg-green-500/10 rounded-lg border border-green-500/30 text-xs text-center">
 
-<b>Copilot loads the skill automatically</b> when you start a planning conversation about ADRs, PRDs, or BDD.
+<b>These are the real skills</b> from <a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a> — used daily by experienced engineers. They're small, composable, and work with any model.
 
 </div>
 
@@ -150,33 +158,25 @@ The `decision-stack` skill teaches the agent how to help you write ADRs, PRDs, a
 layout: default
 ---
 
-# 3. Pre-Read: The Decision Stack Concept
+# 3. Understand the Philosophy
 
 <div class="mt-6 text-sm">
 
-### Watch or read (optional but recommended)
+### This is one approach — not the only one
 
 <div class="mt-4 space-y-3">
 
 <div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-**🎥 Video (10 min):** *"Capturing Decisions for Humans and AI Alike"* — Michal
-<div class="text-xs mt-1 opacity-60">https://www.youtube.com/watch?v=504PvfXou5Y</div>
-
-</div>
-
-<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-
-### Key ideas to remember
+### Matt Pocock's core ideas
 
 <div class="mt-2 space-y-1">
 
-- Humans and LLMs have the **same problem**: limited context, they forget
-- **ADR** = why you build it this way, and how you enforce it
-- **PRD** = what problem it solves, and the user journey
-- **BDD** = executable specifications in human language
-- **Design System** = consistent UI from documented components
-- **The Loop** = git hooks → CI → agent reads → agent fixes
+- **Skills are process guides, not document loaders.** They orchestrate how the agent works — not which files to read.
+- **Documents are lightweight.** An ADR is 1-3 sentences. CONTEXT.md is a glossary, not a design doc.
+- **Documents are outputs of the process.** You grill → terms crystallize → write them down. Not: write 50 documents → start coding.
+- **Only record what's worth recording.** ADRs only for surprising, hard-to-reverse, trade-off decisions. Most things don't need them.
+- **The agent helps, you decide.** The agent structures your thinking — it doesn't replace your judgment.
 
 </div>
 
@@ -184,7 +184,23 @@ layout: default
 
 <div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-<b>💡 Mental model:</b> These documents are not bureaucracy — they're the **external memory** for both humans and AI agents. Without them, decisions are lost when people leave and context compacts.
+### Other philosophies you should know about
+
+- **BDD (Cucumber/Gherkin)** — executable specs in human-readable Given/When/Then format. More process, but the spec *is* the test.
+- **Design Systems** — dedicated component libraries with visual rules. Great for UI-heavy projects with multiple contributors.
+- **50+ ADR approaches** — comprehensive architecture documentation with lint-enforced rules. More documentation, stronger guarantees.
+- **Spec-Kit / BMAD** — full workflow ownership by the tool. Less control, more automation.
+
+<div class="mt-2 text-xs opacity-60">
+  We're using Matt's approach today because it's lightweight, composable, and gives you the most control.<br/>
+  No approach is universally "correct." Pick what works for your team and your context.
+</div>
+
+</div>
+
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+<b>💡 Mental model:</b> Think of CONTEXT.md, ADRs, and PRDs as your project's **external memory** — for both humans and AI agents. Without them, decisions are lost when people leave and context compacts. But keep them lightweight — the goal is clarity, not bureaucracy.
 
 </div>
 
@@ -206,23 +222,21 @@ layout: default
 
 ```
 your-group-workspace/
-├── plan.md              ← from Lesson 1
-├── adr/
-│   ├── 001-auth.md       ← you'll write this
-│   ├── 002-data.md       ← you'll write this
-│   └── 003-api.md        ← you'll write this
-├── prd/
-│   └── calendar-app.md   ← you'll write this
-└── bdd/
-    ├── voting.feature     ← you'll write this
-    └── edge-cases.feature ← you'll write this
+├── plan.md                  ← from Lesson 1
+├── docs/
+│   ├── CONTEXT.md           ← you'll build this (domain glossary)
+│   └── adr/
+│       ├── 0001-slug.md      ← you'll write this
+│       └── 0002-slug.md      ← you'll write this
+└── prd/
+    └── calendar-app.md       ← you'll write this
 ```
 
 </div>
 
 <div v-click class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-xs">
 
-<b>💡 Tip:</b> Create the folders and empty files before the lesson. This saves time and lets you jump straight into writing content.
+<b>💡 Tip:</b> Create the folders before the lesson. CONTEXT.md and ADRs go under `docs/` (the standard location in Matt's workflow). The PRD goes in its own directory. This saves time and lets you jump straight into building content.
 
 </div>
 
@@ -242,23 +256,28 @@ class: text-center
 <div class="mt-8 max-w-md mx-auto text-left space-y-4 text-sm">
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">[x]</span>
+  <span class="text-lg">[ ]</span>
   <div><b>plan.md</b> from Lesson 1 available</div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">[x]</span>
-  <div><b>decision-stack skill</b> installed in VS Code/Copilot</div>
+  <span class="text-lg">[ ]</span>
+  <div><b>Matt Pocock's skills</b> installed in VS Code/Copilot via <code>npx skills@latest</code></div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">[x]</span>
-  <div><b>Folder structure</b> created (adr/, prd/, bdd/)</div>
+  <span class="text-lg">[ ]</span>
+  <div><b>/setup-matt-pocock-skills</b> run in your project repo</div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">[x]</span>
-  <div><b>Video watched</b> (or at least skimmed the transcript)</div>
+  <span class="text-lg">[ ]</span>
+  <div><b>Folder structure</b> created (docs/adr/, prd/)</div>
+</div>
+
+<div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">[ ]</span>
+  <div><b>Philosophy understood:</b> skills are process guides, documents are lightweight, ADRs are for surprising decisions only</div>
 </div>
 
 </div>

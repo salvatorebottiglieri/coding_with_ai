@@ -3,7 +3,7 @@ theme: seriph
 title: Top-Down Planning — The Decision Stack
 info: |
   ## Lesson 2 — Agentic Engineering Module
-  ADRs, PRDs, BDD, and Design Systems as abstraction points
+  ADRs, PRDs, and domain modeling as abstraction points
 class: text-center
 drawings:
   persist: false
@@ -31,10 +31,10 @@ layout: default
 ### 🧠 Theory — 30 min
 
 The **Decision Stack**:
-4 layers of progressive abstraction — ADR, PRD, BDD, Design System
+3 layers — ADR, Domain Glossary (CONTEXT.md), PRD — with agent skills as process guides
 
 <div class="mt-3 text-xs opacity-70">
-  Source: Michal — Capturing Decisions for Humans and AI Alike
+  Workflow inspired by Matt Pocock's agent skills
 </div>
 
 </div>
@@ -44,7 +44,7 @@ The **Decision Stack**:
 ### 🏗️ Practice — 90 min
 
 - 10 min: Read & critique an existing ADR and PRD
-- 50 min: Write your own Decision Stack for the Calendar Consensus App
+- 50 min: Write your own Decision Stack for the Calendar Consensus App using Matt's skills
 - 30 min: Cross-review & discussion
 
 </div>
@@ -53,7 +53,7 @@ The **Decision Stack**:
 
 <div class="mt-8 text-center text-sm opacity-50">
   <b>Prerequisite:</b> Lesson 1 completed + your group's <code>plan.md</code> from the co-decomposition exercise.<br/>
-  <b>Objective:</b> Master the top-down planning framework and produce real ADRs, PRDs, and BDD specs.
+  <b>Objective:</b> Master the top-down planning framework and produce real ADRs, a domain glossary, and a PRD.
 </div>
 
 ---
@@ -70,12 +70,12 @@ layout: statement
 # Why does any of this matter?
 
 <div class="mt-6 text-lg opacity-70">
-  ADR, PRD, BDD, Design System...<br/>
-  that's a lot of acronyms.
+  ADR, PRD, Domain Glossary...<br/>
+  that's a lot of documents.
 </div>
 
 <div v-click class="mt-12 text-sm opacity-50">
-  Michal — Capturing Decisions for Humans and AI Alike
+  Inspired by Matt Pocock's approach to agentic engineering
 </div>
 
 ---
@@ -201,8 +201,8 @@ layout: statement
 # The Decision Stack
 
 <div class="mt-8 text-lg opacity-70">
-  Four layers of progressive abstraction<br/>
-  from <b>why</b> to <b>how</b> to <b>what</b> to <b>code</b>
+  Three layers of progressive abstraction<br/>
+  from <b>why</b> to <b>what</b> to <b>code</b>
 </div>
 
 ---
@@ -215,39 +215,273 @@ layout: default
 
 ```mermaid {scale: 0.55}
 graph LR
-    WHY["❓ <b>ADR</b><br/>Architecture<br/>Decision Record<br/><i>Why</i>"]
-    WHAT["📋 <b>PRD</b><br/>Product<br/>Requirements<br/><i>What</i>"]
-    HOW["🥒 <b>BDD</b><br/>Behavior-Driven<br/>Development<br/><i>How it behaves</i>"]
-    UI["🎨 <b>Design System</b><br/>Pattern<br/>Library<br/><i>How it looks</i>"]
+    GLOSSARY["📖 <b>CONTEXT.md</b><br/>Domain Glossary<br/><i>Shared language</i>"]
+    ADR["📐 <b>ADR</b><br/>Architecture<br/>Decision Record<br/><i>Why</i>"]
+    PRD["📋 <b>PRD</b><br/>Product<br/>Requirements<br/><i>What</i>"]
+    ISSUES["🎯 <b>Issues</b><br/>Vertical Slices<br/><i>Actionable units</i>"]
     CODE["💻 <b>Code</b><br/>Implementation<br/><i>The product</i>"]
 
-    WHY --> WHAT --> HOW --> UI --> CODE
+    GLOSSARY --> ADR --> PRD --> ISSUES --> CODE
 ```
 
 </div>
 
-<div class="mt-4 grid grid-cols-4 gap-2 text-xs">
+<div class="mt-4 grid grid-cols-3 gap-2 text-xs">
 
 <div class="p-2 bg-blue-500/10 rounded text-center">
-  <b>ADR</b><br/>50+ documents<br/>defining architecture
+  <b>CONTEXT.md</b><br/>A glossary of domain terms —<br/>"one word, not twenty"
 </div>
 
 <div class="p-2 bg-green-500/10 rounded text-center">
-  <b>PRD</b><br/>Lightweight<br/>feature specs
+  <b>ADR</b><br/>Surprising, hard-to-reverse<br/>decisions with real trade-offs
 </div>
 
 <div class="p-2 bg-yellow-500/10 rounded text-center">
-  <b>BDD</b><br/>Executable<br/>specifications
-</div>
-
-<div class="p-2 bg-purple-500/10 rounded text-center">
-  <b>Design System</b><br/>Consistent<br/>component library
+  <b>PRD</b><br/>Problem, user stories,<br/>implementation decisions
 </div>
 
 </div>
 
 <div v-click class="mt-4 text-xs opacity-60 text-center">
-  ⬅️ The further left you go, the more stable the decision. ADRs change rarely. Code changes constantly.
+  ⬅️ The further left you go, the more stable. A glossary entry rarely changes. Code changes constantly.
+</div>
+
+---
+layout: section
+---
+
+# A note on philosophy
+
+---
+layout: default
+---
+
+# This Is One Approach — Not The Only One
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### This workflow
+
+<div class="text-sm mt-3 space-y-2">
+
+- **Matt Pocock's approach** — small, composable skills that guide process
+- Documents are **lightweight** — an ADR can be 3 sentences
+- Skills are **process guides**, not document templates
+- Based on decades of engineering experience: DDD, Extreme Programming, Pragmatic Programmer
+- Designed to give **you** control — the agent helps, it doesn't own
+
+</div>
+
+</div>
+
+<div v-click class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### Other approaches exist
+
+<div class="text-sm mt-3 space-y-2">
+
+- **BDD (Cucumber/Gherkin)** — executable specs in human language. Powerful but heavier process
+- **Design Systems** — component libraries with visual rules for UI consistency
+- **Spec-Kit / BMAD / GSD** — structured processes that own the workflow end-to-end
+- **ADR-heavy approaches** — 50+ architecture documents with lint-enforced rules
+
+</div>
+
+<div class="mt-3 text-xs opacity-60">
+  Each has trade-offs. Today we focus on one workflow — learn it, then adapt it.
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>Key principle:</b> The right amount of process is the minimum that makes your agent effective.<br/>
+Too little → the agent invents its own reasons. Too much → you spend more time on docs than code.
+</div>
+
+---
+layout: default
+---
+
+# The Core Workflow
+
+<div class="mt-6">
+
+```mermaid {scale: 0.55}
+graph TD
+    GRILL["🔥 /grill-with-docs<br/>Interview the user relentlessly.<br/>Build shared language."]
+    DOMAIN["📖 /domain-modeling<br/>Sharpen CONTEXT.md.<br/>Record ADRs when needed."]
+    TOPRD["📋 /to-prd<br/>Synthesize a PRD from<br/>the conversation."]
+    TOISSUES["🎯 /to-issues<br/>Break PRD into vertical<br/>slice issues."]
+    IMPLEMENT["💻 /implement<br/>Build each issue with /tdd<br/>red-green-refactor."]
+    REVIEW["🔍 Review<br/>PR, CI, iterate."]
+
+    GRILL --> DOMAIN --> TOPRD --> TOISSUES --> IMPLEMENT --> REVIEW
+    REVIEW -.->|"New feature"| GRILL
+```
+
+</div>
+
+<div class="mt-4 text-xs text-center opacity-70">
+  These are <b>Matt Pocock's actual skills</b> — the ones you'll install and use today.<br/>
+  Each is a small, composable process guide. You can use them independently or in sequence.
+</div>
+
+---
+layout: default
+---
+
+# Layer 0 — CONTEXT.md: The Domain Glossary
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### What it is
+
+<div class="text-sm mt-3 space-y-2">
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+
+A **glossary of domain terms** — nothing more. Not a spec, not a scratch pad, not a design doc.
+
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+
+Defines the **ubiquitous language** of the project. One word per concept. No synonyms.
+
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+
+Agents use it to **name things consistently** — variables, functions, files.
+
+</div>
+
+</div>
+
+<v-click>
+
+<div class="mt-3 p-2 bg-green-500/10 rounded-lg text-xs">
+
+<b>Why it matters:</b> Without it, agents use 20 words where 1 will do. With it, concision pays off session after session.
+
+</div>
+
+</v-click>
+
+</div>
+
+<div v-click>
+
+### Real example
+
+<div class="text-sm mt-3 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30">
+
+```markdown
+# Calendar Consensus App
+
+A tool for scheduling meetings through group voting.
+
+## Language
+
+**Proposal**:
+A set of time slots proposed by an organizer for
+a meeting. Exists until consensus or deadline.
+_Avoid_: Poll, survey, event draft
+
+**Consensus**:
+All participants agree on the same time slot.
+Triggers calendar event creation.
+_Avoid_: Agreement, resolution, confirmation
+
+**Participant**:
+A person invited to vote on a proposal.
+_Avoid_: User, voter, member, attendee
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>💡 With a shared language:</b> "There's a problem with the consensus check" — not "There's a problem when everyone says yes to the same slot in the voting poll."
+</div>
+
+---
+layout: default
+---
+
+# CONTEXT.md — How the Agent Uses It
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div>
+
+### Before
+
+<div class="text-sm mt-3 space-y-3">
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+Agent writes: `function checkAllParticipantsAgreedOnSameSlot()`
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+Agent writes test: "should check that all participants agreed on the same time slot"
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+Agent uses: proposal, poll, survey, event draft — all interchangeably
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### After (with CONTEXT.md)
+
+<div class="text-sm mt-3 space-y-3">
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+Agent writes: `checkConsensus()`
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+Agent writes test: "consensus triggers event creation"
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+Agent uses only "Proposal" and "Consensus" — consistently, everywhere
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>Result:</b> Less thinking for the agent. Fewer tokens spent. Cleaner names. Easier navigation.
 </div>
 
 ---
@@ -260,31 +494,33 @@ layout: default
 
 <div>
 
-### What it captures
+### Matt Pocock's ADR philosophy
 
-<div class="text-sm mt-3 space-y-2">
+<div class="text-sm mt-3 space-y-3">
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**Why** you do something
+An ADR can be **1-3 sentences**. The value is recording that a decision was made and why — not filling out sections.
 
 </div>
 
-<div class="p-2 bg-blue-500/10 rounded-lg">
+<div v-click class="p-2 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-**How** you enforce it
+<b>Only create an ADR when ALL THREE are true:</b>
+
+<div class="mt-2 space-y-1 text-xs">
+
+- 🔒 **Hard to reverse** — changing your mind later costs something
+- 🤔 **Surprising without context** — a future reader will wonder "why?"
+- ⚖️ **Result of a real trade-off** — there were genuine alternatives
 
 </div>
 
-<div class="p-2 bg-blue-500/10 rounded-lg">
-
-**References** to docs and code
-
 </div>
 
-<div class="p-2 bg-blue-500/10 rounded-lg">
+<div v-click class="p-2 bg-green-500/10 rounded-lg text-xs">
 
-**Which files** it concerns
+If a decision is easy to reverse, skip it. If it's the obvious choice, skip it. <b>Most decisions don't need ADRs.</b>
 
 </div>
 
@@ -294,87 +530,113 @@ layout: default
 
 <div v-click>
 
-### Real example
+### Examples
 
-<div class="text-sm mt-3 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30">
+<div class="text-sm mt-3 space-y-3">
 
 ```markdown
-# ADR-003: Database Access Layers
+# Event-Sourced Write Model
 
-**Decision:** Split code in layers to prevent N+1 queries.
+We're using event sourcing for the write side
+because we need a full audit trail of every
+vote change. The read model is projected into
+Postgres. Considered CQRS with a message bus
+but decided against it — too heavy for this
+team size.
+```
 
-**Enforcement:**
-- Lint imports between modules
-- DB reads return plain shapes, not ORM objects
-- Rendering templates cannot import DB modules
+<div class="p-2 bg-gray-500/10 rounded-lg text-xs">
+  ✅ Hard to reverse (core architecture), surprising (many would use CRUD), real trade-off (CQRS was considered).
+</div>
 
-**Files:** src/database/**, src/templates/**
+```markdown
+# JWT for Authentication
+
+Using JWT with httpOnly refresh tokens (7d)
+and short-lived access tokens (15min).
+Chose over session-based auth to keep the
+API stateless across multiple instances.
 ```
 
 </div>
 
-<div class="mt-3 text-xs opacity-60">
-
-50+ ADRs like this define the entire architecture of a real product.
-
 </div>
 
 </div>
 
-</div>
-
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
-
-<b>💡 Key insight:</b> There is no single format. ADR is a <b>concept</b>, not a template. It's text — the tool enforces it, the ADR explains why.
+<div v-click class="mt-3 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>Where ADRs live:</b> <code>docs/adr/0001-event-sourced-write-model.md</code> — numbered sequentially. Create the directory lazily.
 </div>
 
 ---
 layout: default
 ---
 
-# Layer 1 — ADR: How the Agent Uses It
+# ADR — What Qualifies and What Doesn't
 
 <div class="grid grid-cols-2 gap-6 mt-6">
 
 <div>
 
-### The enforcement loop
+### ✅ Worth an ADR
 
-```mermaid {scale: 0.5}
-graph TD
-    AG[Agent writes code] --> CMT[Commits]
-    CMT --> HOOK[Pre-commit hook runs]
-    HOOK --> VIOL{Violation?}
-    VIOL -->|Yes| LINK[Links to ADR]
-    VIOL -->|No| PUSH[Push to CI]
-    LINK --> ADR[Agent reads ADR]
-    ADR --> FIX[Agent fixes code]
-    FIX --> CMT
-```
+<div class="text-sm mt-3 space-y-2">
 
-</div>
+<div class="p-2 bg-green-500/10 rounded-lg">
 
-<div v-click>
-
-### Concrete flow
-
-<div class="text-sm mt-3 space-y-3">
-
-<div class="p-2 bg-red-500/10 rounded-lg">
-
-Agent imports ORM in a template file → **commit rejected**
-
-</div>
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-
-Linter returns: *"ADR-003: Templates cannot access DB modules. See docs/ADR/003-database-access-layers.md"*
+**Architectural shape.** "We're using a monorepo." "The write model is event-sourced."
 
 </div>
 
 <div class="p-2 bg-green-500/10 rounded-lg">
 
-Agent reads ADR-003, understands why, refactors the code using the data layer instead
+**Integration patterns.** "Ordering and Billing communicate via domain events."
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+**Technology choices with lock-in.** Database, message bus, auth provider — not every library, just the ones that would take a quarter to swap.
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+**Deliberate deviations.** "We're using manual SQL instead of an ORM because..." — stops someone from "fixing" something deliberate.
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### ❌ Not worth an ADR
+
+<div class="text-sm mt-3 space-y-2">
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Generic choices.** "We're using Python." Not surprising. Not an ADR.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Library choices.** "We picked axios over fetch." Minimal lock-in.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Obvious patterns.** "We separate concerns with MVC." Everyone expects this.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Reversible decisions.** "Let's try Tailwind for a sprint." If it doesn't work, switch back.
 
 </div>
 
@@ -385,7 +647,8 @@ Agent reads ADR-003, understands why, refactors the code using the data layer in
 </div>
 
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>Result:</b> The agent doesn't just avoid the mistake — it <b>learns the rule</b> and applies it everywhere.
+<b>The test:</b> "Will a future engineer look at this code and think we did something weird — and changing it would break things?"<br/>
+If yes → ADR. If no → just code.
 </div>
 
 ---
@@ -404,25 +667,25 @@ layout: default
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**Why** the feature exists
+**Problem Statement** — from the user's perspective
 
 </div>
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**What problem** it solves
+**Solution** — what the feature does
 
 </div>
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**User journey** through the app
+**User Stories** — exhaustive list of actor-feature-benefit
 
 </div>
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**Goal** and success criteria
+**Implementation Decisions** — modules, interfaces, architecture, schemas
 
 </div>
 
@@ -430,7 +693,7 @@ layout: default
 
 <div v-click class="mt-3 p-2 bg-green-500/10 rounded-lg text-xs">
 
-Lightweight — doesn't need to be a massive document.
+Synthesized from the conversation by `/to-prd` — no separate interview needed.
 
 </div>
 
@@ -438,34 +701,22 @@ Lightweight — doesn't need to be a massive document.
 
 <div v-click>
 
-### PRD connects the dots
+### PRD template (from Matt's workflow)
 
-```mermaid {scale: 0.55}
-graph LR
-    WHY[Why?<br/>Problem] --> GOAL[Goal]
-    GOAL --> JOURNEY[User Journey]
-    JOURNEY --> OUTCOME[Expected Outcome]
-```
+<div class="text-sm mt-3 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 space-y-2">
 
-<div class="mt-4 text-sm space-y-2">
+<div class="text-xs font-bold">Problem Statement</div>
+<div class="text-xs opacity-70">Scheduling meetings with 5+ participants takes 6–8 back-and-forth messages.</div>
 
-<div class="p-2 bg-gray-500/10 rounded-lg">
+<div class="text-xs font-bold">Solution</div>
+<div class="text-xs opacity-70">Create calendar events only when everyone agrees on a time slot — automatically.</div>
 
-**Problem:** Scheduling meetings with 5+ participants takes 6–8 back-and-forth messages.
+<div class="text-xs font-bold">User Stories (exhaustive)</div>
+<div class="text-xs opacity-70">1. As an organizer, I want to propose time slots so that participants can vote.<br/>
+2. As a participant, I want to vote yes/no per slot so that my preference is recorded.</div>
 
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**Goal:** Create calendar events only when everyone agrees — automatically.
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**Journey:** Organizer proposes time slots → participants vote → consensus reached → event created in Google Calendar.
-
-</div>
+<div class="text-xs font-bold">Implementation Decisions</div>
+<div class="text-xs opacity-70">Modules built, interfaces modified, schema changes, API contracts</div>
 
 </div>
 
@@ -512,7 +763,7 @@ layout: default
 
 - **Structured** — follows a deliberate template
 - **Authoritative** — single source of truth for the feature
-- **Referenced by agents** — loaded into context when working on the feature
+- **Published to the issue tracker** — becomes the parent issue for implementation
 - **Persistent** — lives in the repo, versioned in git
 
 </div>
@@ -533,216 +784,37 @@ layout: default
 layout: default
 ---
 
-# Layer 3 — BDD: Behavior-Driven Development
+# Skills: Process Guides, Not Document Templates
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-6 mt-6">
 
 <div>
 
-### The problem with specs
+### Old mental model ❌
 
 <div class="text-sm mt-3 space-y-3">
-
-<div class="p-3 bg-red-500/10 rounded-lg">
-
-You write a spec. It's a Markdown document describing how the product should work.
-
-</div>
-
-<div v-click class="p-3 bg-red-500/10 rounded-lg">
-
-**How do you know it actually works like that?**
-
-</div>
-
-<div v-click class="p-3 bg-red-500/10 rounded-lg">
-
-And AI-generated tests are even **harder to review** than AI-generated code.
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click>
-
-### The BDD answer
-
-<div class="text-sm mt-3 space-y-3">
-
-BDD provides an **intermediate layer** that:
-
-<div class="space-y-2 mt-2">
-
-<div class="p-2 bg-green-500/10 rounded-lg">
-
-✅ Describes behavior in **human language**
-
-</div>
-
-<div class="p-2 bg-green-500/10 rounded-lg">
-
-✅ Is **executable** — runs as real tests
-
-</div>
-
-<div class="p-2 bg-green-500/10 rounded-lg">
-
-✅ Is **readable** — easier to review than code
-
-</div>
-
-<div class="p-2 bg-green-500/10 rounded-lg">
-
-✅ Connects directly to PRDs and user journeys
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>BDD closes the loop</b> that spec-driven development leaves open. Spec says what it should do — BDD proves it.
-</div>
-
----
-layout: default
----
-
-# BDD with Cucumber — How It Works
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div>
-
-### The feature file (human-readable)
-
-<div class="text-sm mt-2">
-
-```gherkin
-Feature: Calendar Event Consensus
-
-  Scenario: All participants agree
-    Given an event proposal exists
-      with 3 time slots
-    When all participants vote "yes"
-      on the same time slot
-    Then a Google Calendar event
-      is created
-    And all participants receive
-      a confirmation email
-```
-
-</div>
-
-<div class="mt-2 text-xs opacity-60">
-  Written in <b>Gherkin syntax</b> — Given/When/Then. This is the <b>specification</b>.
-</div>
-
-</div>
-
-<div v-click>
-
-### The step definitions (executable)
-
-<div class="text-sm mt-2">
-
-```python
-@given("an event proposal exists with {int} time slots")
-def step_event_proposal(count):
-    proposal = create_proposal(
-        time_slots=count
-    )
-    context.proposal = proposal
-
-@when("all participants vote \"yes\" on the same time slot")
-def step_all_agree():
-    for p in context.participants:
-        vote(p, context.proposal, "yes")
-```
-
-</div>
-
-<div class="mt-2 text-xs opacity-60">
-  Parsed and executed. The feature file is the <b>test</b>.
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-
-<b>🧠 For AI agents:</b> Feature files are <b>easier to read and generate</b> than raw test code.<br/>
-They connect directly to the PRD's user journey. The agent can read the scenario and implement the step — or vice versa.
-
-</div>
-
----
-layout: default
----
-
-# The BDD → PRD Connection
-
-<div class="mt-6">
-
-```mermaid {scale: 0.55}
-graph TD
-    PRD["📋 <b>PRD</b><br/>User journey:<br/>Organizer proposes →<br/>Participants vote →<br/>Consensus → Event created"]
-    
-    BDD1["🥒 <b>Feature:</b> Event Proposal<br/>Scenario: Organizer creates proposal with 3 time slots"]
-    BDD2["🥒 <b>Feature:</b> Voting<br/>Scenario: Participant votes yes/no on each time slot"]
-    BDD3["🥒 <b>Feature:</b> Consensus<br/>Scenario: Unanimous yes triggers event creation"]
-    BDD4["🥒 <b>Feature:</b> Edge Cases<br/>Scenario: Deadline passes without consensus"]
-
-    PRD --> BDD1
-    PRD --> BDD2
-    PRD --> BDD3
-    PRD --> BDD4
-```
-
-</div>
-
-<div v-click class="mt-4 text-sm text-center opacity-70">
-  Each step in the PRD's user journey maps to <b>one or more BDD scenarios</b>.<br/>
-  Each BDD scenario is <b>one executable test</b>.
-</div>
-
----
-layout: default
----
-
-# Layer 4 — Design System & Pattern Library
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div>
-
-### Why it matters
-
-<div class="text-sm mt-3 space-y-2">
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 
-Without it: agents produce **inconsistent UIs** — every component looks different
+Skills load documents into agent context
 
 </div>
 
-<div class="p-2 bg-blue-500/10 rounded-lg">
+<div class="p-2 bg-red-500/10 rounded-lg">
 
-Like code architecture: build from **small pieces** into **bigger ones**
+ADR skill → loads architecture rules
 
 </div>
 
-<div class="p-2 bg-green-500/10 rounded-lg">
+<div class="p-2 bg-red-500/10 rounded-lg">
 
-Define once, **reuse everywhere** — agents and humans
+PRD skill → loads feature spec
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+UI skill → loads design system
 
 </div>
 
@@ -752,155 +824,388 @@ Define once, **reuse everywhere** — agents and humans
 
 <div v-click>
 
-### What it contains
+### Matt Pocock's model ✅
 
-<div class="text-sm mt-3 space-y-2">
+<div class="text-sm mt-3 space-y-3">
 
-<div class="p-2 bg-gray-500/10 rounded-lg">
+<div class="p-2 bg-green-500/10 rounded-lg">
 
-**Language** — a primary button is blue, 40px, rounded
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**Rules** — only one primary button visible per page
+Skills are **process guides** — they tell the agent *how* to work, not *what* to load
 
 </div>
 
-<div class="p-2 bg-gray-500/10 rounded-lg">
+<div class="p-2 bg-green-500/10 rounded-lg">
 
-**Components** — buttons, inputs, cards, modals with all states
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**Previews** — visual snippets the agent can see and reference
+`/grill-with-docs` — runs an interview to align understanding
 
 </div>
 
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+`/to-prd` — synthesizes a PRD from the conversation
+
 </div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+`/tdd` — guides the red-green-refactor loop
 
 </div>
 
 </div>
 
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>💡 Design system + linting:</b> enforce "no inline styles" and "use design system components only."<br/>
-The agent sees the component library and composes UIs from known pieces.
-</div>
-
----
-layout: default
----
-
-# The Loop: How It All Works Together
-
-<div class="grid grid-cols-2 gap-4 mt-4">
-
-<div>
-
-```mermaid {scale: 0.48}
-graph TD
-    SKILL["🧠 Skills"] -->|"Loads"| ADR["📐 ADRs"]
-    SKILL -->|"Loads"| PRD["📋 PRDs"]
-    SKILL -->|"Loads"| DS["🎨 Design System"]
-    ADR --> HOOK["🪝 Git hooks"]
-    DS --> HOOK
-    BDD["🥒 BDD specs"] --> CI["⚙️ CI"]
-    HOOK --> CI
-    CI --> PR["📤 Pull Request"]
-```
-
-</div>
-
-<div class="text-xs space-y-3">
-
-<div class="p-2 bg-blue-500/10 rounded">
-<b>🧠 Skills</b> — load relevant documents into agent context based on the task
-</div>
-
-<div class="p-2 bg-green-500/10 rounded">
-<b>🪝 Git hooks</b> — enforce rules before commit (linting, imports, types, architecture)
-</div>
-
-<div class="p-2 bg-purple-500/10 rounded">
-<b>⚙️ CI</b> — runs full BDD suite, validates everything, catches what hooks miss
-</div>
-
-<div class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-<b>The agent's goal is to deliver a PR.</b><br/>
-To do that: pass hooks → pass CI → get reviewed.<br/>
-Every rejection links back to an ADR, PRD, or BDD scenario — the agent reads and learns.
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# The Loop is Generic — Skills Provide Focus
-
-<div class="mt-4">
-
-<div class="text-sm">
-
-The loop is always the same: **do work → commit → get feedback → fix → iterate**. But the **focus** changes based on what you're building:
-
-</div>
-
-<div class="grid grid-cols-4 gap-3 mt-6">
-
-<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-center">
-  <div class="text-2xl mb-2">📐</div>
-  <b>ADR skill</b>
-  <div class="text-xs mt-2 opacity-70">
-    Loads architecture rules<br/>
-    Finds affected code<br/>
-    Links violations to ADRs
-  </div>
-</div>
-
-<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-center">
-  <div class="text-2xl mb-2">📋</div>
-  <b>PRD skill</b>
-  <div class="text-xs mt-2 opacity-70">
-    Loads feature spec<br/>
-    Maps user journey to tasks<br/>
-    Links scenarios to PRD
-  </div>
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30 text-center">
-  <div class="text-2xl mb-2">🎨</div>
-  <b>UI skill</b>
-  <div class="text-xs mt-2 opacity-70">
-    Loads design system<br/>
-    Skips backend checks<br/>
-    Iterates in browser quickly
-  </div>
-</div>
-
-<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-center">
-  <div class="text-2xl mb-2">🧪</div>
-  <b>Test skill</b>
-  <div class="text-xs mt-2 opacity-70">
-    Identifies tests to run<br/>
-    Based on code coverage<br/>
-    Runs focused suite, not all
-  </div>
 </div>
 
 </div>
 
 <div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>Same loop, different context.</b> Skills are the <b>harness</b> that focuses the agent on the right rules for the right task.
+  <b>The agent reads documents because the process tells it to</b> — not because a "skill" loads them.<br/>
+  The skill orchestrates; the documents are inputs to the process, not the process itself.
 </div>
 
+---
+layout: default
+---
+
+# The Skills You'll Use
+
+<div class="mt-4">
+
+### Matt Pocock's engineering skills — installed in one command
+
+<div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### User-invoked (you type them)
+
+<div class="mt-2 space-y-2 text-xs">
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/grill-with-docs</b> — Interview + build shared language. The most important skill.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/to-prd</b> — Synthesize conversation into a PRD. Publish to issue tracker.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/to-issues</b> — Break a PRD into vertical slice issues.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/improve-codebase-architecture</b> — Scan for deepening opportunities.
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### Model-invoked (agent reaches for them)
+
+<div class="mt-2 space-y-2 text-xs">
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/domain-modeling</b> — Active discipline: sharpen terms, challenge, write CONTEXT.md + ADRs.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/tdd</b> — Red-green-refactor loop. One vertical slice at a time.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/codebase-design</b> — Vocabulary for deep modules, seams, interfaces.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/diagnosing-bugs</b> — Reproduce → minimise → hypothesise → fix.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+  <b>Install:</b> <code>npx skills@latest add mattpocock/skills</code> — pick the skills you want, run <code>/setup-matt-pocock-skills</code> once per repo.
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# How The Loop Works
+
+<div class="mt-6">
+
+```mermaid {scale: 0.55}
+graph TD
+    START["💡 Idea"] --> GRILL["🔥 /grill-with-docs<br/>Interview relentlessly.<br/>Resolve every branch."]
+    GRILL --> DOCS["📖 CONTEXT.md + ADRs<br/>Domain language crystallised.<br/>Architecture decisions recorded."]
+    DOCS --> PRD["📋 /to-prd<br/>PRD published to<br/>issue tracker."]
+    PRD --> ISSUES["🎯 /to-issues<br/>Vertical slice issues.<br/>Each independently grabbable."]
+    ISSUES --> IMPL["💻 /implement + /tdd<br/>Red-green-refactor.<br/>One slice at a time."]
+    IMPL --> PR["📤 Pull Request<br/>CI runs tests.<br/>Human reviews."]
+    PR -.->|"Feedback"| IMPL
+```
+
+</div>
+
+<div v-click class="mt-4 text-xs text-center opacity-70">
+  <b>This is the real workflow.</b> Not a theoretical stack — actual skills you run, in sequence, to go from idea to merged PR.<br/>
+  Documents are created along the way as <b>outputs of the process</b>, not prerequisites to start.
+</div>
+
+---
+layout: default
+---
+
+# The Loop with Agent Skills — Concrete Example
+
+<div class="text-sm mt-4 space-y-3">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### Step 1: Grill with docs
+You: `/grill-with-docs` — *"I want to build a calendar consensus app"*
+Agent interviews you one question at a time. As terms crystallize, `/domain-modeling` updates CONTEXT.md inline.
+
+</div>
+
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+### Step 2: Record architecture decisions
+Agent: *"Are we using event sourcing for votes? The alternative is CRUD with a history table."*
+You decide → agent writes a 3-sentence ADR in `docs/adr/0001-event-sourced-votes.md`.
+
+</div>
+
+<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+
+### Step 3: Synthesize the PRD
+Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker with Problem, Solution, User Stories, Implementation Decisions.
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### Step 4: Break into issues + implement
+`/to-issues` creates vertical slices. Each is a small, independently grabbable unit. `/implement` with `/tdd` builds them one by one.
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+  <b>Same loop, different focus each time.</b> Skills are the harness that focuses the agent on the right process.
+</div>
+
+---
+layout: default
+---
+
+# Vertical Slices — The Core Pattern
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div>
+
+### What is a vertical slice?
+
+<div class="text-sm mt-3 space-y-3">
+
+A **tracer bullet** — a thin, complete path through ALL layers of the system:
+
+<div class="mt-2 space-y-1">
+
+- Schema → API → UI → Tests → done
+- Each slice is **demoable** on its own
+- Each slice is **independently grabbable**
+
+</div>
+
+<div v-click class="mt-3 p-2 bg-green-500/10 rounded-lg text-xs">
+
+<b>Produces good tests</b> because you test one behavior at a time, with the real implementation behind it.
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Example for Calendar Consensus
+
+<div class="text-sm space-y-2">
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 1:</b> Organizer can create a proposal with time slots → API endpoint + DB schema + minimal UI
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 2:</b> Participant can vote yes/no on a slot → voting API + email notification + vote UI
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 3:</b> Consensus triggers calendar event → consensus detection + Google Calendar integration
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 4:</b> Deadline passes without consensus → deadline cron + no-event notification
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>⚠️ Anti-pattern:</b> "Write all tests first, then all implementation." This produces crap tests that test imagination, not behavior.<br/>
+<b>✅ Correct:</b> One test → one implementation → repeat. Each test responds to what you learned from the previous cycle.
+</div>
+
+---
+layout: default
+---
+
+# What Makes A Good Test (Matt's TDD Philosophy)
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div>
+
+### Good tests ✅
+
+<div class="text-sm mt-3 space-y-3">
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+**Test behavior through public interfaces.** "User can checkout with valid cart" — describes what the system does.
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+**Survive refactors.** Change internal code, test still passes — because it tests behavior, not implementation.
+
+</div>
+
+<div class="p-2 bg-green-500/10 rounded-lg">
+
+**Integration-style.** Exercise real code paths through public APIs. Not unit tests of isolated functions.
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Bad tests ❌
+
+<div class="text-sm mt-3 space-y-3">
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Test implementation details.** Mock internal collaborators, test private methods, verify database queries directly.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Break on refactor.** Rename an internal function → tests fail. Those tests were testing structure, not behavior.
+
+</div>
+
+<div class="p-2 bg-red-500/10 rounded-lg">
+
+**Test imagination.** Write all tests before any code. You're testing what you *think* the code will do — not what it actually does.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>Core principle:</b> The test is a specification — <i>what</i> the system does, not <i>how</i> it does it.<br/>
+Code can change entirely. Tests shouldn't.
+</div>
+
+---
+layout: default
+---
+
+# Deep Modules — The Architecture Vocabulary
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+### Key terms (from `/codebase-design`)
+
+<div class="text-sm mt-3 space-y-2">
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Module</b> — anything with an interface and an implementation. Scale-agnostic.
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Interface</b> — everything a caller must know. Not just types — also invariants, error modes, ordering constraints.
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Depth</b> — leverage at the interface. Lots of behavior behind a small interface.
+</div>
+
+</div>
+
+</div>
+
+<div v-click>
+
+### Deep vs. shallow
+
+<div class="text-sm mt-3">
+
+```
+┌─────────────────────┐
+│   Small Interface   │  ← Few methods, simple params
+├─────────────────────┤
+│                     │
+│  Deep Implementation│  ← Complex logic hidden
+│                     │
+└─────────────────────┘
+```
+
+<div class="mt-3 p-2 bg-red-500/10 rounded-lg text-xs">
+  <b>Shallow module (avoid):</b> Large interface, thin implementation. Just passes through.
+</div>
+
+<div class="mt-2 p-2 bg-green-500/10 rounded-lg text-xs">
+  <b>Deep module (aim for):</b> Small interface, lots of complexity hidden inside.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+  <b>The deletion test:</b> If deleting a module just moves complexity around, it was shallow. If complexity vanishes, it was earning its keep.<br/>
+  <b>One adapter = hypothetical seam. Two adapters = real one.</b> Don't introduce seams unless something actually varies across them.
 </div>
 
 ---
@@ -917,7 +1222,7 @@ layout: default
 
 <div class="text-sm mt-3 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-Loading ADRs + PRD + BDD + Design System can consume **half the context window** before work even starts.
+Loading CONTEXT.md + ADRs + PRD can consume context before work even starts.
 
 </div>
 
@@ -927,7 +1232,7 @@ Loading ADRs + PRD + BDD + Design System can consume **half the context window**
 
 <div class="text-sm mt-3 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-Documents must stay in sync with reality. An outdated ADR is worse than no ADR — it actively misleads.
+Documents must stay in sync. An outdated ADR is worse than no ADR — it actively misleads.
 
 </div>
 
@@ -943,13 +1248,13 @@ Documents must stay in sync with reality. An outdated ADR is worse than no ADR �
 
 <div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**Context compacts are survivable.** The important decisions survive compression. The agent re-looks up documents when needed.
+**Matt's documents are intentionally lightweight.** An ADR is 3 sentences. CONTEXT.md is a glossary, not a design doc. They're cheap to maintain.
 
 </div>
 
 <div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
-**Documents are authoritative.** When the agent gets a rule violation, it reads the ADR. It doesn't guess — it learns.
+**Documents are outputs of the process, not prerequisites.** You grill → terms crystallize → write them down. You don't start by writing 50 documents.
 
 </div>
 
@@ -966,7 +1271,8 @@ Documents must stay in sync with reality. An outdated ADR is worse than no ADR �
 </div>
 
 <div v-click class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-xs text-center">
-  <b>Goal:</b> multi-hour agent sessions with clear rules the agent can operate autonomously within.
+  <b>Goal:</b> focused agent sessions with clear rules — not multi-hour autonomous runs.<br/>
+  The skills keep the agent on rails, one step at a time.
 </div>
 
 ---
@@ -975,57 +1281,46 @@ layout: default
 
 # Theory Recap — The Decision Stack
 
-<div class="grid grid-cols-4 gap-3 mt-6">
+<div class="grid grid-cols-3 gap-3 mt-6">
 
 <div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30 text-center">
-  <div class="text-3xl mb-2">📐</div>
-  <b>ADR</b>
+  <div class="text-3xl mb-2">📖</div>
+  <b>CONTEXT.md</b>
   <div class="text-xs mt-2 opacity-70">
-    Architecture rules<br/>
-    <b>Why</b> we build it this way<br/>
-    50+ documents<br/>
-    Enforced by linters
+    Domain glossary<br/>
+    <b>Shared language</b><br/>
+    One word per concept<br/>
+    Updated by /domain-modeling
   </div>
 </div>
 
 <div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30 text-center">
+  <div class="text-3xl mb-2">📐</div>
+  <b>ADR</b>
+  <div class="text-xs mt-2 opacity-70">
+    Architecture decisions<br/>
+    <b>Why</b> we build it this way<br/>
+    1-3 sentences each<br/>
+    Only for surprising, hard-to-reverse, trade-off decisions
+  </div>
+</div>
+
+<div v-click class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30 text-center">
   <div class="text-3xl mb-2">📋</div>
   <b>PRD</b>
   <div class="text-xs mt-2 opacity-70">
     Feature specifications<br/>
     <b>What</b> problem it solves<br/>
-    User journey<br/>
-    Lightweight, focused
-  </div>
-</div>
-
-<div v-click class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30 text-center">
-  <div class="text-3xl mb-2">🥒</div>
-  <b>BDD</b>
-  <div class="text-xs mt-2 opacity-70">
-    Executable specs<br/>
-    <b>How</b> it should behave<br/>
-    Readable + testable<br/>
-    Cucumber / Gherkin
-  </div>
-</div>
-
-<div v-click class="p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-center">
-  <div class="text-3xl mb-2">🎨</div>
-  <b>Design System</b>
-  <div class="text-xs mt-2 opacity-70">
-    UI consistency<br/>
-    <b>How</b> it looks<br/>
-    Components + rules<br/>
-    Enforced by linters
+    User stories + implementation decisions<br/>
+    Published to issue tracker
   </div>
 </div>
 
 </div>
 
 <div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>All four connected by the loop:</b> git hooks → CI → skills → agent reads → agent fixes → iterate.<br/>
-  <b>What you can't find, you can't enforce.</b> Externalize, document, automate.
+  <b>All three connected by the loop:</b> /grill-with-docs → /domain-modeling → /to-prd → /to-issues → /implement + /tdd<br/>
+  <b>What you can't find, you can't enforce.</b> Externalize, document, then build.
 </div>
 
 ---
@@ -1056,7 +1351,7 @@ layout: default
 
 <div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">2️⃣</span>
-  <div><b>Open your plan.md</b> from Lesson 1 — it's your starting material.</div>
+  <div><b>Open your plan.md</b> from Lesson 1 — it's your starting material for grilling.</div>
 </div>
 
 <div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
@@ -1066,7 +1361,7 @@ layout: default
 
 <div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">4️⃣</span>
-  <div><b>One GitHub Copilot Chat</b> per group with the <code>decision-stack</code> skill loaded.</div>
+  <div><b>One GitHub Copilot Chat</b> per group with Matt Pocock's skills installed.</div>
 </div>
 
 </div>
@@ -1093,7 +1388,7 @@ Read a real ADR and PRD from an open-source project. Identify **what makes them 
 ### Phase 2 — 50 min
 #### Write Your Stack
 
-Write **at least 3 ADRs**, **1 PRD**, and **2 BDD scenarios** for the Calendar Consensus App.
+Use the agent with Matt's skills to produce a **CONTEXT.md**, **at least 2 ADRs**, and **1 PRD** for the Calendar Consensus App.
 
 </div>
 
@@ -1110,7 +1405,7 @@ Swap documents with another group. Review their stack. Discuss differences, stre
 
 <div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-center text-sm">
 
-<b>⚠️ Fundamental rule:</b> No code. Today we only produce ADRs, PRDs, and BDD scenarios.<br/>
+<b>⚠️ Fundamental rule:</b> No code. Today we only produce CONTEXT.md, ADRs, and a PRD.<br/>
 Code comes when the agent reads these documents and implements them — in the next lesson.
 
 </div>
@@ -1136,26 +1431,16 @@ Your group receives **two example documents**:
 ### ADR Example
 
 ```markdown
-# ADR-007: Use JWT for Authentication
+# Use JWT for Authentication
 
-**Status:** Accepted
-**Date:** 2024-03-15
-
-**Context:**
-Users need to authenticate across
-a React SPA and a REST API.
-
-**Decision:**
-Use JWT with refresh tokens.
-Access token: 15 min expiry.
-Refresh token: 7 days, stored
-in httpOnly cookie.
-
-**Consequences:**
-- Stateless auth, no session DB
-- Must handle token refresh in
-  the API client
-- Revocation requires blacklist
+We're using JWT with httpOnly refresh
+tokens (7d expiry) and short-lived
+access tokens (15min). Chose over
+session-based auth to keep the API
+stateless across multiple instances.
+Token revocation uses a blacklist
+in Redis with TTL matching the
+token lifetime.
 ```
 
 </div>
@@ -1165,31 +1450,28 @@ in httpOnly cookie.
 ### PRD Example
 
 ```markdown
-# PRD: Calendar Event Consensus
+# Calendar Event Consensus
 
-**Problem:**
-Scheduling meetings with 5+
-participants takes 6-8 messages
-across email and chat.
+## Problem Statement
+Scheduling meetings with 5+ participants
+takes 6-8 messages across email and chat.
 
-**Goal:**
-Automatically create a calendar
-event when all participants
-agree on a time slot.
+## Solution
+Automatically create a calendar event
+when all participants agree on a time slot.
 
-**User Journey:**
-1. Organizer creates proposal
-   with 3 time options
-2. Participants receive email
-   with voting link
-3. Each participant votes
-   yes/no per time slot
-4. When all say yes to one slot,
-   Google Calendar event created
+## User Stories
+1. As an organizer, I want to propose
+   time slots so that participants can vote
+2. As a participant, I want to vote yes/no
+   per slot so my preference is recorded
+3. As an organizer, I want the calendar
+   event created automatically when
+   consensus is reached
 
-**Success Criteria:**
-- Average time to schedule < 2 min
-- 0 manual follow-up messages
+## Out of Scope
+- Recurring meetings
+- Integration with Outlook
 ```
 
 </div>
@@ -1204,7 +1486,7 @@ agree on a time slot.
 
 <div class="p-1">
 
-• What's missing?<br/>
+• Is the decision surprising? Would an ADR be needed?<br/>
 • Is the decision clear or ambiguous?<br/>
 • Can an agent understand and follow this?
 
@@ -1212,9 +1494,9 @@ agree on a time slot.
 
 <div class="p-1">
 
-• Is the user journey complete?<br/>
-• Are success criteria measurable?<br/>
-• What edge cases are not covered?
+• Are the user stories exhaustive?<br/>
+• Is the scope clear (what's in and what's out)?<br/>
+• What's missing that an agent would need?
 
 </div>
 
@@ -1238,15 +1520,14 @@ layout: default
 
 <div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-### 📐 ADRs (at least 3)
+### 📖 CONTEXT.md
 
 <div class="text-xs mt-2 space-y-1 opacity-70">
 
-- Authentication strategy
-- Data storage decisions
-- API design / integration patterns
-- Consensus algorithm
-- Notification system
+Define the domain glossary for your Calendar Consensus App:
+- Canonical terms (Proposal, Consensus, Participant...)
+- What to avoid per term
+- Group terms under subheadings if clusters emerge
 
 </div>
 
@@ -1254,15 +1535,16 @@ layout: default
 
 <div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
 
-### 📋 PRD (1, complete)
+### 📐 ADRs (at least 2)
 
 <div class="text-xs mt-2 space-y-1 opacity-70">
 
-Transform your plan.md into a structured PRD:
-- Problem statement
-- Goal & success criteria
-- Full user journey
-- Scope (in/out)
+Only for decisions that are:
+- Hard to reverse
+- Surprising without context
+- The result of a real trade-off
+
+Topics to consider: auth strategy, data storage, consensus algorithm, API design.
 
 </div>
 
@@ -1270,14 +1552,17 @@ Transform your plan.md into a structured PRD:
 
 <div class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
 
-### 🥒 BDD Scenarios (at least 2)
+### 📋 PRD (1, complete)
 
 <div class="text-xs mt-2 space-y-1 opacity-70">
 
-- One "happy path" scenario
-- One edge case scenario
-- Given/When/Then format
-- Link to PRD user journey step
+Transform your plan.md using the agent:
+- Problem statement
+- Solution
+- User stories (exhaustive)
+- Implementation decisions
+- Testing decisions
+- Out of scope
 
 </div>
 
@@ -1287,13 +1572,7 @@ Transform your plan.md into a structured PRD:
 
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
 
-<b>⚓ Anchor rule for ADRs:</b> every ADR must answer <b>three questions</b>:
-
-<div class="grid grid-cols-3 gap-2 mt-2 text-center">
-  <div class="p-1 bg-gray-500/10 rounded"><b>Why</b> this decision?</div>
-  <div class="p-1 bg-gray-500/10 rounded"><b>How</b> is it enforced?</div>
-  <div class="p-1 bg-gray-500/10 rounded"><b>What</b> are the consequences?</div>
-</div>
+<b>⚓ The ADR test:</b> before writing an ADR, ask: "Is this hard to reverse? Would someone wonder why? Were there real alternatives?" If any answer is no, skip it.
 
 </div>
 
@@ -1309,25 +1588,31 @@ layout: default
 
 <div>
 
-### How to use Copilot
+### How to use the agent
 
 <div class="text-sm mt-3 space-y-3">
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**Start with:** *"Help me write an ADR for authentication in our Calendar Consensus App. Ask me one question at a time."*
+**Start with grilling:** Run `/grill-with-docs` — *"I want to build a Calendar Consensus App. Ask me one question at a time."*
 
 </div>
 
 <div v-click class="p-2 bg-blue-500/10 rounded-lg">
 
-**For PRD:** *"Convert our plan.md into a structured PRD. Our plan says..."* (paste key points)
+**Let terms crystallize:** As you define Proposal, Consensus, Participant — the agent updates CONTEXT.md inline.
 
 </div>
 
 <div v-click class="p-2 bg-blue-500/10 rounded-lg">
 
-**For BDD:** *"Write a Cucumber scenario for the happy path of our consensus feature. Our PRD says the user journey is..."*
+**For ADRs:** When the agent asks about auth or storage decisions, give your answer. The agent records it as a 1-3 sentence ADR.
+
+</div>
+
+<div v-click class="p-2 bg-blue-500/10 rounded-lg">
+
+**For PRD:** Once grilling is done, say *"Now synthesize everything into a PRD"* — the agent runs `/to-prd`.
 
 </div>
 
@@ -1343,19 +1628,19 @@ layout: default
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 
-**Don't accept the first draft** — the agent's first ADR is generic. Push back: *"Be more specific. What exactly do we enforce?"*
+**Don't over-document.** Most decisions don't need ADRs. "We're using Python" is not an ADR.
 
 </div>
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 
-**Don't skip the "consequences" section** — it's the most valuable part. *"What are the trade-offs of this decision?"*
+**Don't accept the first draft.** The agent's first pass is generic. Push back: *"Be more specific. What exactly are the trade-offs?"*
 
 </div>
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 
-**Don't write ADRs for trivial things** — "Use Python" is not an ADR. ADRs are for decisions with trade-offs.
+**Don't skip CONTEXT.md.** The shared language is the foundation everything else builds on. Invest time here.
 
 </div>
 
@@ -1366,61 +1651,159 @@ layout: default
 </div>
 
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>💡 The agent is a tool, not the author.</b> Your group owns the decisions. The agent helps structure them.
+  <b>💡 The agent is a process guide, not the author.</b> Your group owns the decisions. The agent helps structure them.
 </div>
 
 ---
 layout: default
 ---
 
-# BDD Template — Use This
+# Phase 2 — CONTEXT.md Template
 
-<div class="mt-6">
+<div class="mt-4">
 
-<div class="text-sm">
+```markdown
+# Calendar Consensus App
 
-Write your BDD scenarios in **Gherkin syntax**. Copy this template:
+A tool for scheduling meetings through group voting on
+proposed time slots.
+
+## Language
+
+**Proposal**:
+A set of time slots proposed by an organizer for a
+meeting. Exists until consensus is reached or the
+deadline passes.
+_Avoid_: Poll, survey, event draft
+
+**Consensus**:
+All participants agree on the same time slot within a
+proposal. Triggers automatic calendar event creation.
+_Avoid_: Agreement, resolution, confirmation
+
+**Participant**:
+A person invited to vote on a proposal's time slots.
+_Avoid_: User, voter, member, attendee
+
+**Vote**:
+A participant's yes/no decision on a specific time
+slot within a proposal.
+_Avoid_: Response, answer, choice
+```
+
+<div class="mt-2 text-xs opacity-60">
+  Format: term → 1-2 sentence definition → what to avoid.<br/>
+  Be opinionated. Pick the best word and ban the rest.
+</div>
 
 </div>
 
-```gherkin {all}
-Feature: [Feature name from your PRD]
+---
+layout: default
+---
 
-  As a [user role]
-  I want to [action]
-  So that [outcome]
+# Phase 2 — ADR Template (Matt's Format)
 
-  Scenario: [Happy path — descriptive name]
-    Given [precondition]
-    And [another precondition if needed]
-    When [action]
-    Then [expected outcome]
-    And [another outcome if needed]
+<div class="mt-4">
 
-  Scenario: [Edge case — descriptive name]
-    Given [precondition]
-    When [action]
-    Then [expected outcome]
+<div class="text-sm">
+
+```markdown
+# {Short title of the decision}
+
+{1-3 sentences: what's the context, what did
+we decide, and why.}
 ```
+
+</div>
+
+<div class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-xs">
+
+### Optional sections — only include when they add value
+
+```markdown
+**Status:** proposed | accepted | deprecated | superseded by ADR-NNNN
+**Considered Options:** only when rejected alternatives are worth remembering
+**Consequences:** only when non-obvious downstream effects need calling out
+```
+
+</div>
 
 <div class="mt-4 grid grid-cols-2 gap-3 text-xs">
 
-<div class="p-2 bg-blue-500/10 rounded-lg">
+<div class="p-2 bg-green-500/10 rounded-lg">
 
-<b>Good scenario name:</b> "All participants agree on the same time slot"
+<b>Good ADR:</b> "We're using event sourcing for the write model because we need a full audit trail of every vote change. The read model is projected into Postgres. Considered CQRS with a message bus but decided against — too heavy for this team size."
 
 </div>
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 
-<b>Bad scenario name:</b> "Test 1" or "Happy path"
+<b>Not an ADR:</b> "We're using Python for the backend." — not surprising, no real alternative, no trade-off to record.
 
 </div>
 
 </div>
 
 <div class="mt-2 text-xs opacity-60">
-  A good scenario name tells the story. Someone reading it should understand what it tests without looking at the steps.
+  Save as <code>docs/adr/0001-slug.md</code>. Number sequentially. Create the directory lazily.
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Phase 2 — PRD Template (Matt's Format)
+
+<div class="mt-4">
+
+<div class="text-sm">
+
+```markdown
+## Problem Statement
+
+The problem the user is facing, from the user's perspective.
+
+## Solution
+
+The solution to the problem, from the user's perspective.
+
+## User Stories
+
+1. As an <actor>, I want a <feature>, so that <benefit>
+2. As an <actor>, I want a <feature>, so that <benefit>
+...
+(This list should be extremely extensive — cover all aspects.)
+
+## Implementation Decisions
+
+- The modules that will be built or modified
+- The interfaces of those modules
+- Technical clarifications, architectural decisions
+- Schema changes, API contracts
+(No file paths or code snippets — they go stale fast.)
+
+## Testing Decisions
+
+- What makes a good test for this feature
+- Which modules will be tested
+- Prior art for the tests
+
+## Out of Scope
+
+What is explicitly NOT included in this PRD.
+
+## Further Notes
+
+Any additional context or notes.
+```
+
+</div>
+
+<div class="mt-2 text-xs opacity-60">
+  This is the template used by <code>/to-prd</code> in Matt's workflow.
 </div>
 
 </div>
@@ -1435,32 +1818,34 @@ layout: default
 
 ```mermaid {scale: 0.55}
 graph TD
-    PRD["📋 PRD: Calendar Consensus<br/>User journeys:<br/>1. Propose<br/>2. Vote<br/>3. Confirm"]
-    
-    ADR1["📐 ADR-001: JWT Auth<br/>Enforced by middleware"]
-    ADR2["📐 ADR-002: Google Calendar API<br/>Enforced by service layer"]
-    ADR3["📐 ADR-003: Email Notifications<br/>Enforced by event system"]
+    GLOSSARY["📖 CONTEXT.md<br/>Proposal, Consensus, Participant, Vote"]
 
-    BDD1["🥒 Feature: Voting<br/>Scenario: All agree → event created"]
-    BDD2["🥒 Feature: Voting<br/>Scenario: Deadline passes → no event"]
-    
-    DS1["🎨 Design System<br/>VotingButton, TimeSlotCard,<br/>ConsensusBadge"]
+    PRD["📋 PRD: Calendar Consensus<br/>Problem: scheduling takes 6-8 messages<br/>User journeys: Propose → Vote → Confirm"]
 
-    PRD --> ADR1
-    PRD --> ADR2
-    PRD --> ADR3
-    PRD --> BDD1
-    PRD --> BDD2
-    BDD1 --> DS1
-    ADR1 --> BDD1
-    ADR2 --> BDD1
+    ADR1["📐 ADR-001: Event-Sourced Votes<br/>Full audit trail needed"]
+    ADR2["📐 ADR-002: JWT Auth<br/>Stateless API across instances"]
+    ADR3["📐 ADR-003: Google Calendar API<br/>Direct integration over CalDAV"]
+
+    ISSUE1["🎯 Issue 1: Create proposal endpoint"]
+    ISSUE2["🎯 Issue 2: Voting API + email"]
+    ISSUE3["🎯 Issue 3: Consensus detection + calendar"]
+    ISSUE4["🎯 Issue 4: Deadline handling"]
+
+    GLOSSARY --> PRD
+    PRD --> ISSUE1
+    PRD --> ISSUE2
+    PRD --> ISSUE3
+    PRD --> ISSUE4
+    ADR1 --> ISSUE1
+    ADR2 --> ISSUE2
+    ADR3 --> ISSUE3
 ```
 
 </div>
 
 <div v-click class="mt-4 text-xs text-center opacity-70">
-  <b>Your documents should reference each other.</b> A BDD scenario links back to the PRD user journey.<br/>
-  An ADR links to affected files. A PRD links to applicable ADRs. <b>Build a web, not a list.</b>
+  <b>Build a web, not a list.</b> The glossary names the things. The ADRs constrain how they're built.<br/>
+  The PRD describes the user journey. The issues are vertical slices through all layers.
 </div>
 
 ---
@@ -1483,19 +1868,19 @@ layout: default
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-**ADRs:** Is the "why" clear? Can you understand the decision without asking the authors? Is "how to enforce" specific?
+**CONTEXT.md:** Are terms clear and opinionated? Are avoid-words listed? Would a new team member understand the domain?
 
 </div>
 
 <div class="p-2 bg-green-500/10 rounded-lg">
 
-**PRD:** Is the user journey complete? Are edge cases mentioned? Would an agent understand the scope?
+**ADRs:** Is the "why" clear in 1-3 sentences? Does it pass the three-part test (hard to reverse, surprising, trade-off)? Is anything recorded that shouldn't be?
 
 </div>
 
 <div class="p-2 bg-purple-500/10 rounded-lg">
 
-**BDD:** Are Given/When/Then clear? Do scenarios cover both happy path and edge cases? Do they link to the PRD?
+**PRD:** Are user stories exhaustive? Are implementation and testing decisions clear? Is the scope bounded? Would an agent know what to build?
 
 </div>
 
@@ -1524,9 +1909,9 @@ layout: default
 <div class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
 **Feedback must be:**
-- Specific ("ADR-002 doesn't explain how to enforce")
-- Constructive ("Consider adding...")
-- Questioning ("What happens if...?")
+- Specific ("ADR about auth doesn't state why JWT over sessions")
+- Constructive ("Consider splitting this user story into two...")
+- Questioning ("What happens if the deadline passes while someone is voting?")
 
 </div>
 
@@ -1550,37 +1935,38 @@ layout: default
 
 <div class="p-2 bg-blue-500/10 rounded-lg">
 
-### 📐 ADR Review
+### 📖 CONTEXT.md Review
 
-- [ ] Is the **context** clear? (what problem led to this decision?)
-- [ ] Is the **decision** specific and unambiguous?
-- [ ] Is the **enforcement** mechanism described?
-- [ ] Are the **consequences** (both good and bad) listed?
-- [ ] Are affected **files/modules** identified?
+- [ ] Are all domain-specific terms defined?
+- [ ] Is each definition 1-2 sentences (not paragraphs)?
+- [ ] Are avoid-words listed for each term?
+- [ ] Are terms opinionated (one canonical word per concept)?
+- [ ] Are general programming concepts excluded?
 
 </div>
 
 <div v-click class="p-2 bg-green-500/10 rounded-lg">
 
-### 📋 PRD Review
+### 📐 ADR Review
 
-- [ ] Is the **problem** stated from the user's perspective?
-- [ ] Is the **goal** measurable?
-- [ ] Is the **user journey** complete (start to finish)?
-- [ ] Are **edge cases** mentioned (what happens when...)?
-- [ ] Is the **scope** clear (what's in and what's out)?
+- [ ] Is the decision clear in 1-3 sentences?
+- [ ] Is it hard to reverse?
+- [ ] Would it be surprising without this context?
+- [ ] Was there a real trade-off?
+- [ ] Are rejected alternatives mentioned if non-obvious?
 
 </div>
 
 <div v-click class="p-2 bg-purple-500/10 rounded-lg">
 
-### 🥒 BDD Review
+### 📋 PRD Review
 
-- [ ] Are scenarios named with **meaningful descriptions**?
-- [ ] Is **Given/When/Then** correct and complete?
-- [ ] Do scenarios trace back to a **PRD user journey step**?
-- [ ] Is there at least one **happy path** and one **edge case**?
-- [ ] Would a new team member understand the behavior?
+- [ ] Is the problem stated from the user's perspective?
+- [ ] Is the solution clear and user-facing?
+- [ ] Are user stories exhaustive (at least 5-6)?
+- [ ] Are implementation decisions described?
+- [ ] Are testing decisions described?
+- [ ] Is out-of-scope clearly bounded?
 
 </div>
 
@@ -1609,6 +1995,7 @@ layout: default
 - Which document was hardest to write?
 - What did the other group catch that you missed?
 - Did the agent help or hinder?
+- How does the grilling process change how you think?
 
 </div>
 
@@ -1620,9 +2007,9 @@ layout: default
 
 <div class="text-sm mt-2 space-y-1 opacity-70">
 
-- How would you enforce these documents?
-- Which checks go in git hooks vs CI?
-- What would the agent do when it breaks a rule?
+- How would the agent use these documents in the next lesson?
+- Which skill would you run first when implementing?
+- What's the difference between a PRD and a set of issues?
 
 </div>
 
@@ -1632,8 +2019,8 @@ layout: default
 
 <div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm text-center">
 
-<b>Reflection:</b> You started with a plan.md (exploratory). Now you have ADRs, a PRD, and BDD scenarios.<br/>
-<b>This is the "plan then act" principle, made concrete.</b>
+<b>Reflection:</b> You started with a plan.md (exploratory). Now you have a domain glossary, ADRs, and a PRD.<br/>
+<b>This is the "plan then act" principle, made concrete — with process guides, not templates.</b>
 
 </div>
 
@@ -1649,7 +2036,7 @@ layout: default
 
 <div class="text-sm mt-3">
 
-In Lesson 3, you'll feed these documents to the agent and let it **implement** the Calendar Consensus App:
+In Lesson 3, you'll take your CONTEXT.md, ADRs, and PRD — and let the agent **implement** the Calendar Consensus App using Matt's skills:
 
 </div>
 
@@ -1657,13 +2044,12 @@ In Lesson 3, you'll feed these documents to the agent and let it **implement** t
 
 ```mermaid {scale: 0.6}
 graph LR
-    ADR["📐 ADRs<br/>Rules"] --> AG["🤖 Agent<br/>reads docs"]
-    PRD["📋 PRD<br/>Spec"] --> AG
-    BDD["🥒 BDD<br/>Scenarios"] --> AG
-    AG --> HARNESS["🪝 Harness<br/>hooks + CI"]
-    HARNESS --> FEEDBACK{Pass?}
-    FEEDBACK -->|No| AG
-    FEEDBACK -->|Yes| CODE["✅ Code + tests<br/>delivered"]
+    CTX["📖 CONTEXT.md<br/>Domain language"] --> AG["🤖 Agent"]
+    ADR["📐 ADRs<br/>Architecture rules"] --> AG
+    PRD["📋 PRD<br/>Feature spec"] --> AG
+    AG --> ISSUES["🎯 /to-issues<br/>Vertical slices"]
+    ISSUES --> IMPL["💻 /implement + /tdd<br/>Red-green-refactor"]
+    IMPL --> TESTS["✅ Tests pass<br/>PR ready"]
 ```
 
 </div>
@@ -1671,15 +2057,15 @@ graph LR
 <div class="mt-6 grid grid-cols-3 gap-3 text-xs">
 
 <div class="p-2 bg-blue-500/10 rounded text-center">
-<b>Agent reads ADRs</b> → follows architecture rules → hooks enforce them
+<b>Agent reads CONTEXT.md</b> → uses consistent names everywhere
 </div>
 
 <div class="p-2 bg-green-500/10 rounded text-center">
-<b>Agent reads PRD</b> → understands user journey → builds the right thing
+<b>Agent reads ADRs</b> → respects architecture decisions
 </div>
 
 <div class="p-2 bg-purple-500/10 rounded text-center">
-<b>Agent reads BDD</b> → knows the expected behavior → tests pass in CI
+<b>Agent reads PRD</b> → understands user journey → builds the right thing
 </div>
 
 </div>
@@ -1699,15 +2085,11 @@ layout: section
 <div class="mt-6 max-w-lg mx-auto text-left text-sm space-y-2">
 
 <div class="p-3 bg-gray-500/10 rounded-lg">
-  <b>/adr/</b> — at least 3 ADRs (markdown files)
+  <b>/docs/</b> — CONTEXT.md + adr/ directory with at least 2 ADRs
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg">
   <b>/prd/</b> — 1 PRD for the Calendar Consensus App
-</div>
-
-<div class="p-3 bg-gray-500/10 rounded-lg">
-  <b>/bdd/</b> — at least 2 BDD feature files (.feature)
 </div>
 
 </div>
@@ -1732,11 +2114,11 @@ layout: default
 <div class="text-sm mt-4 space-y-2">
 
 - **The monkey parable** — humans and LLMs share limited context, both need externalized decisions
-- **ADR** — records why, how to enforce, affected files
-- **PRD** — lightweight feature spec: problem, goal, user journey
-- **BDD** — executable specifications (Cucumber/Gherkin), close the loop between spec and reality
-- **Design System** — component library, rules, previews for UI consistency
-- **The Loop** — git hooks → CI → agent reads → agent fixes → iterate
+- **CONTEXT.md** — domain glossary: one canonical word per concept, opinionated, avoid-words listed
+- **ADR** — 1-3 sentences: why a surprising, hard-to-reverse, trade-off decision was made
+- **PRD** — problem, solution, exhaustive user stories, implementation and testing decisions, out of scope
+- **Skills are process guides** — they don't load documents, they orchestrate workflows
+- **The Loop** — /grill-with-docs → /domain-modeling → /to-prd → /to-issues → /implement + /tdd
 
 </div>
 
@@ -1749,17 +2131,17 @@ layout: default
 <div class="text-sm mt-4 space-y-2">
 
 - ✅ Read & critiqued real ADR and PRD examples
-- ✅ Wrote at least 3 ADRs for the Calendar Consensus App
-- ✅ Transformed plan.md into a structured PRD
-- ✅ Created at least 2 BDD scenarios (happy path + edge case)
+- ✅ Built a domain glossary (CONTEXT.md) for the Calendar Consensus App
+- ✅ Wrote at least 2 ADRs (only for decisions that pass the three-part test)
+- ✅ Transformed plan.md into a structured PRD using Matt's template
 - ✅ Cross-reviewed another group's stack
-- ✅ Connected documents with cross-references
+- ✅ Connected documents with cross-references and the vertical slice workflow
 
 </div>
 
 <div class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
 
-<b>Key result:</b> You have a complete Decision Stack — the foundation for autonomous agent-driven implementation.
+<b>Key result:</b> You have a complete Decision Stack — lightweight documents and a repeatable process for agent-driven implementation.
 
 </div>
 
@@ -1778,8 +2160,8 @@ class: text-center
 
 <div class="mt-8">
 
-How to build the loop that enforces your Decision Stack —<br/>
-and why sometimes less is more.
+How to turn your Decision Stack into working code —<br/>
+using vertical slices, TDD, and Matt's implementation workflow.
 
 </div>
 
@@ -1795,12 +2177,11 @@ class: text-center
 </div>
 
 <div class="mt-8 text-lg opacity-70 max-w-2xl mx-auto">
-  "What you can't find, you can't enforce.<br/>
-  What you don't record, you'll forget."
+  "Invest in the design of the system every day."
 </div>
 
 <div class="mt-4 text-sm opacity-50">
-  — Michal, Capturing Decisions for Humans and AI Alike
+  — Kent Beck, Extreme Programming Explained
 </div>
 
 ---
@@ -1810,7 +2191,7 @@ class: text-center
 
 <div class="mb-8">
   <div class="text-6xl font-bold bg-gradient-to-r from-blue-400 via-green-400 to-purple-400 bg-clip-text text-transparent">
-    May the spec be with you.
+    May the docs be with you.
   </div>
 </div>
 
