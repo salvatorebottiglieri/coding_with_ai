@@ -19,7 +19,7 @@ transition: slide-left
 </div>
 
 <div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm max-w-lg mx-auto">
-  <span class="opacity-70">Your plan.md from Lesson 1 + Matt Pocock's skills installed.</span>
+  <span class="opacity-70">Your plan.md from Lesson 1 + the agent process skills installed.</span>
 </div>
 
 ---
@@ -84,7 +84,7 @@ Read the Lesson 1 slides to understand the Delegation Workflow principles, espec
 
 ---
 
-# 2. Install Matt Pocock's Skills
+# 2. Install the Agent Process Skills
 
 <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
 
@@ -94,7 +94,7 @@ Read the Lesson 1 slides to understand the Delegation Workflow principles, espec
 
 <div class="mt-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-Matt Pocock's skills are **process guides** — they teach the agent *how* to work with you, not just what documents to load. The key ones you'll use:
+These agent skills are **process guides** — they teach the agent *how* to work with you, not just what documents to load. The key ones you'll use:
 
 - **`/grill-with-docs`** — interviews you relentlessly, one question at a time, building a shared language and ADRs as you go
 - **`/to-prd`** — synthesizes everything from the conversation into a structured PRD
@@ -123,13 +123,13 @@ npx skills@latest add mattpocock/skills
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**2.** Pick the skills you want and which coding agents to install them on. **Make sure you select `/setup-matt-pocock-skills`.**
+**2.** Pick the skills you want and which coding agents to install them on. Make sure you select the setup skill.
 
 </div>
 
 <div class="p-2 bg-gray-500/10 rounded">
 
-**3.** In Copilot Chat, run `/setup-matt-pocock-skills`. It will ask:
+**3.** In Copilot Chat, run the setup skill. It will ask:
 - Which issue tracker to use (GitHub, Linear, or local files)
 - What labels you apply to tickets
 - Where to save docs
@@ -150,7 +150,7 @@ npx skills@latest add mattpocock/skills
 
 <div v-click class="mt-4 p-2 bg-green-500/10 rounded-lg border border-green-500/30 text-xs text-center">
 
-<b>These are the real skills</b> from <a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a> — used daily by experienced engineers. They're small, composable, and work with any model.
+<b>These skills</b> are small, composable, and work with any model. They encode proven engineering workflows developed by Matt Pocock.
 
 </div>
 
@@ -168,7 +168,7 @@ layout: default
 
 <div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-### Matt Pocock's core ideas
+### The core ideas
 
 <div class="mt-2 space-y-1">
 
@@ -192,7 +192,7 @@ layout: default
 - **Spec-Kit / BMAD** — full workflow ownership by the tool. Less control, more automation.
 
 <div class="mt-2 text-xs opacity-60">
-  We're using Matt's approach today because it's lightweight, composable, and gives you the most control.<br/>
+  We're using this approach today because it's lightweight, composable, and gives you the most control.<br/>
   No approach is universally "correct." Pick what works for your team and your context.
 </div>
 
@@ -236,7 +236,7 @@ your-group-workspace/
 
 <div v-click class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-xs">
 
-<b>💡 Tip:</b> Create the folders before the lesson. CONTEXT.md and ADRs go under `docs/` (the standard location in Matt's workflow). The PRD goes in its own directory. This saves time and lets you jump straight into building content.
+<b>💡 Tip:</b> Create the folders before the lesson. CONTEXT.md and ADRs go under `docs/`. The PRD goes in its own directory. This saves time and lets you jump straight into building content.
 
 </div>
 
@@ -262,12 +262,12 @@ class: text-center
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">[ ]</span>
-  <div><b>Matt Pocock's skills</b> installed in VS Code/Copilot via <code>npx skills@latest</code></div>
+  <div><b>The agent process skills</b> installed in VS Code/Copilot via <code>npx skills@latest</code></div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">[ ]</span>
-  <div><b>/setup-matt-pocock-skills</b> run in your project repo</div>
+  <div><b>Setup skill</b> run in your project repo</div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
