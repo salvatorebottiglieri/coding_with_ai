@@ -44,9 +44,7 @@ The **Decision Stack**:
 
 ### 🏗️ Practice — 90 min
 
-- 10 min: Read & critique an existing ADR and PRD
-- 50 min: Write your own Decision Stack for the Calendar Consensus App using the agent skills
-- 30 min: Cross-review & discussion
+- 90 min: Run the full loop — /grill-with-docs → /domain-modeling → /to-prd → /to-issues
 
 </div>
 
@@ -1828,58 +1826,6 @@ graph TD
 <div v-click class="mt-4 text-xs text-center opacity-70">
   <b>Build a web, not a list.</b> The glossary names the things. The ADRs constrain how they're built.<br/>
   The PRD describes the user journey. The issues are vertical slices through all layers.
-</div>
-
----
-layout: default
-zoom: 0.88
----
-
-# Group Discussion — 10 minutes
-
-<div class="mt-6 text-lg text-center opacity-70">
-  Instructor-led discussion. Raise your hand.
-</div>
-
-<div class="grid grid-cols-2 gap-4 mt-8">
-
-<div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-### What surprised you?
-
-<div class="text-sm mt-2 space-y-1 opacity-70">
-
-- Which document was hardest to produce?
-- Where did the agent help most? Where did it struggle?
-- How does grilling change how you think about a feature?
-- Did you catch the agent making assumptions?
-
-</div>
-
-</div>
-
-<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-
-### Connect to the Loop
-
-<div class="text-sm mt-2 space-y-1 opacity-70">
-
-- How would the agent use these documents in the next lesson?
-- Which skill would you run first when implementing?
-- What's the difference between a PRD and a set of issues?
-- How do vertical slices emerge from a good PRD?
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm text-center">
-
-<b>Reflection:</b> You ran the full loop: /grill-with-docs → /to-prd → /to-issues.<br/>
-<b>This is the "plan then act" principle, made concrete — with lightweight process guides, not heavyweight templates.</b>
-
 </div>
 
 ---
