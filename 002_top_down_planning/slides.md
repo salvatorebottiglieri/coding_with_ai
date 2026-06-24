@@ -1095,7 +1095,7 @@ A **tracer bullet** — a thin, complete path through ALL layers of the system:
 
 ---
 layout: default
-zoom: 0.78
+zoom: 0.90
 ---
 
 # Test-Driven Development — The Engine
@@ -1245,7 +1245,6 @@ Code can change entirely. Tests shouldn't.
 
 ---
 layout: default
-zoom: 0.88
 ---
 
 # Deep Modules — The Architecture Vocabulary
@@ -1433,41 +1432,6 @@ layout: section
 # Part 2 — Practice
 ## Building Your Decision Stack (90 min)
 
----
-layout: default
----
-
-# 👥 Reunite Your Group
-
-<div class="mt-4 max-w-2xl mx-auto text-sm space-y-3">
-
-<div class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30 text-center">
-
-<b>~2 minutes</b> — same groups from Lesson 1.
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">1️⃣</span>
-  <div><b>Same group of 3–4</b> students from the co-decomposition exercise.</div>
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">2️⃣</span>
-  <div><b>Open your plan.md</b> from Lesson 1 — it's your starting material for grilling.</div>
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">3️⃣</span>
-  <div><b>Pick a driver</b> — rotates from the one in Lesson 1.</div>
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
-  <span class="text-lg">4️⃣</span>
-  <div><b>One GitHub Copilot Chat</b> per group with the agent skills installed.</div>
-</div>
-
-</div>
 
 ---
 layout: default
@@ -1828,7 +1792,6 @@ Any additional context or notes.
 
 ---
 layout: default
-zoom: 0.82
 ---
 
 # Relating Your Documents

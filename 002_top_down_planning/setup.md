@@ -19,7 +19,7 @@ transition: slide-left
 </div>
 
 <div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm max-w-lg mx-auto">
-  <span class="opacity-70">Your plan.md from Lesson 1 + the agent process skills installed.</span>
+  <span class="opacity-70">Your plan.md from Lesson 1 + requisiti_calendar_consensus.md + the agent process skills installed.</span>
 </div>
 
 ---
@@ -48,9 +48,15 @@ layout: default
 
 </div>
 
+<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+**requisiti_calendar_consensus.md** — consolidated, well-written requirements from all Lesson 1 groups. <b>Read this before the lesson.</b>
+
+</div>
+
 <div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
 
-This document is the **starting material** for the grilling session that produces your PRD.
+These two documents together are the **starting materials** for the grilling session that produces your PRD.
 
 </div>
 
@@ -262,6 +268,11 @@ class: text-center
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">[ ]</span>
+  <div><b>requisiti_calendar_consensus.md</b> read and understood</div>
+</div>
+
+<div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
+  <span class="text-lg">[ ]</span>
   <div><b>The agent process skills</b> installed in VS Code/Copilot via <code>npx skills@latest</code></div>
 </div>
 
@@ -272,7 +283,7 @@ class: text-center
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
   <span class="text-lg">[ ]</span>
-  <div><b>Folder structure</b> created (docs/adr/, prd/)</div>
+  <div><b>Folder structure</b> created (docs/adr/, prd/) + <b>requisiti_calendar_consensus.md</b> in workspace</div>
 </div>
 
 <div class="p-3 bg-gray-500/10 rounded-lg flex items-start gap-3">
