@@ -332,7 +332,7 @@ graph LR
     DOMAIN["📖 /domain-modeling<br/>Sharpen CONTEXT.md.<br/>Record ADRs when needed."]
     TOPRD["📋 /to-prd<br/>Synthesize a PRD from<br/>the conversation."]
     TOISSUES["🎯 /to-issues<br/>Break PRD into vertical<br/>slice issues."]
-    IMPLEMENT["💻 /implement<br/>Build each issue with /tdd<br/>red-green-refactor."]
+    IMPLEMENT["💻 Implement<br/>Build each issue with /tdd<br/>red-green-refactor."]
     REVIEW["🔍 Review<br/>PR, CI, iterate."]
 
     GRILL --> DOMAIN --> TOPRD --> TOISSUES --> IMPLEMENT --> REVIEW
@@ -961,7 +961,7 @@ graph TD
     GRILL --> DOCS["📖 CONTEXT.md + ADRs<br/>Domain language crystallised.<br/>Architecture decisions recorded."]
     DOCS --> PRD["📋 /to-prd<br/>PRD published to<br/>issue tracker."]
     PRD --> ISSUES["🎯 /to-issues<br/>Vertical slice issues.<br/>Each independently grabbable."]
-    ISSUES --> IMPL["💻 /implement + /tdd<br/>Red-green-refactor.<br/>One slice at a time."]
+    ISSUES --> IMPL["💻 Implement with /tdd<br/>Red-green-refactor.<br/>One slice at a time."]
     IMPL --> PR["📤 Pull Request<br/>CI runs tests.<br/>Human reviews."]
     PR -.->|"Feedback"| IMPL
 ```
@@ -1008,7 +1008,7 @@ Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker wi
 <div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
 
 ### Step 4: Break into issues + implement
-`/to-issues` creates vertical slices. Each is a small, independently grabbable unit. `/implement` with `/tdd` builds them one by one.
+`/to-issues` creates vertical slices. Each is a small, independently grabbable unit. Implement each with `/tdd` — one slice at a time.
 
 </div>
 
@@ -1421,7 +1421,7 @@ zoom: 0.9
 </div>
 
 <div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>All three connected by the loop:</b> /grill-with-docs → /domain-modeling → /to-prd → /to-issues → /implement + /tdd<br/>
+  <b>All three connected by the loop:</b> /grill-with-docs → /domain-modeling → /to-prd → /to-issues → implement with /tdd<br/>
   <b>What you can't find, you can't enforce.</b> Externalize, document, then build.
 </div>
 
@@ -1907,7 +1907,7 @@ graph LR
     ADR["📐 ADRs<br/>Architecture rules"] --> AG
     PRD["📋 PRD<br/>Feature spec"] --> AG
     AG --> ISSUES["🎯 /to-issues<br/>Vertical slices"]
-    ISSUES --> IMPL["💻 /implement + /tdd<br/>Red-green-refactor"]
+    ISSUES --> IMPL["💻 Implement with /tdd<br/>Red-green-refactor"]
     IMPL --> TESTS["✅ Tests pass<br/>PR ready"]
 ```
 
@@ -1981,7 +1981,7 @@ layout: default
 - **ADR** — 1-3 sentences: why a surprising, hard-to-reverse, trade-off decision was made
 - **PRD** — problem, solution, exhaustive user stories, implementation and testing decisions, out of scope
 - **Skills are process guides** — they don't load documents, they orchestrate workflows
-- **The Loop** — /grill-with-docs → /domain-modeling → /to-prd → /to-issues → /implement + /tdd
+- **The Loop** — /grill-with-docs → /domain-modeling → /to-prd → /to-issues → implement with /tdd
 
 </div>
 
@@ -2012,21 +2012,6 @@ layout: default
 
 </div>
 
----
-layout: center
-class: text-center
----
-
-# Next Lesson
-
-## Lesson 3: Architecture — Harness vs Minimalism
-
-<div class="mt-8">
-
-How to turn your Decision Stack into working code —<br/>
-using vertical slices, TDD, and the agentic implementation workflow.
-
-</div>
 
 ---
 layout: center
