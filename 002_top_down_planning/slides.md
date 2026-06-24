@@ -145,7 +145,7 @@ layout: default
 
 <div class="mt-6">
 
-```mermaid {scale: 0.55}
+```mermaid {scale: 0.65}
 graph LR
     GLOSSARY["📖 <b>CONTEXT.md</b><br/>Domain Glossary<br/><i>Shared language</i>"]
     ADR["📐 <b>ADR</b><br/>Architecture<br/>Decision Record<br/><i>Why</i>"]
@@ -158,7 +158,7 @@ graph LR
 
 </div>
 
-<div class="mt-4 grid grid-cols-3 gap-2 text-xs">
+<div class="mt-4 grid grid-cols-3 gap-2 text-sm">
 
 <div class="p-2 bg-blue-500/10 rounded text-center">
   <b>CONTEXT.md</b><br/>A glossary of domain terms —<br/>"one word, not twenty"
@@ -180,10 +180,11 @@ graph LR
 
 ---
 layout: default
+zoom: 0.8
 ---
 
 # Before Agents — What Humans Used to Do
-<div class="mt-6 text-sm">
+<div class="mt-4 text-xs">
 Every phase of this workflow existed before agents — it was just performed by humans, with all the fragility that implies.
 </div>
 
@@ -263,11 +264,12 @@ layout: section
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # This Is One Approach — Not The Only One
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
 <div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
@@ -317,13 +319,14 @@ Too little → the agent invents its own reasons. Too much → you spend more ti
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # The Core Workflow
 
-<div class="mt-6">
+<div class="mt-4">
 
-```mermaid {scale: 0.42}
+```mermaid {scale: 0.38}
 graph LR
     GRILL["🔥 /grill-with-docs<br/>Interview the user relentlessly.<br/>Build shared language."]
     DOMAIN["📖 /domain-modeling<br/>Sharpen CONTEXT.md.<br/>Record ADRs when needed."]
@@ -346,6 +349,7 @@ graph LR
 
 ---
 layout: default
+zoom: 0.82
 ---
 
 # Layer 0 — CONTEXT.md: The Domain Glossary
@@ -434,6 +438,7 @@ _Avoid_: User, voter, member, attendee
 
 ---
 layout: default
+zoom: 0.85
 ---
 
 # CONTEXT.md — How the Agent Uses It
@@ -504,6 +509,7 @@ Agent uses only "Proposal" and "Consensus" — consistently, everywhere
 
 ---
 layout: default
+zoom: 0.82
 ---
 
 # Layer 1 — ADR: Architecture Decision Record
@@ -654,13 +660,9 @@ layout: default
 
 </div>
 
-<div v-click class="mt-2 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>The test:</b> "Will a future engineer look at this code and think we did something weird — and changing it would break things?"<br/>
-If yes → ADR. If no → just code.
-</div>
-
 ---
 layout: default
+zoom: 0.8
 ---
 
 # Layer 2 — PRD: Product Requirements Document
@@ -742,6 +744,7 @@ Synthesized from the conversation by `/to-prd` — no separate interview needed.
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # PRD vs. plan.md — The Upgrade
@@ -794,6 +797,7 @@ layout: default
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # Skills: Process Guides, Not Document Templates
@@ -877,6 +881,7 @@ Skills are **process guides** — they tell the agent *how* to work, not *what* 
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # The Skills You'll Use
@@ -949,13 +954,14 @@ layout: default
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # How The Loop Works
 
-<div class="mt-6">
+<div class="mt-4">
 
-```mermaid {scale: 0.55}
+```mermaid {scale: 0.48}
 graph TD
     START["💡 Idea"] --> GRILL["🔥 /grill-with-docs<br/>Interview relentlessly.<br/>Resolve every branch."]
     GRILL --> DOCS["📖 CONTEXT.md + ADRs<br/>Domain language crystallised.<br/>Architecture decisions recorded."]
@@ -975,6 +981,7 @@ graph TD
 
 ---
 layout: default
+zoom: 0.82
 ---
 
 # The Loop with Agent Skills — Concrete Example
@@ -1023,17 +1030,18 @@ Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker wi
 
 ---
 layout: default
+zoom: 0.78
 ---
 
 # Vertical Slices — The Core Pattern
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
 <div>
 
 ### What is a vertical slice?
 
-<div class="text-sm mt-3 space-y-3">
+<div class="text-xs mt-2 space-y-2">
 
 A **tracer bullet** — a thin, complete path through ALL layers of the system:
 
@@ -1094,30 +1102,31 @@ A **tracer bullet** — a thin, complete path through ALL layers of the system:
 
 ---
 layout: default
+zoom: 0.78
 ---
 
 # Test-Driven Development — The Engine
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-4 mt-3">
 
 <div>
 
 ### The Red-Green-Refactor Cycle
 
-<div class="text-sm mt-3">
+<div class="text-xs mt-2">
 
-```mermaid {scale: 0.55}
+```mermaid {scale: 0.45}
 graph LR
     RED["🔴 RED<br/>Write a failing test<br/><i>Define the behavior</i>"]
     GREEN["🟢 GREEN<br/>Write the simplest code<br/>that makes it pass<br/><i>Make it work</i>"]
-    REFACTOR["🔵 REFACTOR<br/>Improve the design<br/>without changing behavior<br/><i>Make it clean</i>"]
+    REFACTOR["🔵 REFACTOR<br/>Improve design<br/>without changing behavior<br/><i>Make it clean</i>"]
 
     RED --> GREEN --> REFACTOR --> RED
 ```
 
 </div>
 
-<div class="mt-3 space-y-2 text-xs">
+<div class="mt-2 space-y-1 text-xs">
 
 <div class="p-2 bg-red-500/10 rounded-lg">
 <b>🔴 RED:</b> Write exactly one failing test. Not a suite — a single, precise specification of behavior that doesn't exist yet. Run it. Watch it fail. <i>This proves the test is testing something real.</i>
@@ -1139,7 +1148,7 @@ graph LR
 
 ### Why TDD with Agents
 
-<div class="text-sm mt-3 space-y-3">
+<div class="text-xs mt-2 space-y-2">
 
 <div class="p-2 bg-purple-500/10 rounded-lg border border-purple-500/30 text-xs">
 
@@ -1171,6 +1180,7 @@ graph LR
 
 ---
 layout: default
+zoom: 0.9
 ---
 
 # What Makes A Good Test (The TDD Philosophy)
@@ -1242,11 +1252,12 @@ Code can change entirely. Tests shouldn't.
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # Deep Modules — The Architecture Vocabulary
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
 <div>
 
@@ -1307,6 +1318,7 @@ layout: default
 
 ---
 layout: default
+zoom: 0.88
 ---
 
 # Drawbacks (and Why They're OK)
@@ -1374,6 +1386,7 @@ Documents must stay in sync. An outdated ADR is worse than no ADR — it activel
 
 ---
 layout: default
+zoom: 0.9
 ---
 
 # Theory Recap — The Decision Stack
@@ -1465,149 +1478,60 @@ layout: default
 
 ---
 layout: default
+zoom: 0.88
 ---
 
-# Exercise Overview — 90 minutes
+# The Exercise — Run the Full Loop (90 min)
 
-<div class="grid grid-cols-3 gap-3 mt-6 text-xs">
+<div class="mt-6">
 
-<div class="p-3 bg-gray-500/10 rounded-lg border border-gray-500/30">
+<div class="flex items-center gap-2 text-xs justify-center flex-wrap">
 
-### Phase 1 — 10 min
-#### Read & Critique
-
-Read a real ADR and PRD from an open-source project. Identify **what makes them effective** (or not).
-
+<div class="p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-center w-44">
+<div class="text-xl mb-1">🔥</div>
+<b>/grill-with-docs</b>
+<div class="mt-1 opacity-70">Interview relentlessly.<br/>Crystallize decisions.</div>
 </div>
 
-<div v-click class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+<span class="text-xl opacity-40">→</span>
 
-### Phase 2 — 50 min
-#### Write Your Stack
-
-Use the agent with the skills to produce a **CONTEXT.md**, **at least 2 ADRs**, and **1 PRD** for the Calendar Consensus App.
-
+<div v-click class="p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-center w-44">
+<div class="text-xl mb-1">📖</div>
+<b>CONTEXT.md + ADRs</b>
+<div class="mt-1 opacity-70">Domain glossary.<br/>Architecture decisions.</div>
 </div>
 
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+<span v-click class="text-xl opacity-40">→</span>
 
-### Phase 3 — 30 min
-#### Cross-Review
-
-Swap documents with another group. Review their stack. Discuss differences, strengths, gaps.
-
+<div v-click class="p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-center w-44">
+<div class="text-xl mb-1">📋</div>
+<b>/to-prd</b>
+<div class="mt-1 opacity-70">Synthesize into<br/>a structured PRD.</div>
 </div>
 
-</div>
+<span v-click class="text-xl opacity-40">→</span>
 
-<div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-center text-sm">
-
-<b>⚠️ Fundamental rule:</b> No code. Today we only produce CONTEXT.md, ADRs, and a PRD.<br/>
-Code comes when the agent reads these documents and implements them — in the next lesson.
-
-</div>
-
----
-layout: default
----
-
-# Phase 1 — Read & Critique (10 min)
-
-<div class="mt-4">
-
-<div class="text-sm">
-
-Your group receives **two example documents**:
-
-</div>
-
-<div class="grid grid-cols-2 gap-4 mt-4">
-
-<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-### ADR Example
-
-```markdown
-# Use JWT for Authentication
-
-We're using JWT with httpOnly refresh
-tokens (7d expiry) and short-lived
-access tokens (15min). Chose over
-session-based auth to keep the API
-stateless across multiple instances.
-Token revocation uses a blacklist
-in Redis with TTL matching the
-token lifetime.
-```
-
-</div>
-
-<div class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-
-### PRD Example
-
-```markdown
-# Calendar Event Consensus
-
-## Problem Statement
-Scheduling meetings with 5+ participants
-takes 6-8 messages across email and chat.
-
-## Solution
-Automatically create a calendar event
-when all participants agree on a time slot.
-
-## User Stories
-1. As an organizer, I want to propose
-   time slots so that participants can vote
-2. As a participant, I want to vote yes/no
-   per slot so my preference is recorded
-3. As an organizer, I want the calendar
-   event created automatically when
-   consensus is reached
-
-## Out of Scope
-- Recurring meetings
-- Integration with Outlook
-```
-
+<div v-click class="p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-center w-44">
+<div class="text-xl mb-1">🎯</div>
+<b>/to-issues</b>
+<div class="mt-1 opacity-70">Break PRD into<br/>vertical slice issues.</div>
 </div>
 
 </div>
 
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs">
-
-<b>Your task (in group):</b> discuss these questions for 10 minutes — take notes.
-
-<div class="grid grid-cols-2 gap-2 mt-2">
-
-<div class="p-1">
-
-• Is the decision surprising? Would an ADR be needed?<br/>
-• Is the decision clear or ambiguous?<br/>
-• Can an agent understand and follow this?
-
-</div>
-
-<div class="p-1">
-
-• Are the user stories exhaustive?<br/>
-• Is the scope clear (what's in and what's out)?<br/>
-• What's missing that an agent would need?
-
-</div>
-
-</div>
-
+<div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+<b>⚠️ Fundamental rule:</b> No code. Today you produce the Decision Stack: CONTEXT.md, ADRs, PRD, <b>and issues</b>.<br/>
+Code comes in the next lesson when the agent reads these documents and implements them.
 </div>
 
 </div>
 
 ---
 layout: default
+zoom: 0.82
 ---
 
-# Phase 2 — Build Your Stack (50 min)
+# What You'll Produce
 
 <div class="mt-4">
 
@@ -1677,11 +1601,12 @@ Transform your plan.md using the agent:
 
 ---
 layout: default
+zoom: 0.88
 ---
 
-# Phase 2 — The Agent's Role
+# The Agent's Role
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
 <div>
 
@@ -1753,9 +1678,10 @@ layout: default
 
 ---
 layout: default
+zoom: 0.88
 ---
 
-# Phase 2 — CONTEXT.md Template
+# CONTEXT.md Template
 
 <div class="mt-4">
 
@@ -1797,9 +1723,10 @@ _Avoid_: Response, answer, choice
 
 ---
 layout: default
+zoom: 0.85
 ---
 
-# Phase 2 — ADR Template
+# ADR Template
 
 <div class="mt-4">
 
@@ -1850,9 +1777,10 @@ we decide, and why.}
 
 ---
 layout: default
+zoom: 0.8
 ---
 
-# Phase 2 — PRD Template
+# PRD Template
 
 <div class="mt-4">
 
@@ -1907,13 +1835,14 @@ Any additional context or notes.
 
 ---
 layout: default
+zoom: 0.82
 ---
 
 # Relating Your Documents
 
 <div class="mt-6">
 
-```mermaid {scale: 0.55}
+```mermaid {scale: 0.45}
 graph TD
     GLOSSARY["📖 CONTEXT.md<br/>Proposal, Consensus, Participant, Vote"]
 
@@ -1947,132 +1876,7 @@ graph TD
 
 ---
 layout: default
----
-
-# Phase 3 — Cross-Review (30 min)
-
-<div class="mt-6">
-
-### Swap with another group
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div class="text-sm">
-
-### Your job as reviewer
-
-<div class="mt-3 space-y-2">
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-
-**CONTEXT.md:** Are terms clear and opinionated? Are avoid-words listed? Would a new team member understand the domain?
-
-</div>
-
-<div class="p-2 bg-green-500/10 rounded-lg">
-
-**ADRs:** Is the "why" clear in 1-3 sentences? Does it pass the three-part test (hard to reverse, surprising, trade-off)? Is anything recorded that shouldn't be?
-
-</div>
-
-<div class="p-2 bg-purple-500/10 rounded-lg">
-
-**PRD:** Are user stories exhaustive? Are implementation and testing decisions clear? Is the scope bounded? Would an agent know what to build?
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="text-sm">
-
-### Review format
-
-<div class="mt-3 space-y-2">
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**15 min:** Read the other group's stack silently
-
-</div>
-
-<div class="p-2 bg-gray-500/10 rounded-lg">
-
-**15 min:** Open discussion between groups
-
-</div>
-
-<div class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-
-**Feedback must be:**
-- Specific ("ADR about auth doesn't state why JWT over sessions")
-- Constructive ("Consider splitting this user story into two...")
-- Questioning ("What happens if the deadline passes while someone is voting?")
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
----
-
-# Cross-Review — Checklist
-
-<div class="mt-4">
-
-<div class="max-w-3xl mx-auto text-sm space-y-2">
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-
-### 📖 CONTEXT.md Review
-
-- [ ] Are all domain-specific terms defined?
-- [ ] Is each definition 1-2 sentences (not paragraphs)?
-- [ ] Are avoid-words listed for each term?
-- [ ] Are terms opinionated (one canonical word per concept)?
-- [ ] Are general programming concepts excluded?
-
-</div>
-
-<div v-click class="p-2 bg-green-500/10 rounded-lg">
-
-### 📐 ADR Review
-
-- [ ] Is the decision clear in 1-3 sentences?
-- [ ] Is it hard to reverse?
-- [ ] Would it be surprising without this context?
-- [ ] Was there a real trade-off?
-- [ ] Are rejected alternatives mentioned if non-obvious?
-
-</div>
-
-<div v-click class="p-2 bg-purple-500/10 rounded-lg">
-
-### 📋 PRD Review
-
-- [ ] Is the problem stated from the user's perspective?
-- [ ] Is the solution clear and user-facing?
-- [ ] Are user stories exhaustive (at least 5-6)?
-- [ ] Are implementation decisions described?
-- [ ] Are testing decisions described?
-- [ ] Is out-of-scope clearly bounded?
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
+zoom: 0.88
 ---
 
 # Group Discussion — 10 minutes
@@ -2089,10 +1893,10 @@ layout: default
 
 <div class="text-sm mt-2 space-y-1 opacity-70">
 
-- Which document was hardest to write?
-- What did the other group catch that you missed?
-- Did the agent help or hinder?
-- How does the grilling process change how you think?
+- Which document was hardest to produce?
+- Where did the agent help most? Where did it struggle?
+- How does grilling change how you think about a feature?
+- Did you catch the agent making assumptions?
 
 </div>
 
@@ -2107,6 +1911,7 @@ layout: default
 - How would the agent use these documents in the next lesson?
 - Which skill would you run first when implementing?
 - What's the difference between a PRD and a set of issues?
+- How do vertical slices emerge from a good PRD?
 
 </div>
 
@@ -2116,13 +1921,14 @@ layout: default
 
 <div v-click class="mt-8 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-sm text-center">
 
-<b>Reflection:</b> You started with a plan.md (exploratory). Now you have a domain glossary, ADRs, and a PRD.<br/>
+<b>Reflection:</b> You ran the full loop: /grill-with-docs → /to-prd → /to-issues.<br/>
 <b>This is the "plan then act" principle, made concrete — with lightweight process guides, not heavyweight templates.</b>
 
 </div>
 
 ---
 layout: default
+zoom: 0.85
 ---
 
 # From Decision Stack to Code — Preview
@@ -2139,7 +1945,7 @@ In Lesson 3, you'll take your CONTEXT.md, ADRs, and PRD — and let the agent **
 
 <div class="mt-4">
 
-```mermaid {scale: 0.6}
+```mermaid {scale: 0.48}
 graph LR
     CTX["📖 CONTEXT.md<br/>Domain language"] --> AG["🤖 Agent"]
     ADR["📐 ADRs<br/>Architecture rules"] --> AG
@@ -2189,6 +1995,10 @@ layout: section
   <b>/prd/</b> — 1 PRD for the Calendar Consensus App
 </div>
 
+<div class="p-3 bg-gray-500/10 rounded-lg">
+  <b>/issues/</b> — vertical slice issues generated via /to-issues
+</div>
+
 </div>
 
 <div class="mt-6 text-sm opacity-60">
@@ -2223,22 +2033,22 @@ layout: default
 
 <div v-click>
 
-### Practice — Building the Stack
+### Practice — Running the Workflow
 
 <div class="text-sm mt-4 space-y-2">
 
-- ✅ Read & critiqued real ADR and PRD examples
+- ✅ Ran the full loop: /grill-with-docs → /to-prd → /to-issues
 - ✅ Built a domain glossary (CONTEXT.md) for the Calendar Consensus App
 - ✅ Wrote at least 2 ADRs (only for decisions that pass the three-part test)
-- ✅ Transformed plan.md into a structured PRD using the template
-- ✅ Cross-reviewed another group's stack
+- ✅ Synthesized a structured PRD from the grilling conversation
+- ✅ Decomposed the PRD into vertical slice issues via /to-issues
 - ✅ Connected documents with cross-references and the vertical slice workflow
 
 </div>
 
 <div class="mt-6 p-3 bg-green-500/10 rounded-lg border border-green-500/30 text-sm">
 
-<b>Key result:</b> You have a complete Decision Stack — lightweight documents and a repeatable process for agent-driven implementation.
+<b>Key result:</b> You have a complete Decision Stack — CONTEXT.md, ADRs, PRD, and issues — ready for agent-driven implementation in the next lesson.
 
 </div>
 
