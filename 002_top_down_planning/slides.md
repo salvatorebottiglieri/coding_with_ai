@@ -662,7 +662,7 @@ layout: default
 
 ---
 layout: default
-zoom: 0.8
+zoom: 0.88
 ---
 
 # Layer 2 — PRD: Product Requirements Document
@@ -738,13 +738,8 @@ Synthesized from the conversation by `/to-prd` — no separate interview needed.
 <b>👥 Before agents:</b> A product manager spent weeks interviewing stakeholders, writing specs in Confluence or Google Docs, and circulating them for approval. By the time coding started, requirements had often already shifted. The spec and the codebase drifted apart — each living in its own silo, neither fully trusted.
 </div>
 
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>💡 It's not just for agents.</b> It's for you 6 weeks from now, when you've forgotten why you built this feature.
-</div>
-
 ---
 layout: default
-zoom: 0.88
 ---
 
 # PRD vs. plan.md — The Upgrade
@@ -797,7 +792,7 @@ zoom: 0.88
 
 ---
 layout: default
-zoom: 0.88
+zoom: 0.95
 ---
 
 # Skills: Process Guides, Not Document Templates
@@ -881,7 +876,6 @@ Skills are **process guides** — they tell the agent *how* to work, not *what* 
 
 ---
 layout: default
-zoom: 0.88
 ---
 
 # The Skills You'll Use
@@ -981,7 +975,7 @@ graph TD
 
 ---
 layout: default
-zoom: 0.82
+zoom: 0.75
 ---
 
 # The Loop with Agent Skills — Concrete Example
@@ -1030,7 +1024,6 @@ Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker wi
 
 ---
 layout: default
-zoom: 0.78
 ---
 
 # Vertical Slices — The Core Pattern
