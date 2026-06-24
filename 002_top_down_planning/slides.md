@@ -143,7 +143,7 @@ layout: default
 
 <div class="mt-6">
 
-```mermaid {scale: 0.65}
+```mermaid {scale: 0.85}
 graph LR
     GLOSSARY["📖 <b>CONTEXT.md</b><br/>Domain Glossary<br/><i>Shared language</i>"]
     ADR["📐 <b>ADR</b><br/>Architecture<br/>Decision Record<br/><i>Why</i>"]
@@ -178,7 +178,7 @@ graph LR
 
 ---
 layout: default
-zoom: 0.85
+zoom: 0.95
 ---
 
 # Before Agents — What Humans Used to Do
@@ -317,14 +317,13 @@ Too little → the agent invents its own reasons. Too much → you spend more ti
 
 ---
 layout: default
-zoom: 0.95
 ---
 
 # The Core Workflow
 
 <div class="mt-4">
 
-```mermaid {scale: 0.48}
+```mermaid {scale: 0.53}
 graph LR
     GRILL["🔥 /grill-with-docs<br/>Interview the user relentlessly.<br/>Build shared language."]
     DOMAIN["📖 /domain-modeling<br/>Sharpen CONTEXT.md.<br/>Record ADRs when needed."]
@@ -344,6 +343,57 @@ graph LR
   Each is a small, composable process guide. You can use them independently or in sequence.<br/>
   <span class="opacity-50">Created by Matt Pocock</span>
 </div>
+
+
+---
+layout: default
+zoom: 0.75
+---
+
+# The Loop with Agent Skills — Concrete Example
+
+<div class="text-sm mt-4 space-y-3">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### Step 1: Grill with docs
+You: `/grill-with-docs` — *"I want to build a calendar consensus app"*
+Agent interviews you one question at a time. As terms crystallize, `/domain-modeling` updates CONTEXT.md inline.
+
+</div>
+
+<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+
+### Step 2: Record architecture decisions
+Agent: *"Are we using event sourcing for votes? The alternative is CRUD with a history table."*
+You decide → agent writes a 3-sentence ADR in `docs/adr/0001-event-sourced-votes.md`.
+
+</div>
+
+<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+
+### Step 3: Synthesize the PRD
+Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker with Problem, Solution, User Stories, Implementation Decisions.
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### Step 4: Break into issues + implement
+`/to-issues` creates vertical slices. Each is a small, independently grabbable unit. Implement each with `/tdd` — one slice at a time.
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-xs">
+<b>👥 Before agents, this same loop required 3–5 different people:</b> a domain expert for shared language, an architect for design decisions, a PM for requirements, a tech lead for decomposition, and developers for implementation. Each handoff risked information loss. Now a single agent, guided by skills, can walk the same path without dropping context.
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+  <b>Same loop, different focus each time.</b> Skills are the harness that focuses the agent on the right process.
+</div>
+
 
 ---
 layout: default
@@ -736,57 +786,79 @@ Synthesized from the conversation by `/to-prd` — no separate interview needed.
 <b>👥 Before agents:</b> A product manager spent weeks interviewing stakeholders, writing specs in Confluence or Google Docs, and circulating them for approval. By the time coding started, requirements had often already shifted. The spec and the codebase drifted apart — each living in its own silo, neither fully trusted.
 </div>
 
+
 ---
 layout: default
 ---
 
-# PRD vs. plan.md — The Upgrade
+# Layer 3 - Issues: The Vertical Slices
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
-<div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+<div>
 
-### plan.md (Lesson 1)
+### What is a vertical slice?
 
-<div class="text-sm mt-3 space-y-2">
+<div class="text-xs mt-2 space-y-2">
 
-- **Exploratory** — negotiated in conversation
-- **Group exercise** — collaborative discovery
-- **6 loose sections** — Goal, Scope, Constraints, User Stories, Acceptance Criteria, Risks
-- **Rough draft** — captures thinking, not perfection
+A **tracer bullet** — a thin, complete path through ALL layers of the system:
 
-</div>
+<div class="mt-2 space-y-1">
 
-<div class="mt-3 text-xs opacity-60">
-  This was your first interaction with the agent.
-</div>
+- Schema → API → UI → Tests → done
+- Each slice is **demoable** on its own
+- Each slice is **independently grabbable**
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+<div v-click class="mt-3 p-2 bg-green-500/10 rounded-lg text-xs">
 
-### PRD (this lesson)
+<b>Produces good tests</b> because you test one behavior at a time, with the real implementation behind it.
 
-<div class="text-sm mt-3 space-y-2">
-
-- **Structured** — follows a deliberate template
-- **Authoritative** — single source of truth for the feature
-- **Published to the issue tracker** — becomes the parent issue for implementation
-- **Persistent** — lives in the repo, versioned in git
-
-</div>
-
-<div class="mt-3 text-xs opacity-60">
-  This is the document the agent will use to build the feature.
 </div>
 
 </div>
 
+</div>
+
+<div v-click>
+
+### Example for Calendar Consensus
+
+<div class="text-sm space-y-2">
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 1:</b> Organizer can create a proposal with time slots → API endpoint + DB schema + minimal UI
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 2:</b> Participant can vote yes/no on a slot → voting API + email notification + vote UI
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 3:</b> Consensus triggers calendar event → consensus detection + Google Calendar integration
+</div>
+
+<div class="p-2 bg-blue-500/10 rounded-lg">
+  <b>Slice 4:</b> Deadline passes without consensus → deadline cron + no-event notification
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-xs">
+<b>👥 Before agents:</b> Senior developers mentally decomposed features into vertical slices. Junior developers often fell into the trap of building horizontal layers first (all models → all APIs → all UI), creating integration hell at the end. The quality of decomposition depended entirely on who was doing it — no process enforced the pattern.
 </div>
 
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>The transformation:</b> plan.md was the <b>conversation</b>. The PRD is the <b>commitment</b>.
+<b>⚠️ Anti-pattern:</b> "Write all tests first, then all implementation." This produces crap tests that test imagination, not behavior.<br/>
+<b>✅ Correct:</b> One test → one implementation → repeat. Each test responds to what you learned from the previous cycle.
 </div>
+
+
 
 ---
 layout: default
@@ -944,152 +1016,7 @@ layout: default
 
 </div>
 
----
-layout: default
-zoom: 0.88
----
 
-# How The Loop Works
-
-<div class="mt-4">
-
-```mermaid {scale: 0.48}
-graph TD
-    START["💡 Idea"] --> GRILL["🔥 /grill-with-docs<br/>Interview relentlessly.<br/>Resolve every branch."]
-    GRILL --> DOCS["📖 CONTEXT.md + ADRs<br/>Domain language crystallised.<br/>Architecture decisions recorded."]
-    DOCS --> PRD["📋 /to-prd<br/>PRD published to<br/>issue tracker."]
-    PRD --> ISSUES["🎯 /to-issues<br/>Vertical slice issues.<br/>Each independently grabbable."]
-    ISSUES --> IMPL["💻 Implement with /tdd<br/>Red-green-refactor.<br/>One slice at a time."]
-    IMPL --> PR["📤 Pull Request<br/>CI runs tests.<br/>Human reviews."]
-    PR -.->|"Feedback"| IMPL
-```
-
-</div>
-
-<div v-click class="mt-4 text-xs text-center opacity-70">
-  <b>This is the real workflow.</b> Not a theoretical stack — actual skills you run, in sequence, to go from idea to merged PR.<br/>
-  Documents are created along the way as <b>outputs of the process</b>, not prerequisites to start.
-</div>
-
----
-layout: default
-zoom: 0.75
----
-
-# The Loop with Agent Skills — Concrete Example
-
-<div class="text-sm mt-4 space-y-3">
-
-<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-### Step 1: Grill with docs
-You: `/grill-with-docs` — *"I want to build a calendar consensus app"*
-Agent interviews you one question at a time. As terms crystallize, `/domain-modeling` updates CONTEXT.md inline.
-
-</div>
-
-<div v-click class="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-
-### Step 2: Record architecture decisions
-Agent: *"Are we using event sourcing for votes? The alternative is CRUD with a history table."*
-You decide → agent writes a 3-sentence ADR in `docs/adr/0001-event-sourced-votes.md`.
-
-</div>
-
-<div v-click class="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-
-### Step 3: Synthesize the PRD
-Agent has everything it needs. `/to-prd` publishes a PRD to the issue tracker with Problem, Solution, User Stories, Implementation Decisions.
-
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
-
-### Step 4: Break into issues + implement
-`/to-issues` creates vertical slices. Each is a small, independently grabbable unit. Implement each with `/tdd` — one slice at a time.
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-xs">
-<b>👥 Before agents, this same loop required 3–5 different people:</b> a domain expert for shared language, an architect for design decisions, a PM for requirements, a tech lead for decomposition, and developers for implementation. Each handoff risked information loss. Now a single agent, guided by skills, can walk the same path without dropping context.
-</div>
-
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>Same loop, different focus each time.</b> Skills are the harness that focuses the agent on the right process.
-</div>
-
----
-layout: default
----
-
-# Vertical Slices — The Core Pattern
-
-<div class="grid grid-cols-2 gap-4 mt-4">
-
-<div>
-
-### What is a vertical slice?
-
-<div class="text-xs mt-2 space-y-2">
-
-A **tracer bullet** — a thin, complete path through ALL layers of the system:
-
-<div class="mt-2 space-y-1">
-
-- Schema → API → UI → Tests → done
-- Each slice is **demoable** on its own
-- Each slice is **independently grabbable**
-
-</div>
-
-<div v-click class="mt-3 p-2 bg-green-500/10 rounded-lg text-xs">
-
-<b>Produces good tests</b> because you test one behavior at a time, with the real implementation behind it.
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click>
-
-### Example for Calendar Consensus
-
-<div class="text-sm space-y-2">
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-  <b>Slice 1:</b> Organizer can create a proposal with time slots → API endpoint + DB schema + minimal UI
-</div>
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-  <b>Slice 2:</b> Participant can vote yes/no on a slot → voting API + email notification + vote UI
-</div>
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-  <b>Slice 3:</b> Consensus triggers calendar event → consensus detection + Google Calendar integration
-</div>
-
-<div class="p-2 bg-blue-500/10 rounded-lg">
-  <b>Slice 4:</b> Deadline passes without consensus → deadline cron + no-event notification
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg border border-gray-500/30 text-xs">
-<b>👥 Before agents:</b> Senior developers mentally decomposed features into vertical slices. Junior developers often fell into the trap of building horizontal layers first (all models → all APIs → all UI), creating integration hell at the end. The quality of decomposition depended entirely on who was doing it — no process enforced the pattern.
-</div>
-
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-<b>⚠️ Anti-pattern:</b> "Write all tests first, then all implementation." This produces crap tests that test imagination, not behavior.<br/>
-<b>✅ Correct:</b> One test → one implementation → repeat. Each test responds to what you learned from the previous cycle.
-</div>
 
 ---
 layout: default
