@@ -254,6 +254,10 @@ A personal practice some devs followed, most abandoned under deadline pressure. 
 <span class="opacity-50">This agentic workflow was pioneered by Matt Pocock</span>
 </div>
 
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Domain-Driven Design — Eric Evans, 2003 &nbsp;|&nbsp; ADR — Michael Nygard, 2011 &nbsp;|&nbsp; TDD — Kent Beck, 2002 &nbsp;|&nbsp; Sprint Planning — Ken Schwaber / Scrum Guide
+</div>
+
 ---
 layout: section
 ---
@@ -313,6 +317,10 @@ zoom: 0.88
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
 <b>Key principle:</b> The right amount of process is the minimum that makes your agent effective.<br/>
 Too little → the agent invents its own reasons. Too much → you spend more time on docs than code.
+</div>
+
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Behavior-Driven Development — Dan North, 2006 &nbsp;|&nbsp; Cucumber / Gherkin — Aslak Hellesøy, 2008
 </div>
 
 ---
@@ -484,6 +492,10 @@ _Avoid_: User, voter, member, attendee
 <b>💡 With a shared language:</b> "There's a problem with the consensus check" — not "There's a problem when everyone says yes to the same slot in the voting poll."
 </div>
 
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Ubiquitous Language — Eric Evans, <em>Domain-Driven Design</em>, 2003 &nbsp;|&nbsp; Event Storming — Alberto Brandolini, 2013
+</div>
+
 ---
 layout: default
 zoom: 0.85
@@ -630,6 +642,10 @@ team size.
 <b>👥 Before agents:</b> Decisions lived in meeting notes or people's heads — "ask Dave why we picked Postgres." Dave left, the <i>why</i> left with him. ADRs make reasoning discoverable forever. &nbsp;|&nbsp; <b>Location:</b> <code>docs/adr/0001-slug.md</code>, numbered sequentially.
 </div>
 
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Architecture Decision Records — Michael Nygard, <em>Documenting Architecture Decisions</em>, 2011
+</div>
+
 ---
 layout: default
 ---
@@ -710,7 +726,7 @@ layout: default
 
 ---
 layout: default
-zoom: 0.88
+zoom: 0.87
 ---
 
 # Layer 2 — PRD: Product Requirements Document
@@ -786,9 +802,13 @@ Synthesized from the conversation by `/to-prd` — no separate interview needed.
 <b>👥 Before agents:</b> A product manager spent weeks interviewing stakeholders, writing specs in Confluence or Google Docs, and circulating them for approval. By the time coding started, requirements had often already shifted. The spec and the codebase drifted apart — each living in its own silo, neither fully trusted.
 </div>
 
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> User Stories — Kent Beck, <em>Extreme Programming Explained</em>, 1999 &nbsp;|&nbsp; PRD — pratiche Agile / Scrum
+</div>
 
 ---
 layout: default
+zoom: 0.99
 ---
 
 # Layer 3 - Issues: The Vertical Slices
@@ -858,7 +878,9 @@ A **tracer bullet** — a thin, complete path through ALL layers of the system:
 <b>✅ Correct:</b> One test → one implementation → repeat. Each test responds to what you learned from the previous cycle.
 </div>
 
-
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Tracer Bullets / Vertical Slices — Andrew Hunt & David Thomas, <em>The Pragmatic Programmer</em>, 1999
+</div>
 
 ---
 layout: default
@@ -1096,6 +1118,10 @@ graph LR
 <b>👥 Before agents:</b> TDD was an individual discipline practiced by a minority of developers. Under deadline pressure, tests were the first sacrifice — "we'll add them later" (they never did). With agents, TDD becomes a <b>process guardrail</b>: the agent follows the cycle because the skill tells it to, not because it's in the mood.
 </div>
 
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Test-Driven Development / Red-Green-Refactor — Kent Beck, <em>Test-Driven Development: By Example</em>, 2002
+</div>
+
 ---
 layout: default
 zoom: 0.9
@@ -1231,6 +1257,10 @@ layout: default
 <div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
   <b>The deletion test:</b> If deleting a module just moves complexity around, it was shallow. If complexity vanishes, it was earning its keep.<br/>
   <b>One adapter = hypothetical seam. Two adapters = real one.</b> Don't introduce seams unless something actually varies across them.
+</div>
+
+<div class="mt-2 text-right text-[10px] opacity-35">
+📚 <em>Rif.:</em> Deep Modules / Information Hiding — John Ousterhout, <em>A Philosophy of Software Design</em>, 2018 &nbsp;|&nbsp; Seams — Michael Feathers, <em>Working Effectively with Legacy Code</em>, 2004
 </div>
 
 ---
@@ -1757,7 +1787,7 @@ graph TD
 
 ---
 layout: default
-zoom: 0.85
+zoom: 0.9
 ---
 
 # From Decision Stack to Code — Preview
@@ -1774,7 +1804,7 @@ In Lesson 3, you'll take your CONTEXT.md, ADRs, and PRD — and let the agent **
 
 <div class="mt-4">
 
-```mermaid {scale: 0.48}
+```mermaid {scale: 0.8}
 graph LR
     CTX["📖 CONTEXT.md<br/>Domain language"] --> AG["🤖 Agent"]
     ADR["📐 ADRs<br/>Architecture rules"] --> AG
@@ -1804,36 +1834,6 @@ graph LR
 
 </div>
 
----
-layout: section
----
-
-# 📤 Submit Your Stack
-
-<div class="mt-8 text-lg opacity-70">
-  One zip per group containing:
-</div>
-
-<div class="mt-6 max-w-lg mx-auto text-left text-sm space-y-2">
-
-<div class="p-3 bg-gray-500/10 rounded-lg">
-  <b>/docs/</b> — CONTEXT.md + adr/ directory with at least 2 ADRs
-</div>
-
-<div class="p-3 bg-gray-500/10 rounded-lg">
-  <b>/prd/</b> — 1 PRD for the Calendar Consensus App
-</div>
-
-<div class="p-3 bg-gray-500/10 rounded-lg">
-  <b>/issues/</b> — vertical slice issues generated via /to-issues
-</div>
-
-</div>
-
-<div class="mt-6 text-sm opacity-60">
-  Group name: <b>____________________________</b><br/>
-  Members: <b>____________________________</b>
-</div>
 
 ---
 layout: default
