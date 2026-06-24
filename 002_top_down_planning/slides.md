@@ -319,14 +319,14 @@ Too little → the agent invents its own reasons. Too much → you spend more ti
 
 ---
 layout: default
-zoom: 0.88
+zoom: 0.95
 ---
 
 # The Core Workflow
 
 <div class="mt-4">
 
-```mermaid {scale: 0.38}
+```mermaid {scale: 0.48}
 graph LR
     GRILL["🔥 /grill-with-docs<br/>Interview the user relentlessly.<br/>Build shared language."]
     DOMAIN["📖 /domain-modeling<br/>Sharpen CONTEXT.md.<br/>Record ADRs when needed."]
