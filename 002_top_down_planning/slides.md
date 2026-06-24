@@ -180,15 +180,15 @@ graph LR
 
 ---
 layout: default
-zoom: 0.8
+zoom: 0.85
 ---
 
 # Before Agents — What Humans Used to Do
-<div class="mt-4 text-xs">
+<div class="mt-4 text-sm">
 Every phase of this workflow existed before agents — it was just performed by humans, with all the fragility that implies.
 </div>
 
-<div class="mt-4 grid grid-cols-2 gap-3 text-xs">
+<div class="mt-4 grid grid-cols-2 gap-3 text-sm">
 <div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
 #### 📖 Domain Glossary → Domain Experts
