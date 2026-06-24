@@ -509,7 +509,7 @@ Agent uses only "Proposal" and "Consensus" — consistently, everywhere
 
 ---
 layout: default
-zoom: 0.82
+zoom: 0.95
 ---
 
 # Layer 1 — ADR: Architecture Decision Record
