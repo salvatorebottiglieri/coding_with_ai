@@ -22,13 +22,13 @@ transition: slide-left
 layout: default
 ---
 
-# Lesson Agenda — 120 minutes
+# Lesson Agenda
 
 <div class="grid grid-cols-2 gap-4 mt-8">
 
 <div class="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
 
-### 🧠 Theory — 30 min
+### 🧠 Theory
 
 The **Decision Stack**:
 3 layers — ADR, Domain Glossary (CONTEXT.md), PRD — with agent skills as process guides
@@ -42,9 +42,9 @@ The **Decision Stack**:
 
 <div v-click class="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30">
 
-### 🏗️ Practice — 90 min
+### 🏗️ Practice 
 
-- 90 min: Run the full loop — /grill-with-docs → /domain-modeling → /to-prd → /to-issues
+Run the full loop — /grill-with-docs → /domain-modeling → /to-prd → /to-issues
 
 </div>
 
@@ -322,6 +322,81 @@ Too little → the agent invents its own reasons. Too much → you spend more ti
 <div class="mt-2 text-right text-[10px] opacity-35">
 📚 <em>Rif.:</em> Behavior-Driven Development — Dan North, 2006 &nbsp;|&nbsp; Cucumber / Gherkin — Aslak Hellesøy, 2008
 </div>
+
+
+---
+layout: default
+---
+
+# The Skills You'll Use
+
+<div class="mt-4">
+
+### The engineering process skills — installed in one command
+
+<div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+
+<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+
+### User-invoked (you type them)
+
+<div class="mt-2 space-y-2 text-xs">
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/grill-with-docs</b> — Interview + build shared language. The most important skill.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/to-prd</b> — Synthesize conversation into a PRD. Publish to issue tracker.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/to-issues</b> — Break a PRD into vertical slice issues.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/improve-codebase-architecture</b> — Scan for deepening opportunities.
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+
+### Model-invoked (agent reaches for them)
+
+<div class="mt-2 space-y-2 text-xs">
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/domain-modeling</b> — Active discipline: sharpen terms, challenge, write CONTEXT.md + ADRs.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/tdd</b> — Red-green-refactor loop. One vertical slice at a time.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/codebase-design</b> — Vocabulary for deep modules, seams, interfaces.
+</div>
+
+<div class="p-1 bg-gray-500/10 rounded">
+  <b>/diagnosing-bugs</b> — Reproduce → minimise → hypothesise → fix.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
+  <b>Install:</b> <code>npx skills@latest add</code> — pick the skills you want, run the setup skill once per repo.
+</div>
+
+</div>
+
+
 
 ---
 layout: default
@@ -964,78 +1039,6 @@ Skills are **process guides** — they tell the agent *how* to work, not *what* 
 <div v-click class="mt-6 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
   <b>The agent reads documents because the process tells it to</b> — not because a "skill" loads them.<br/>
   The skill orchestrates; the documents are inputs to the process, not the process itself.
-</div>
-
----
-layout: default
----
-
-# The Skills You'll Use
-
-<div class="mt-4">
-
-### The engineering process skills — installed in one command
-
-<div class="mt-6 grid grid-cols-2 gap-4 text-sm">
-
-<div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
-
-### User-invoked (you type them)
-
-<div class="mt-2 space-y-2 text-xs">
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/grill-with-docs</b> — Interview + build shared language. The most important skill.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/to-prd</b> — Synthesize conversation into a PRD. Publish to issue tracker.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/to-issues</b> — Break a PRD into vertical slice issues.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/improve-codebase-architecture</b> — Scan for deepening opportunities.
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
-
-### Model-invoked (agent reaches for them)
-
-<div class="mt-2 space-y-2 text-xs">
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/domain-modeling</b> — Active discipline: sharpen terms, challenge, write CONTEXT.md + ADRs.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/tdd</b> — Red-green-refactor loop. One vertical slice at a time.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/codebase-design</b> — Vocabulary for deep modules, seams, interfaces.
-</div>
-
-<div class="p-1 bg-gray-500/10 rounded">
-  <b>/diagnosing-bugs</b> — Reproduce → minimise → hypothesise → fix.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-xs text-center">
-  <b>Install:</b> <code>npx skills@latest add</code> — pick the skills you want, run the setup skill once per repo.
-</div>
-
 </div>
 
 
